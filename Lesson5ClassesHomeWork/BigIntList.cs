@@ -75,17 +75,20 @@ namespace MyBigInteger
 			int remainder = 0;
 			for (int i = leftBi.Count-1; i >= 0; i--)
 			{
-				total = leftBi[i] - rightBi[i] - remainder;
-				if (total<0)
+
+				if ((leftBi[i] - remainder) < rightBi[i])
 				{
-					leftBi[i] = -total;
+					total = (leftBi[i] + 10) - rightBi[i] - remainder;
 					remainder = 1;
+					leftBi[i] = total;
 				}
 				else
 				{
-					leftBi[i] = total;
+					total = leftBi[i] - rightBi[i] - remainder;
 					remainder = 0;
+					leftBi[i] = total;
 				}
+				
 			}
 
 				if (leftBi[0] == 0)
