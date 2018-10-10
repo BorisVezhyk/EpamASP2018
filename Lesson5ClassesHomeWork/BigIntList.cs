@@ -203,7 +203,6 @@ namespace MyBigInteger
 
 		private List<int> ConverStringToBigInt(string numString)
 		{
-			Console.WriteLine(numString);
 			List<int> result=new List<int>();
 			int startIterator = 0;
 			if (numString[0] == '-')
@@ -218,7 +217,6 @@ namespace MyBigInteger
 					result.Add((int)Char.GetNumericValue(numString[i]));
 			}
 
-			Console.WriteLine(PrintBig(result));
 			return result;
 		}
 
