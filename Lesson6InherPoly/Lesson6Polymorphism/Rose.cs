@@ -13,7 +13,8 @@ namespace Lesson6Polymorphism
 
 		public override int GetAmount()
 		{
-			return base.GetAmount() * MULTILIER;
+			int result=base.GetAmount() * MULTILIER;
+			return result;
 		}
 	}
 
@@ -21,6 +22,13 @@ namespace Lesson6Polymorphism
 	{
 		public AldaRose(int cost, int count, string color) : base(cost, count, color)
 		{
+		}
+
+		public override int GetAmount()
+		{
+			int result = base.GetAmount();
+			Console.WriteLine("AldaRose is {2}, count {0}. It costs {1}", Count, result,Color);
+			return result;
 		}
 	}
 
@@ -33,7 +41,9 @@ namespace Lesson6Polymorphism
 
 		public override int GetAmount()
 		{
-			return base.GetAmount() + RATIO;
+			int result =base.GetAmount() + RATIO;
+			Console.WriteLine("RorlandRose is {2} count {0}. It costs {1}",Count, result,Color);
+			return result;
 		}
 	}
 }

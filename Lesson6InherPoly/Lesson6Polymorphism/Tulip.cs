@@ -21,7 +21,9 @@ namespace Lesson6Polymorphism
 
 		public override int GetAmount()
 		{
-			return base.GetAmount() + ADDITOR;
+			int result= base.GetAmount() + ADDITOR;
+			Console.WriteLine("HolandTulip is {0} count {1}. It costs {2}",Color,Count,result);
+			return result;
 		}
 	}
 }

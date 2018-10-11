@@ -14,7 +14,9 @@ namespace Lesson6Polymorphism
 
 		public override int GetAmount()
 		{
-			return base.GetAmount() * MULTILIER_CARNATION;
+			int result= base.GetAmount() * MULTILIER_CARNATION;
+			Console.WriteLine("Carnation count {0} costs {1}", Count, result);
+			return result;
 		}
 	}
 
@@ -22,6 +24,13 @@ namespace Lesson6Polymorphism
 	{
 		public NordCarnation(int cost, int count, string color) : base(cost, count, color)
 		{
+		}
+
+		public override int GetAmount()
+		{
+			int result= base.GetAmount();
+			Console.WriteLine("NordCarnation is {0} count {1}. It costs {2}",Color,Count,result);
+			return result;
 		}
 	}
 }

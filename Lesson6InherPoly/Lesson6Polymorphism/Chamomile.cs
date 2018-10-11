@@ -17,5 +17,11 @@ namespace Lesson6Polymorphism
 		{
 		}
 
+		public override int GetAmount()
+		{
+			int result= base.GetAmount();
+			Console.WriteLine("FieldChamomile is {0} count {1}. It costs {2}", Color, Count, result);
+			return result;
+		}
 	}
 }
