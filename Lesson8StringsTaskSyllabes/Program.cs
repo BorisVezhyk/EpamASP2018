@@ -7,6 +7,7 @@ namespace Less8TaskSyllabes
 	{
 		static void Main(string[] args)
 		{
+
 			Console.OutputEncoding = Encoding.UTF8;
 			string text =
 				"Спайка Прощай зайка спайка \n" +
@@ -25,7 +26,6 @@ namespace Less8TaskSyllabes
 			Syllabe syllabe=new Syllabe();
 			string[] words = syllabe.GetArrayWords(text);
 			syllabe.ConverWordsInSyllabes(words);
-			//text = string.Join(" ", words);
 			text = syllabe.CompileText(words);
 
 			Console.WriteLine("\nРазделяем слова текста на слоги по технике Традиционная школа\n");
