@@ -7,8 +7,8 @@ namespace Lesson9MyLinkedList
 {
 	class MyList<T>:IEnumerable<T>
 	{
-		private Cell<T> _head = null;
-		private Cell<T> _end = null;
+		private Cell<T> _first = null;
+		private Cell<T> _last = null;
 		private const int LIMIT_OF_LIST = 6;
 
 		public int Count { get; private set; }
@@ -20,7 +20,7 @@ namespace Lesson9MyLinkedList
 				throw new NullReferenceException();
 			}
 
-			var current = _head;
+			var current = _first;
 			Cell<T> prevCell = null;
 			while (current!=null)
 			{
@@ -28,10 +28,10 @@ namespace Lesson9MyLinkedList
 				{
 					if (prevCell==null)
 					{
-						_head = _head.Next;
-						if (_head==null)
+						_first = _first.Next;
+						if (_first==null)
 						{
-							_end = null;
+							_last = null;
 						}
 
 					}
@@ -40,7 +40,7 @@ namespace Lesson9MyLinkedList
 						prevCell.Next = current.Next;
 						if (current.Next==null)
 						{
-							_end = prevCell;
+							_last = prevCell;
 						}
 					}
 
@@ -66,16 +66,16 @@ namespace Lesson9MyLinkedList
 				throw new NullReferenceException();
 			}
 			var next = new Cell<T>(value);
-			if (_head==null)
+			if (_first==null)
 			{
-				_head = next;
+				_first = next;
 			}
 			else
 			{
-				_end.Next = next;
+				_last.Next = next;
 			}
 
-			_end = next;
+			_last = next;
 			Count++;
 		}
 
@@ -99,7 +99,7 @@ namespace Lesson9MyLinkedList
 			newCell.Next = oldCell;
 			if (position==0)
 			{
-				_head = newCell;
+				_first = newCell;
 			}
 			else
 			{
@@ -112,14 +112,14 @@ namespace Lesson9MyLinkedList
 
 		public void Clear()
 		{
-			_head = null;
-			_end = null;
+			_first = null;
+			_last = null;
 			Count = 0;
 		}
 
 		private Cell<T> GetCellFromPosition(int position)
 		{
-			var current = _head;
+			var current = _first;
 			while (position > 0)
 			{
 				current = current.Next;
@@ -146,7 +146,7 @@ namespace Lesson9MyLinkedList
 
 		public IEnumerator<T> GetEnumerator()
 		{
-			var current = _head;
+			var current = _first;
 			while (current != null)
 			{
 				yield return current.Value;
@@ -158,5 +158,7 @@ namespace Lesson9MyLinkedList
 		{
 			return GetEnumerator();
 		}
+
+
 	}
 }
