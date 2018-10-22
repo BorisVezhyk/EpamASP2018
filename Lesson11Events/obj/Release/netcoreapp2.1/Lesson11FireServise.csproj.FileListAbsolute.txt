@@ -1,0 +1,11 @@
+C:\Users\Vozik\source\repos\TestRiht\Lesson11FireServise\bin\Release\netcoreapp2.1\Lesson11FireServise.deps.json
+C:\Users\Vozik\source\repos\TestRiht\Lesson11FireServise\bin\Release\netcoreapp2.1\Lesson11FireServise.runtimeconfig.json
+C:\Users\Vozik\source\repos\TestRiht\Lesson11FireServise\bin\Release\netcoreapp2.1\Lesson11FireServise.runtimeconfig.dev.json
+C:\Users\Vozik\source\repos\TestRiht\Lesson11FireServise\bin\Release\netcoreapp2.1\Lesson11FireServise.dll
+C:\Users\Vozik\source\repos\TestRiht\Lesson11FireServise\bin\Release\netcoreapp2.1\Lesson11FireServise.pdb
+C:\Users\Vozik\source\repos\TestRiht\Lesson11FireServise\obj\Release\netcoreapp2.1\Lesson11FireServise.csprojAssemblyReference.cache
+C:\Users\Vozik\source\repos\TestRiht\Lesson11FireServise\obj\Release\netcoreapp2.1\Lesson11FireServise.csproj.CoreCompileInputs.cache
+C:\Users\Vozik\source\repos\TestRiht\Lesson11FireServise\obj\Release\netcoreapp2.1\Lesson11FireServise.AssemblyInfoInputs.cache
+C:\Users\Vozik\source\repos\TestRiht\Lesson11FireServise\obj\Release\netcoreapp2.1\Lesson11FireServise.AssemblyInfo.cs
+C:\Users\Vozik\source\repos\TestRiht\Lesson11FireServise\obj\Release\netcoreapp2.1\Lesson11FireServise.dll
+C:\Users\Vozik\source\repos\TestRiht\Lesson11FireServise\obj\Release\netcoreapp2.1\Lesson11FireServise.pdb
