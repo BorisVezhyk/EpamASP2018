@@ -1,0 +1,66 @@
+﻿body {
+    padding-top: 50px;
+    padding-bottom: 20px;
+}
+DIV#regist {
+	float: right;
+}
+DIV#regist a {
+	text-decoration: none; color: white; padding: 0.6em;
+}
+DIV#header DIV.title, DIV.item H3, DIV.item H4, DIV.pager A
+{
+	font: bold 1em "Arial Narrow", "Franklin Gothic Medium", Arial;
+}
+DIV#header
+{
+	background-color: #444;
+	border-bottom: 2px solid #111;
+	color: White;
+}
+	DIV#header DIV.title {
+		font-size: 2em;
+		padding: .6em;
+	}
+DIV#categories
+{
+	float: left;
+	width: 8em;
+	padding: .3em;
+}
+
+DIV#content
+{
+	border-left: 2px solid gray;
+	margin-left: 9em;
+	padding: 1em;
+}
+/* Set padding to keep content from hitting the edges */
+.body-content {
+    padding-left: 15px;
+    padding-right: 15px;
+}
+
+/* Override the default bootstrap behavior where horizontal description lists 
+   will truncate terms that are too long to fit in the left column 
+*/
+.dl-horizontal dt {
+    white-space: normal;
+}
+
+/* Set width on the form input elements since they're 100% wide by default */
+input,
+select,
+textarea {
+    max-width: 280px;
+}
+
+DIV#categories A
+{
+	font: bold 1.1em "Arial Narrow","Franklin Gothic Medium",Arial; display: block;
+	text-decoration: none; padding: .6em; color: Black;
+	border-bottom: 1px solid silver;
+}
+DIV#categories A.selected { background-color: #666; color: White; }
+DIV#categories A:hover { background-color: #CCC; }
+DIV#categories A.selected:hover { background-color: #666; }

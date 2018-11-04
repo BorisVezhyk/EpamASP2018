@@ -1,0 +1,18 @@
+﻿@using System.Web.Mvc.Html
+
+@{
+    ViewBag.Title = "Registration";
+	Layout = null;
+}
+
+<h2>Registration</h2>
+
+@using (Html.BeginForm())
+{
+<p>Enter your name: @Html.TextBox("Name") </p>
+<p>Emter your email: @Html.TextBox("Email") </p>
+<p>Enter your phone: @Html.TextBox("Phone")</p>
+<p><input type="submit" value="Register" /></p>
+	
+}
+

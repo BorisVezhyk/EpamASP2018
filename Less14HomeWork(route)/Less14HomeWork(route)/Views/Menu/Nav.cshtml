@@ -1,0 +1,13 @@
+﻿@model Less14HomeWork_route_.Models.Category
+
+@Html.ActionLink("Home", "Main","Home")
+
+@foreach (var link in Model.Categories)
+{
+	<p>
+		@Html.RouteLink(link,new
+		{
+			 controller="Home",
+			action=link		})
+	</p>
+}
