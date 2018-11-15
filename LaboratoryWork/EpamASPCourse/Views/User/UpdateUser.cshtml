@@ -1,0 +1,124 @@
+﻿@model EpamASPCourse.Models.User
+
+@{
+	ViewBag.Title = "UpdateUser";
+}
+
+
+@{string selectPostMethod = ViewBag.NeedUpdated ? "UpdateUser" : "AddNewUser";}
+
+@using (Html.BeginForm(selectPostMethod, "User", new { @class = "form-horizontal needs-validation", @novalidate="true" }))
+{
+	<h2>@(ViewBag.NeedUpdated ? "Update User" : "Add new User")</h2>
+	<hr/>
+	@Html.ValidationSummary(true,"", new{@class="text-danger"})
+	if (ViewBag.NeedUpdated)
+	{
+		@Html.HiddenFor(model => model.UserId)
+	}
+	<div class="form-group row">
+		<label for="inputName" class="col-sm-2 control-label">Name</label>
+		<div class="col-sm-10">
+			@Html.TextBoxFor(model => model.Name, new { @class = "form-control", id = "inputName", placeholder = "Name"})
+			@Html.ValidationMessageFor(model=>model.Name,"",new{@class="text-danger"})
+
+		</div>
+	</div>
+	<div class="form-group row">
+		<label class="col-sm-2 control-label" for="inputMidName">Middle name</label>
+		<div class="col-sm-10">
+			@Html.TextBoxFor(model => model.MiddleName, new { @class = "form-control", id = "inputMidName", placeholder = "Middle name" })
+			@Html.ValidationMessageFor(model => model.MiddleName, "", new { @class = "text-danger" })
+		</div>
+	</div>
+	<div class="form-group row">
+		<label for="inputLastName" class="col-sm-2 control-label">Last name</label>
+		<div class="col-sm-10">
+			@Html.TextBoxFor(model => model.LastName, new { @class = "form-control", id = "inputLastName", placeholder = "Last name" })
+			@Html.ValidationMessageFor(model => model.LastName, "", new { @class = "text-danger" })
+
+		</div>
+	</div>
+	<div class="form-group row">
+		<label for="inputEmail" class="col-sm-2 control-label">E-mail</label>
+		<div class="col-sm-10">
+			@if (ViewBag.NeedUpdated)
+			{
+				@Html.TextBoxFor(model => model.Email, new { @class = "form-control", type = "email", id = "inputEmail", placeholder = "E-mail", @readonly = "readonly" })
+			}
+			else
+			{
+				@Html.TextBoxFor(model => model.Email, new { @class = "form-control", type = "email", id = "inputEmail", placeholder = "E-mail" })
+				@Html.ValidationMessageFor(model => model.Email, "", new { @class = "text-danger" })
+			}
+		</div>
+	</div>
+	<div class="form-group row">
+		<label for="inputPassword" class="col-sm-2 control-label">Password</label>
+		<div class="col-sm-10">
+			@if (ViewBag.NeedUpdated)
+			{
+				@Html.TextBoxFor(model => model.Password,
+					new {@class = "form-control", type = "password", id = "inputPassword", placeholder = "password", @readonly = "readonly"})
+			}
+			else
+			{
+				@Html.TextBoxFor(model => model.Password,
+					new {@class = "form-control", type = "password", id = "inputPassword", placeholder = "password"})
+				@Html.ValidationMessageFor(model=>model.Password,"",new{@class="text-danger"})
+			}
+		</div>
+	</div>
+	<div class="form-group row">
+		<label for="inputPrePass" class="col-sm-2 control-label">Pre-Password</label>
+		<div class="col-sm-10">
+			@if (ViewBag.NeedUpdated)
+			{
+				@Html.TextBoxFor(model => model.PrePassword, new { @class = "form-control", id = "inputPrePass", placeholder = "pre-password", @readonly = "readonly" })
+			}
+			else
+			{
+				@Html.TextBoxFor(model => model.PrePassword, new { @class = "form-control", id = "inputPrePass", placeholder = "pre-password" })
+				@Html.ValidationMessageFor(model=>model.PrePassword,"",new{@class="text-danger"})
+			}
+		</div>
+	</div>
+	<div class="form-group row">
+		<label for="inputAge" class="col-sm-2 control-label">Age</label>
+		<div class="col-sm-10">
+			@Html.TextBoxFor(model => model.Age, new { @class = "form-control", id = "inputAge", placeholder = "age" })
+			@Html.ValidationMessageFor(model=>model.Age,"",new{@class="text-danger"})
+		</div>
+	</div>
+	<div class="form-group row">
+		<label for="inputPhone" class="col-sm-2 control-label">Phone</label>
+		<div class="col-sm-10">
+			@Html.TextBoxFor(model => model.Phone, new { @class = "form-control", id = "inputPhone", placeholder = "phone" })
+			@Html.ValidationMessageFor(model=>model.Phone,"",new{@class="text-danger"})
+		</div>
+	</div>
+	<div class="form-group row">
+		<label for="inputAddress" class="col-sm-2 control-label">Address</label>
+		<div class="col-sm-10">
+			@Html.TextAreaFor(model => model.Address, new { @class = "form-control", rows = "4", id = "inputAddress", placeholder = "address" })
+			@Html.ValidationMessageFor(model=>model.Address,"",new{@class="text-danger"})
+		</div>
+	</div>
+	<div class="form-group row">
+		<div class="col-sm-offset-1">
+			<div class="col-sm-2">
+					<input type="submit" class=" btn btn-primary col-sm-9" value=@(ViewBag.NeedUpdated?"Update User":"Add new User")/>
+			</div>
+			<div class="col-sm-offset-1 col-sm-2">
+				@Html.ActionLink("Cancel", "Index","Table",null, new{@class= "btn btn-default col-sm-9" });
+			</div>
+		</div>
+	</div>
+
+
+	@section Scripts{
+		@Scripts.Render("~/bundles/jqueryval")
+	}
+}
+
+

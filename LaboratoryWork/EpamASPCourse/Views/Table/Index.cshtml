@@ -1,0 +1,64 @@
+﻿
+@{
+	ViewBag.Title = "List Of Users";
+	<style>
+		.check {
+			background-color: gray;
+		}
+	</style>
+}
+
+<h2>List of users</h2>
+<div>
+	<div class="form-horizontal">
+		@Html.Action("ShowTable", "Table")
+		<div class="form-group row">
+			<div class="col-sm-offset-10 row">
+				@Html.ActionLink("Add", "AddNewUser", "User", null, new { @class = "btn btn-default" })
+			</div>
+		</div>
+		<div class="form-group row">
+			<div class="col-sm-offset-10 row">
+				@Html.ActionLink("Update", "UpdateUser", "User", null, new { @class = "btn btn-default", id="updateBtn" })
+			</div>
+		</div>
+		<div class="form-group row">
+			<div class="col-sm-offset-10">
+				@Html.ActionLink("Delete", "RemoveUser","User",null,new{@class= "btn btn-default",id="deleteBtn" })
+			</div>
+		</div>
+	</div>
+</div>
+
+
+<script src="~/Scripts/jquery-3.3.1.min.js" type="text/javascript"></script>
+<script type="text/javascript">
+	$(document).ready(function () {
+		$("table tbody tr").click(function () {
+			$(this).siblings().removeClass("check");
+			$(this).siblings().css({ "background-color": "white", "color": "black" });
+			$(this).css({ "background-color": "gray", "color": "white" });
+			$(this).addClass("check");
+			var userId = $(this).find("#userId").text();
+			var $newLinkTarget = "@Url.Action("UpdateUser","User")?id=" + userId;
+			$("#updateBtn").attr("href", $newLinkTarget);
+			var linkForDelete = "@Url.Action("RemoveUser","User")?id=" + userId;
+			$("#deleteBtn").attr("href", linkForDelete);
+		});
+	});
+</script>
+<script type="text/javascript">
+	$(function() {
+		$("#deleteBtn").click(function() {
+			var answer = confirm("Are you sure?");
+			if (answer) {
+				return true;
+			} else {
+				return false;
+			}
+		});
+	})
+</script>
+
+
+

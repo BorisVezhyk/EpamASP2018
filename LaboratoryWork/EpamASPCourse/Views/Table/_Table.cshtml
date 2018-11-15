@@ -1,0 +1,31 @@
+﻿@model IEnumerable<EpamASPCourse.Models.User>  
+
+<table class="table col-sm-8 table-bordered table-hover">
+	<thead>
+		<tr>
+			<th class="hidden">Selecte</th>
+			<th>Name</th>
+			<th>MiddleName</th>
+			<th>LastName</th>
+			<th >Age</th>
+			<th>Phone</th>
+			<th>Address</th>
+		</tr>
+	</thead>
+	<tbody>
+		@foreach (var u in Model)
+		{
+			<tr>
+				<td class="hidden" id="userId">@u.UserId</td>
+				<td>@u.Name</td>
+				<td>@u.MiddleName</td>
+				<td>@u.LastName</td>
+				<td>@u.Age</td>
+				<td>@u.Phone</td>
+				<td>@u.Address</td>
+			</tr>
+		}
+	</tbody>
+</table>
+
+
