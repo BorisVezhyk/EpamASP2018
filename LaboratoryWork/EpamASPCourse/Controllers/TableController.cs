@@ -9,20 +9,35 @@ namespace EpamASPCourse.Controllers
 {
     public class TableController : Controller
     {
-
+	    private const int PAGE_SIZE = 10;
+	    private int countPage = 0;
+		
 		UserContext db=new UserContext();
         // GET: Table
-        public ActionResult Index()
+        public ActionResult Index(string nameUser, int page=1)
         {
-
-            return View();
+	        UserListViewModel model = new UserListViewModel
+	        {
+		        Users = db.Users
+			        .Where(u=>nameUser==null || u.Name==nameUser)
+			        .OrderBy(u => u.UserId)
+			        .Skip((page - 1) * PAGE_SIZE)
+			        .Take(PAGE_SIZE),
+		        PagingInfo = new PagingInfo()
+		        {
+			        CurrentPage = page,
+			        ItemsPerPage = PAGE_SIZE,
+			        TotalItems = db.Users.Count()
+		        },
+				NameUser = nameUser
+	        };
+			return View(model);
         }
 
-	    public ActionResult ShowTable(int numbersOfRows = 5)
+	    [HttpPost]
+	    public ActionResult Index(UserListViewModel viewModel)
 	    {
-		   
-		    var userList = db.Users.ToList();
-		    return PartialView("_Table", userList);
+		    return Index(viewModel.NameUser);
 	    }
     }
 }

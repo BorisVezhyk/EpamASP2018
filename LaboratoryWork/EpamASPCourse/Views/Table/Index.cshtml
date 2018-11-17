@@ -1,33 +1,91 @@
-﻿
+﻿@model  EpamASPCourse.Models.UserListViewModel
+
 @{
 	ViewBag.Title = "List Of Users";
 	<style>
-		.check {
+		.btn.selectedPage {
 			background-color: gray;
+			color: white;
 		}
+		
 	</style>
 }
 
-<h2>List of users</h2>
+
 <div>
-	<div class="form-horizontal">
-		@Html.Action("ShowTable", "Table")
-		<div class="form-group row">
-			<div class="col-sm-offset-10 row">
-				@Html.ActionLink("Add", "AddNewUser", "User", null, new { @class = "btn btn-default" })
-			</div>
+	<div>
+		<h2>List of users</h2>
+		<hr/>
+		@*@Html.Action("ShowTable", "Table")*@
+		
+			<table class=" table col-sm-10 table-bordered table-hover">
+				<thead>
+					<tr>
+						<th class="hidden">Select</th>
+						<th>Name</th>
+						<th>MiddleName</th>
+						<th>LastName</th>
+						<th>Age</th>
+						<th>Phone</th>
+						<th>Address</th>
+					</tr>
+				</thead>
+				<tbody>
+					@foreach (var u in Model.Users)
+					{
+						<tr>
+							<td class="hidden" id="userId">@u.UserId</td>
+							<td>@u.Name</td>
+							<td>@u.MiddleName</td>
+							<td>@u.LastName</td>
+							<td>@u.Age</td>
+							<td>@u.Phone</td>
+							<td>@u.Address</td>
+						</tr>
+					}
+				</tbody>
+			</table>
+		
+		<div class="text-center row"> 
+			@Html.PageLinks(Model.PagingInfo, x => Url.Action("Index", new { page = x,nameUser=Model.NameUser }), new { @class = "btn btn-default" })
 		</div>
-		<div class="form-group row">
-			<div class="col-sm-offset-10 row">
-				@Html.ActionLink("Update", "UpdateUser", "User", null, new { @class = "btn btn-default", id="updateBtn" })
+		
+		<div class="container-fluid">
+			<div class="container">
+				<div class="row text-left">
+					<div class="col-sm-5">
+						<p><b>Filter:</b></p>
+						<div class="custom-control custom-radio">
+							<input type="radio" id="allRecords" name="customRadio" class="custom-control-input" value="" checked="checked"/>
+							<label class="custom-control-label" for="allRecords">Show all records</label>
+						</div>
+						<div class="custom-control custom-radio">
+								<input type="radio" id="onlySelectedRecords" name="customRadio" class="custom-control-input" />
+								<label class="custom-control-label" for="onlySelectedRecords"> Only Records</label>
+						</div>
+						@using (Html.BeginForm("Index", "Table", new {@class = "form-horizontal text-right" }))
+						{
+							@Html.TextBoxFor(model=>model.NameUser,null,new{@class="form-control",id="txtBoxForSearch",disabled="true"})
+							<input type="submit" class="form-control btn btn-default" value="Show"/>
+						}
+					</div>
+					<div class="col-sm-3">
+							
+					</div>
+					<div class="col-sm-3">
+						<div class="row btn-toolbar">
+							@Html.ActionLink("Add", "AddNewUser", "User", null, new { @class = "btn btn-default btn-block" })
+							@Html.ActionLink("Update", "UpdateUser", "User", null, new { @class = "btn btn-default btn-block", id = "updateBtn" })
+							@Html.ActionLink("Delete", "RemoveUser", "User", null, new { @class = "btn btn-default btn-block", id = "deleteBtn" })
+						</div>
+					</div>
+				</div>
 			</div>
+			
 		</div>
-		<div class="form-group row">
-			<div class="col-sm-offset-10">
-				@Html.ActionLink("Delete", "RemoveUser","User",null,new{@class= "btn btn-default",id="deleteBtn" })
-			</div>
-		</div>
+		
 	</div>
+
 </div>
 
 
@@ -48,8 +106,8 @@
 	});
 </script>
 <script type="text/javascript">
-	$(function() {
-		$("#deleteBtn").click(function() {
+	$(function () {
+		$("#deleteBtn").click(function () {
 			var answer = confirm("Are you sure?");
 			if (answer) {
 				return true;
@@ -58,6 +116,18 @@
 			}
 		});
 	})
+</script>
+<script type="text/javascript">
+	$(function() {
+		$("#allRecords, #onlySelectedRecords").change(function () {
+			if ($("#allRecords").is(":checked")) {
+				$("#txtBoxForSearch").val("");
+				$("#txtBoxForSearch").prop("disabled", true);
+			} else {
+				$("#txtBoxForSearch").prop("disabled", false);
+			}
+		});
+	});
 </script>
 
 

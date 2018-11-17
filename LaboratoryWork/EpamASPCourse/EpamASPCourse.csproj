@@ -159,6 +159,7 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="HtmlHelpers\PagingHelpers.cs" />
     <Compile Include="Migrations\201811131100281_InitialCreate.cs" />
     <Compile Include="Migrations\201811131100281_InitialCreate.Designer.cs">
       <DependentUpon>201811131100281_InitialCreate.cs</DependentUpon>
@@ -176,8 +177,10 @@
       <DependentUpon>201811152010005_MigrateDB2.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
+    <Compile Include="Models\PagingInfo.cs" />
     <Compile Include="Models\UserContext.cs" />
     <Compile Include="Models\User.cs" />
+    <Compile Include="Models\UserListViewModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -456,11 +459,11 @@
     <Content Include="Views\Home\Contact.cshtml" />
     <Content Include="Views\Home\Index.cshtml" />
     <Content Include="Views\User\UpdateUser.cshtml" />
-    <Content Include="Views\Table\_Table.cshtml" />
     <Content Include="Views\Table\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
+    <Folder Include="Views\PagingInfo\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff2" />
