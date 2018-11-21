@@ -1,7 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web;
+﻿using System.Linq;
 using System.Web.Mvc;
 using EpamASPCourse.Models;
 
@@ -19,7 +16,7 @@ namespace EpamASPCourse.Controllers
 	        UserListViewModel model = new UserListViewModel
 	        {
 		        Users = db.Users
-			        .Where(u=>nameUser==null || u.Name==nameUser)
+			        .Where(u=>nameUser==null || u.Name==nameUser || u.Name.Contains(nameUser))
 			        .OrderBy(u => u.UserId)
 			        .Skip((page - 1) * PAGE_SIZE)
 			        .Take(PAGE_SIZE),
@@ -27,7 +24,8 @@ namespace EpamASPCourse.Controllers
 		        {
 			        CurrentPage = page,
 			        ItemsPerPage = PAGE_SIZE,
-			        TotalItems = db.Users.Count()
+			        TotalItems = db.Users
+				        .Count(u => nameUser == null || u.Name == nameUser|| u.Name.Contains(nameUser))
 		        },
 				NameUser = nameUser
 	        };

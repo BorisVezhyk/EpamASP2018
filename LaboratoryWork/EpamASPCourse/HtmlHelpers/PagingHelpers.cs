@@ -1,8 +1,5 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
 using System.Text;
-using System.Web;
 using System.Web.Mvc;
 using EpamASPCourse.Models;
 
@@ -34,7 +31,7 @@ namespace EpamASPCourse.HtmlHelpers
 					var attributes = HtmlHelper.AnonymousObjectToHtmlAttributes(htmlAttributes);
 					tag.MergeAttributes(attributes);
 				}
-				result.Append(tag.ToString());
+				result.Append(tag);
 			}
 
 			

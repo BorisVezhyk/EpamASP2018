@@ -54,7 +54,7 @@
 			<div class="container">
 				<div class="row text-left">
 					<div class="col-sm-5">
-						<p><b>Filter:</b></p>
+						<p><b>Filter by Name:</b></p>
 						<div class="custom-control custom-radio">
 							<input type="radio" id="allRecords" name="customRadio" class="custom-control-input" value="" checked="checked"/>
 							<label class="custom-control-label" for="allRecords">Show all records</label>
@@ -65,8 +65,8 @@
 						</div>
 						@using (Html.BeginForm("Index", "Table", new {@class = "form-horizontal text-right" }))
 						{
-							@Html.TextBoxFor(model=>model.NameUser,null,new{@class="form-control",id="txtBoxForSearch",disabled="true"})
-							<input type="submit" class="form-control btn btn-default" value="Show"/>
+								@Html.TextBoxFor(model => model.NameUser, null, new { @class = "form-control row", id = "txtBoxForSearch", disabled = "true" })
+								<input type="submit" class="row form-control btn btn-default" value="Show" />
 						}
 					</div>
 					<div class="col-sm-3">
