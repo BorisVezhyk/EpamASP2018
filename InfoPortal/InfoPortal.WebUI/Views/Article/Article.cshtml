@@ -1,0 +1,35 @@
+﻿@model InfoPortal.Domain.Article
+
+@{
+    ViewBag.Title = "Article";
+}
+
+
+<div>
+    <h1 class="mt-4"> @Model.Caption</h1>
+	<p class="lead">
+		Author by  <a href="#">@Model.User.Name </a>
+	</p>
+	<hr/>
+	<p>Posted on @Model.Date.ToShortDateString() </p>
+	<hr/>
+	<img class="img-fluid rounded" src="@Model.Image" alt=""/>
+	<hr/>
+	<p class="lead">
+		@Model.Text
+	</p>
+	@if (Model.Video != null)
+	{
+		<div class="embed-responsive embed-responsive-16by9">
+			<iframe class="embed-responsive-item" src="@Model.Video" allowfullscreen></iframe>
+		</div>
+	}
+	
+	
+	<p class="lead">Categories: <b>Here will be link tags </b>
+		@foreach (var link in @Model.Tags)
+		{
+			<a class="badge badge-secondary" href="#">@link</a>
+		}</p>
+</div>
+

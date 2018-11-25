@@ -1,0 +1,31 @@
+﻿@model IEnumerable<string>
+
+<ul class="nav nav-tabs nav-fill">
+	<li class="nav-item">
+		@Html.ActionLink("Home", "Article", "Article",new{@class="nav-link active"})
+	</li>
+	@foreach (var category in Model)
+	{
+		<li class="nav-item">
+			@Html.RouteLink(category, new
+			{
+				controller = "Article",
+				action = "Article",
+
+			},new{@class="nav-link"})
+		</li>
+		
+	}
+</ul>
+
+
+<script src="~/Scripts/jquery-3.3.1.min.js" type="text/javascript"></script>
+<script type="text/javascript">
+	$(function() {
+		$(".nav.nav-tabs.nav-item").click(function() {
+			$(this).siblings().removeClass("active");
+			$(this).addClass("active");
+		});
+
+	});
+</script>
