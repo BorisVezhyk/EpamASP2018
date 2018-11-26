@@ -9,54 +9,64 @@
 
 </head>
 <body>
-<div class="jumbotron text-center my-0 py-3">
-	<p class="display-4">Welcome to the Information Portal!</p>
-</div>
-<nav class="navbar navbar-expand-md navbar-dark bg-dark sticky-top">
+	<div class="jumbotron text-center my-0 py-3">
+		<p class="display-4">Welcome to the Information Portal!</p>
+	</div>
+	<nav class="navbar navbar-expand-md navbar-dark bg-dark sticky-top">
+		<div class="container">
+			<a class="navbar-brand" href="#">Informational Portal</a>
+
+			<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#collapse_target" aria-controls="collapse_target" aria-expanded="false" aria-label="Toggle navigation">
+				<span class="navbar-toggler-icon"></span>
+			</button>
+
+			<div class="collapse navbar-collapse" id="collapse_target">
+
+				<ul class="navbar-nav ml-auto">
+					@Html.Partial("_LoginPartial")
+				</ul>
+
+			</div>
+		</div>
+	</nav>
 	<div class="container">
-		<a class="navbar-brand" href="#">Informational Portal</a>
+		<div class="justify-content-center">
+			@{Html.RenderAction("Menu", "Nav");}
+		</div>
+	</div>
 
-		<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#collapse_target" aria-controls="collapse_target" aria-expanded="false" aria-label="Toggle navigation">
-			<span class="navbar-toggler-icon"></span>
-		</button>
-
-		<div class="collapse navbar-collapse" id="collapse_target">
-
-			<ul class="navbar-nav ml-auto">
-				@Html.Partial("_LoginPartial")
-			</ul>
+	<div class="container">
+		<div class="row">
+			<div class="col-md-12 col-lg-8">
+				@RenderBody()
+			</div>
+			<div class="col-4">
+				<p>Here will be top Articles, search and other</p>
+			</div>
 
 		</div>
 	</div>
-</nav>
-<div class="container">
-	<div class="justify-content-center">
-		@{Html.RenderAction("Menu", "Nav");}
-	</div>
-</div>
 
-<div class="container">
-	<div class="row">
-		<div class="col-8">
-			@RenderBody()
+	<hr />
+	<footer class="py-2">
+		<div class=" text-center">
+			<p>&copy; @DateTime.Now.Year - Informational portal</p>
 		</div>
-		<div class="col-4">
-			<p>Here will be top Articles, search and other</p>
-		</div>
-		
-	</div>
-</div>
 
-<hr/>
-<footer class="py-2">
-	<div class=" text-center">
-		<p>&copy; @DateTime.Now.Year - Informational portal</p>
-	</div>
+	</footer>
+	@Scripts.Render("~/bundles/jquery")
+	@Scripts.Render("~/bundles/bootstrap")
+	@RenderSection("scripts", required: false)
+	<script src="~/Scripts/jquery-3.3.1.min.js" type="text/javascript"></script>
+	<script src="~/Scripts/jquery-3.3.1.min.js" type="text/javascript"></script>
+	<script type="text/javascript">
+		$(function () {
+			$(".nav.nav-tabs.nav-item").click(function () {
+				$(this).siblings().removeClass("active");
+				$(this).addClass("active");
+			});
 
-</footer>
-@Scripts.Render("~/bundles/jquery")
-@Scripts.Render("~/bundles/bootstrap")
-@RenderSection("scripts", required: false)
-<script src="~/Scripts/jquery-3.3.1.min.js" type="text/javascript"></script>
+		});
+	</script>
 </body>
 </html>

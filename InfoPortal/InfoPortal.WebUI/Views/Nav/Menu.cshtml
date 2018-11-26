@@ -2,7 +2,11 @@
 
 <ul class="nav nav-tabs nav-fill">
 	<li class="nav-item">
-		@Html.ActionLink("Home", "Article", "Article",new{@class="nav-link active"})
+		@Html.RouteLink("Home",new
+		{
+			controller="Main",
+			action="Index"
+		},new{@class="nav-link active"})
 	</li>
 	@foreach (var category in Model)
 	{
