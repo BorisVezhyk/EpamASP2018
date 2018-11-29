@@ -8,7 +8,7 @@ namespace InfoPortal.Domain.Abstract
 {
 	public interface IArticlesRepository
 	{
-		IQueryable<Article> Articles { get; }
+		IEnumerable<Article> Articles { get; }
 		void SaveArticle(Article article);
 		void DeleteArticle(int articleId);
 	}

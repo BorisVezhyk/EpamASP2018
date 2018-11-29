@@ -15,6 +15,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\InfoPortal.Domain\InfoPortal.Domain.csproj" />
+    <ProjectReference Include="..\InfoPortal.WebUI\InfoPortal.WebUI.csproj" />
   </ItemGroup>
 
 </Project>

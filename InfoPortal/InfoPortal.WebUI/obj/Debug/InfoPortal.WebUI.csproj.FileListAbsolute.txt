@@ -90,3 +90,17 @@ F:\Учеба\Epam courses\HomeWork\HomeWork\InfoPortal\InfoPortal.WebUI\obj\Deb
 F:\Учеба\Epam courses\HomeWork\HomeWork\InfoPortal\InfoPortal.WebUI\bin\InfoPortal.Domain.dll
 F:\Учеба\Epam courses\HomeWork\HomeWork\InfoPortal\InfoPortal.WebUI\bin\InfoPortal.Domain.pdb
 F:\Учеба\Epam courses\HomeWork\HomeWork\InfoPortal\InfoPortal.WebUI\bin\InfoPortal.Domain.dll.config
+F:\Учеба\Epam courses\HomeWork\HomeWork\InfoPortal\InfoPortal.WebUI\bin\log4net.dll
+F:\Учеба\Epam courses\HomeWork\HomeWork\InfoPortal\InfoPortal.WebUI\bin\log4net.xml
+F:\Учеба\Epam courses\HomeWork\HomeWork\InfoPortal\InfoPortal.WebUI\bin\Microsoft.Practices.ServiceLocation.dll
+F:\Учеба\Epam courses\HomeWork\HomeWork\InfoPortal\InfoPortal.WebUI\bin\StructureMap.dll
+F:\Учеба\Epam courses\HomeWork\HomeWork\InfoPortal\InfoPortal.WebUI\bin\StructureMap.Net4.dll
+F:\Учеба\Epam courses\HomeWork\HomeWork\InfoPortal\InfoPortal.WebUI\bin\StructureMap.Web.dll
+F:\Учеба\Epam courses\HomeWork\HomeWork\InfoPortal\InfoPortal.WebUI\bin\WebActivatorEx.dll
+F:\Учеба\Epam courses\HomeWork\HomeWork\InfoPortal\InfoPortal.WebUI\bin\Microsoft.Practices.ServiceLocation.pdb
+F:\Учеба\Epam courses\HomeWork\HomeWork\InfoPortal\InfoPortal.WebUI\bin\Microsoft.Practices.ServiceLocation.xml
+F:\Учеба\Epam courses\HomeWork\HomeWork\InfoPortal\InfoPortal.WebUI\bin\StructureMap.pdb
+F:\Учеба\Epam courses\HomeWork\HomeWork\InfoPortal\InfoPortal.WebUI\bin\StructureMap.xml
+F:\Учеба\Epam courses\HomeWork\HomeWork\InfoPortal\InfoPortal.WebUI\bin\StructureMap.Net4.pdb
+F:\Учеба\Epam courses\HomeWork\HomeWork\InfoPortal\InfoPortal.WebUI\bin\StructureMap.Web.pdb
+F:\Учеба\Epam courses\HomeWork\HomeWork\InfoPortal\InfoPortal.WebUI\bin\StructureMap.Web.xml

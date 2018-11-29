@@ -2,8 +2,8 @@ F:\Учеба\Epam courses\HomeWork\HomeWork\InfoPortal\InfoPortal.Domain\bin\De
 F:\Учеба\Epam courses\HomeWork\HomeWork\InfoPortal\InfoPortal.Domain\bin\Debug\InfoPortal.Domain.dll
 F:\Учеба\Epam courses\HomeWork\HomeWork\InfoPortal\InfoPortal.Domain\bin\Debug\InfoPortal.Domain.pdb
 F:\Учеба\Epam courses\HomeWork\HomeWork\InfoPortal\InfoPortal.Domain\bin\Debug\System.Web.Mvc.dll
-F:\Учеба\Epam courses\HomeWork\HomeWork\InfoPortal\InfoPortal.Domain\obj\Debug\InfoPortal.Domain.csprojAssemblyReference.cache
 F:\Учеба\Epam courses\HomeWork\HomeWork\InfoPortal\InfoPortal.Domain\obj\Debug\InfoPortal.Domain.csproj.CoreCompileInputs.cache
 F:\Учеба\Epam courses\HomeWork\HomeWork\InfoPortal\InfoPortal.Domain\obj\Debug\InfoPortal.Domain.csproj.CopyComplete
 F:\Учеба\Epam courses\HomeWork\HomeWork\InfoPortal\InfoPortal.Domain\obj\Debug\InfoPortal.Domain.dll
 F:\Учеба\Epam courses\HomeWork\HomeWork\InfoPortal\InfoPortal.Domain\obj\Debug\InfoPortal.Domain.pdb
+F:\Учеба\Epam courses\HomeWork\HomeWork\InfoPortal\InfoPortal.Domain\obj\Debug\InfoPortal.Domain.csprojAssemblyReference.cache

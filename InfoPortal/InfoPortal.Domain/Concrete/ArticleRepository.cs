@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 using InfoPortal.Domain.Abstract;
 
@@ -8,9 +9,9 @@ namespace InfoPortal.Domain.Concrete
 	{
 		private ArticleContext _context = new ArticleContext();
 
-		public IQueryable<Article> Articles
+		public IEnumerable<Article> Articles
 		{
-			get { return _context.Articles.AsQueryable(); }
+			get { return _context.Articles; }
 		}
 
 		public void SaveArticle(Article article)
@@ -18,7 +19,7 @@ namespace InfoPortal.Domain.Concrete
 			if (article.ArticleID==0)
 			{
 				_context.Articles.Add(article);
-				//_context.InsertNewArticle(article);
+				_context.InsertNewArticle(article);
 			}
 			else
 			{

@@ -6,16 +6,21 @@
 	<title>@ViewBag.Title - Informational portal</title>
 	@Styles.Render("~/Content/css")
 	@Scripts.Render("~/bundles/modernizr")
-
+	<style>
+		#jumbotronHead {
+			background-image: url('../../Images/TitleForProject.jpg');
+		}
+		
+	</style>
 </head>
 <body>
-	<div class="jumbotron text-center my-0 py-3">
+	<div class="jumbotron text-center my-0 py-3" id="jumbotronHead">
 		<p class="display-4">Welcome to the Information Portal!</p>
 	</div>
 	<nav class="navbar navbar-expand-md navbar-dark bg-dark sticky-top">
 		<div class="container">
-			<a class="navbar-brand" href="#">Informational Portal</a>
-
+			@*<a class="navbar-brand" href="#">Informational Portal</a>*@
+			@Html.ActionLink("Informational Portal", "Index","Main",null, new {@class="navbar-brand"})
 			<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#collapse_target" aria-controls="collapse_target" aria-expanded="false" aria-label="Toggle navigation">
 				<span class="navbar-toggler-icon"></span>
 			</button>
@@ -40,10 +45,18 @@
 			<div class="col-md-12 col-lg-8">
 				@RenderBody()
 			</div>
-			<div class="col-4">
-				<p>Here will be top Articles, search and other</p>
-			</div>
+			<div class="col-md-12 col-lg-4">
+				<div class="row p-3">
+					<div class="card flex-fill">
+						<h5 class="card-header">
+							Search
+						</h5>
+						<div class="card-body">
 
+						</div>
+					</div>
+				</div>
+			</div>
 		</div>
 	</div>
 
@@ -57,16 +70,16 @@
 	@Scripts.Render("~/bundles/jquery")
 	@Scripts.Render("~/bundles/bootstrap")
 	@RenderSection("scripts", required: false)
-	<script src="~/Scripts/jquery-3.3.1.min.js" type="text/javascript"></script>
-	<script src="~/Scripts/jquery-3.3.1.min.js" type="text/javascript"></script>
-	<script type="text/javascript">
-		$(function () {
-			$(".nav.nav-tabs.nav-item").click(function () {
-				$(this).siblings().removeClass("active");
-				$(this).addClass("active");
-			});
 
+	<script src="~/Scripts/jquery-3.3.1.min.js" type="text/javascript"></script>
+<script type="text/javascript">
+	$(function () {
+		$("#navtab .nav-link ").on("click", function(){
+			$(".nav").find(".text-dark").removeClass("text-dark");
+			$(this).addClass("text-dark");
+			
 		});
-	</script>
+	});
+</script>
 </body>
 </html>

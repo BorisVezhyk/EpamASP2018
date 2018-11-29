@@ -1,0 +1,8 @@
+ERROR 2018-11-29 21:30:02,804  7920ms MainController         Index              - Attempted to divide by zero.
+INFO  2018-11-29 21:31:15,294 80409ms ArticleController      Article            - Test log
+ERROR 2018-11-29 21:31:15,298 80413ms ArticleController      Article            - Article not found
+INFO  2018-11-29 22:05:59,322 486302ms ArticleController      Article            - Test log
+INFO  2018-11-29 22:06:09,136 496115ms ArticleController      Article            - Test log
+INFO  2018-11-29 22:06:12,559 499539ms ArticleController      Article            - Test log
+INFO  2018-11-29 22:06:19,041 506021ms ArticleController      Article            - Test log
+INFO  2018-11-29 22:06:27,846 514826ms ArticleController      Article            - Test log
