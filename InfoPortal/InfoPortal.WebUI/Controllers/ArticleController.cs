@@ -1,17 +1,15 @@
 ﻿using System.Linq;
 using System.Web.Mvc;
-using InfoPortal.Domain;
-using InfoPortal.Domain.Abstract;
-using InfoPortal.Domain.Concrete;
+using Common;
+using InfoPortal.BL.Abstract;
+
 
 namespace InfoPortal.WebUI.Controllers
 {
     public class ArticleController : Controller
     {
-	    readonly log4net.ILog logger = log4net.LogManager.GetLogger(System.Reflection.MethodBase.GetCurrentMethod().DeclaringType);
-
-		private readonly IArticlesRepository _repository;
         // GET: Article
+	    private readonly IArticlesRepository _repository;
 
 	    public ArticleController(IArticlesRepository articlesRepository)
 	    {
@@ -22,7 +20,6 @@ namespace InfoPortal.WebUI.Controllers
 
         public ActionResult Article(int? id)
         {
-			logger.InfoFormat("Test log");
 
 			if (id!=null)
 	        {
@@ -31,7 +28,6 @@ namespace InfoPortal.WebUI.Controllers
 		        return View(art);
 
 			}
-			logger.Error("Article not found");
 
 	        return HttpNotFound();
         }

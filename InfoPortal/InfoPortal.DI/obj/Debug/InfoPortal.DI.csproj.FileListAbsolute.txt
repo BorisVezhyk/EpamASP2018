@@ -1,0 +1,17 @@
+F:\Учеба\Epam courses\HomeWork\HomeWork\InfoPortal\InfoPortal.DI\bin\Debug\InfoPortal.DI.dll
+F:\Учеба\Epam courses\HomeWork\HomeWork\InfoPortal\InfoPortal.DI\bin\Debug\InfoPortal.DI.pdb
+F:\Учеба\Epam courses\HomeWork\HomeWork\InfoPortal\InfoPortal.DI\obj\Debug\InfoPortal.DI.csproj.CoreCompileInputs.cache
+F:\Учеба\Epam courses\HomeWork\HomeWork\InfoPortal\InfoPortal.DI\obj\Debug\InfoPortal.DI.dll
+F:\Учеба\Epam courses\HomeWork\HomeWork\InfoPortal\InfoPortal.DI\obj\Debug\InfoPortal.DI.pdb
+F:\Учеба\Epam courses\HomeWork\HomeWork\InfoPortal\InfoPortal.DI\bin\Debug\InfoPortal.BL.dll
+F:\Учеба\Epam courses\HomeWork\HomeWork\InfoPortal\InfoPortal.DI\bin\Debug\InfoPortal.Domain.dll
+F:\Учеба\Epam courses\HomeWork\HomeWork\InfoPortal\InfoPortal.DI\bin\Debug\Common.dll
+F:\Учеба\Epam courses\HomeWork\HomeWork\InfoPortal\InfoPortal.DI\bin\Debug\InfoPortal.BL.pdb
+F:\Учеба\Epam courses\HomeWork\HomeWork\InfoPortal\InfoPortal.DI\bin\Debug\InfoPortal.Domain.pdb
+F:\Учеба\Epam courses\HomeWork\HomeWork\InfoPortal\InfoPortal.DI\bin\Debug\InfoPortal.Domain.dll.config
+F:\Учеба\Epam courses\HomeWork\HomeWork\InfoPortal\InfoPortal.DI\bin\Debug\Common.pdb
+F:\Учеба\Epam courses\HomeWork\HomeWork\InfoPortal\InfoPortal.DI\obj\Debug\InfoPortal.DI.csprojAssemblyReference.cache
+F:\Учеба\Epam courses\HomeWork\HomeWork\InfoPortal\InfoPortal.DI\obj\Debug\InfoPortal.DI.csproj.CopyComplete
+F:\Учеба\Epam courses\HomeWork\HomeWork\InfoPortal\InfoPortal.DI\bin\Debug\StructureMap.dll
+F:\Учеба\Epam courses\HomeWork\HomeWork\InfoPortal\InfoPortal.DI\bin\Debug\StructureMap.pdb
+F:\Учеба\Epam courses\HomeWork\HomeWork\InfoPortal\InfoPortal.DI\bin\Debug\StructureMap.xml

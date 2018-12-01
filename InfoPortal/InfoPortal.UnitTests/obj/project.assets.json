@@ -1712,19 +1712,45 @@
           "lib/netstandard1.3/System.Xml.XPath.XmlDocument.dll": {}
         }
       },
-      "InfoPortal.Domain/1.0.0": {
+      "Common/1.0.0": {
         "type": "project",
         "compile": {
-          "bin/placeholder/InfoPortal.Domain.dll": {}
+          "bin/placeholder/Common.dll": {}
         },
         "runtime": {
-          "bin/placeholder/InfoPortal.Domain.dll": {}
+          "bin/placeholder/Common.dll": {}
+        }
+      },
+      "InfoPortal.BL/1.0.0": {
+        "type": "project",
+        "dependencies": {
+          "Common": "1.0.0",
+          "InfoPortal.DAL": "1.0.0"
+        },
+        "compile": {
+          "bin/placeholder/InfoPortal.BL.dll": {}
+        },
+        "runtime": {
+          "bin/placeholder/InfoPortal.BL.dll": {}
+        }
+      },
+      "InfoPortal.DAL/1.0.0": {
+        "type": "project",
+        "dependencies": {
+          "Common": "1.0.0"
+        },
+        "compile": {
+          "bin/placeholder/InfoPortal.DAL.dll": {}
+        },
+        "runtime": {
+          "bin/placeholder/InfoPortal.DAL.dll": {}
         }
       },
       "InfoPortal.WebUI/1.0.0": {
         "type": "project",
         "dependencies": {
-          "InfoPortal.Domain": "1.0.0"
+          "Common": "1.0.0",
+          "InfoPortal.BL": "1.0.0"
         },
         "compile": {
           "bin/placeholder/InfoPortal.WebUI.dll": {}
@@ -6004,10 +6030,20 @@
         "system.xml.xpath.xmldocument.nuspec"
       ]
     },
-    "InfoPortal.Domain/1.0.0": {
+    "Common/1.0.0": {
       "type": "project",
-      "path": "../InfoPortal.Domain/InfoPortal.Domain.csproj",
-      "msbuildProject": "../InfoPortal.Domain/InfoPortal.Domain.csproj"
+      "path": "../Common/Common.csproj",
+      "msbuildProject": "../Common/Common.csproj"
+    },
+    "InfoPortal.BL/1.0.0": {
+      "type": "project",
+      "path": "../InfoPortal.BL/InfoPortal.BL.csproj",
+      "msbuildProject": "../InfoPortal.BL/InfoPortal.BL.csproj"
+    },
+    "InfoPortal.DAL/1.0.0": {
+      "type": "project",
+      "path": "../InfoPortal.Domain/InfoPortal.DAL.csproj",
+      "msbuildProject": "../InfoPortal.Domain/InfoPortal.DAL.csproj"
     },
     "InfoPortal.WebUI/1.0.0": {
       "type": "project",
@@ -6017,7 +6053,7 @@
   },
   "projectFileDependencyGroups": {
     ".NETCoreApp,Version=v2.1": [
-      "InfoPortal.Domain >= 1.0.0",
+      "InfoPortal.DAL >= 1.0.0",
       "InfoPortal.WebUI >= 1.0.0",
       "Microsoft.NET.Test.Sdk >= 15.8.0",
       "Microsoft.NETCore.App >= 2.1.0",
@@ -6056,8 +6092,8 @@
       "frameworks": {
         "netcoreapp2.1": {
           "projectReferences": {
-            "F:\\Учеба\\Epam courses\\HomeWork\\HomeWork\\InfoPortal\\InfoPortal.Domain\\InfoPortal.Domain.csproj": {
-              "projectPath": "F:\\Учеба\\Epam courses\\HomeWork\\HomeWork\\InfoPortal\\InfoPortal.Domain\\InfoPortal.Domain.csproj"
+            "F:\\Учеба\\Epam courses\\HomeWork\\HomeWork\\InfoPortal\\InfoPortal.Domain\\InfoPortal.DAL.csproj": {
+              "projectPath": "F:\\Учеба\\Epam courses\\HomeWork\\HomeWork\\InfoPortal\\InfoPortal.Domain\\InfoPortal.DAL.csproj"
             },
             "F:\\Учеба\\Epam courses\\HomeWork\\HomeWork\\InfoPortal\\InfoPortal.WebUI\\InfoPortal.WebUI.csproj": {
               "projectPath": "F:\\Учеба\\Epam courses\\HomeWork\\HomeWork\\InfoPortal\\InfoPortal.WebUI\\InfoPortal.WebUI.csproj"

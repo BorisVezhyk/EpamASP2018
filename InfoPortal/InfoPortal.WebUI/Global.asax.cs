@@ -6,8 +6,6 @@ using System.Web;
 using System.Web.Mvc;
 using System.Web.Optimization;
 using System.Web.Routing;
-using InfoPortal.Domain.Abstract;
-using InfoPortal.Domain.Concrete;
 using InfoPortal.WebUI.Controllers;
 
 namespace InfoPortal.WebUI

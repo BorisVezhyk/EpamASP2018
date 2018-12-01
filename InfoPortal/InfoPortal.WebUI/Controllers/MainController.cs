@@ -1,18 +1,12 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web;
+﻿using System.Linq;
 using System.Web.Mvc;
-using InfoPortal.Domain.Abstract;
-using InfoPortal.Domain.Concrete;
+using InfoPortal.BL.Abstract;
 using InfoPortal.WebUI.Models;
 
 namespace InfoPortal.WebUI.Controllers
 {
 	public class MainController : Controller
 	{
-		readonly log4net.ILog logger = log4net.LogManager.GetLogger(System.Reflection.MethodBase.GetCurrentMethod().DeclaringType);
-
 
 		private readonly IArticlesRepository _articles;
 

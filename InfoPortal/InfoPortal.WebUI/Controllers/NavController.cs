@@ -1,17 +1,18 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
-using System.Web;
 using System.Web.Mvc;
-using InfoPortal.Domain.Abstract;
-using InfoPortal.Domain.Concrete;
+using InfoPortal.BL.Abstract;
 
 namespace InfoPortal.WebUI.Controllers
 {
     public class NavController : Controller
     {
-		ITagsRepository _tag=new TagsRepository();
+	    private readonly ITagsRepository _tag;
 
+	    public NavController(ITagsRepository repository)
+	    {
+		    _tag = repository;
+	    }
         // GET: Nav
         public PartialViewResult Menu()
         {

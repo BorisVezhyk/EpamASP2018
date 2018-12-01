@@ -2,10 +2,12 @@
 using System.Collections.Generic;
 using System.Data.SqlClient;
 using System.Configuration;
+using Common;
+using InfoPortal.DAL.Abstract;
 
-namespace InfoPortal.Domain.Concrete
+namespace InfoPortal.DAL.Concrete
 {
-	public class ArticleContext
+	public class ArticleContext : IArticleContext
 	{
 		private SqlConnection sqlConnection = null;
 

@@ -14,7 +14,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\InfoPortal.Domain\InfoPortal.Domain.csproj" />
+    <ProjectReference Include="..\InfoPortal.Domain\InfoPortal.DAL.csproj" />
     <ProjectReference Include="..\InfoPortal.WebUI\InfoPortal.WebUI.csproj" />
   </ItemGroup>
 

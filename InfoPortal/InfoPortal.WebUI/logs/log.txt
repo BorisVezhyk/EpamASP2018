@@ -6,3 +6,4 @@ INFO  2018-11-29 22:06:09,136 496115ms ArticleController      Article           
 INFO  2018-11-29 22:06:12,559 499539ms ArticleController      Article            - Test log
 INFO  2018-11-29 22:06:19,041 506021ms ArticleController      Article            - Test log
 INFO  2018-11-29 22:06:27,846 514826ms ArticleController      Article            - Test log
+INFO  2018-11-30 17:30:43,158 184656ms ArticleController      Article            - Test log

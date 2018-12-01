@@ -56,6 +56,7 @@
     </Reference>
     <Reference Include="StructureMap, Version=3.1.1.0, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\packages\structuremap.3.1.1.134\lib\net40\StructureMap.dll</HintPath>
+      <EmbedInteropTypes>False</EmbedInteropTypes>
     </Reference>
     <Reference Include="StructureMap.Net4, Version=3.1.1.0, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\packages\structuremap.3.1.1.134\lib\net40\StructureMap.Net4.dll</HintPath>
@@ -327,9 +328,17 @@
     <Service Include="{4A0DDDB5-7A95-4FBF-97CC-616D07737A77}" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\InfoPortal.Domain\InfoPortal.Domain.csproj">
-      <Project>{b85b49b6-7671-4299-9411-1faa78376b4b}</Project>
-      <Name>InfoPortal.Domain</Name>
+    <ProjectReference Include="..\Common\InfoPortal.Common.csproj">
+      <Project>{3bfd4e44-23c1-4441-9b77-ad6c598ffe6f}</Project>
+      <Name>InfoPortal.Common</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\InfoPortal.BL\InfoPortal.BL.csproj">
+      <Project>{b9ad7a2c-3182-4f84-97f4-bad9be4ebb17}</Project>
+      <Name>InfoPortal.BL</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\InfoPortal.DI\InfoPortal.DI.csproj">
+      <Project>{5d76d335-cc61-4d49-960c-12818c5e990a}</Project>
+      <Name>InfoPortal.DI</Name>
     </ProjectReference>
   </ItemGroup>
   <PropertyGroup>

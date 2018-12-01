@@ -1,14 +1,12 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Configuration;
 using System.Data.SqlClient;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using Common;
+using InfoPortal.DAL.Abstract;
 
-namespace InfoPortal.Domain.Concrete
+namespace InfoPortal.DAL.Concrete
 {
-	class TagsContext
+	public class TagsContext:ITagsContext
 	{
 		private SqlConnection sqlConnection = null;
 

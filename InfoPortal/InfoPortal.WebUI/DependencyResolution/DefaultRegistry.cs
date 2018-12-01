@@ -15,8 +15,10 @@
 // </copyright>
 // --------------------------------------------------------------------------------------------------------------------
 
-using InfoPortal.Domain.Abstract;
-using InfoPortal.Domain.Concrete;
+
+using System.Reflection;
+using InfoPortal.BL.Abstract;
+using InfoPortal.BL.Concrete;
 
 namespace InfoPortal.WebUI.DependencyResolution {
     using StructureMap.Configuration.DSL;
@@ -29,10 +31,13 @@ namespace InfoPortal.WebUI.DependencyResolution {
             Scan(
                 scan => {
                     scan.TheCallingAssembly();
-                    scan.WithDefaultConventions();
+	                scan.WithDefaultConventions();
 					scan.With(new ControllerConvention());
+					scan.Assembly(typeof(InfoPortal.DI.GlobalRegistry).Assembly);
+	                scan.LookForRegistries();
                 });
-            For<IArticlesRepository>().Use<ArticleRepository>();
+	        For<IArticlesRepository>().Use<ArticleRepository>();
+			For<ITagsRepository>().Use<TagsRepository>();
         }
 
         #endregion

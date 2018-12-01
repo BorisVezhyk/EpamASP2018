@@ -104,3 +104,9 @@ F:\Учеба\Epam courses\HomeWork\HomeWork\InfoPortal\InfoPortal.WebUI\bin\Str
 F:\Учеба\Epam courses\HomeWork\HomeWork\InfoPortal\InfoPortal.WebUI\bin\StructureMap.Net4.pdb
 F:\Учеба\Epam courses\HomeWork\HomeWork\InfoPortal\InfoPortal.WebUI\bin\StructureMap.Web.pdb
 F:\Учеба\Epam courses\HomeWork\HomeWork\InfoPortal\InfoPortal.WebUI\bin\StructureMap.Web.xml
+F:\Учеба\Epam courses\HomeWork\HomeWork\InfoPortal\InfoPortal.WebUI\bin\Common.dll
+F:\Учеба\Epam courses\HomeWork\HomeWork\InfoPortal\InfoPortal.WebUI\bin\InfoPortal.BL.dll
+F:\Учеба\Epam courses\HomeWork\HomeWork\InfoPortal\InfoPortal.WebUI\bin\Common.pdb
+F:\Учеба\Epam courses\HomeWork\HomeWork\InfoPortal\InfoPortal.WebUI\bin\InfoPortal.BL.pdb
+F:\Учеба\Epam courses\HomeWork\HomeWork\InfoPortal\InfoPortal.WebUI\bin\InfoPortal.DI.dll
+F:\Учеба\Epam courses\HomeWork\HomeWork\InfoPortal\InfoPortal.WebUI\bin\InfoPortal.DI.pdb

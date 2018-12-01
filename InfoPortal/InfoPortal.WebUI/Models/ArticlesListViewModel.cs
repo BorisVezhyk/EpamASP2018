@@ -1,8 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web;
-using InfoPortal.Domain;
+﻿using System.Collections.Generic;
+using Common;
 
 namespace InfoPortal.WebUI.Models
 {
