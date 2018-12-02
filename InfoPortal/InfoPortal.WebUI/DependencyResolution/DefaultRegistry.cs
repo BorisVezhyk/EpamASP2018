@@ -31,8 +31,8 @@ namespace InfoPortal.WebUI.DependencyResolution {
             Scan(
                 scan => {
                     scan.TheCallingAssembly();
-	                scan.WithDefaultConventions();
-					scan.With(new ControllerConvention());
+	                //scan.WithDefaultConventions();
+					//scan.With(new ControllerConvention());
 					scan.Assembly(typeof(InfoPortal.DI.GlobalRegistry).Assembly);
 	                scan.LookForRegistries();
                 });

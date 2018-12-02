@@ -37,6 +37,8 @@ namespace Common
 		    Tags=new List<Tag>();
 	    }
 
+	    public int CategoryID { get; set; }
+
 	    public string Category { get; set; }
 
     }

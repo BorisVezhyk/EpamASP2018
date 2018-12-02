@@ -7,6 +7,6 @@ namespace InfoPortal.WebUI.Models
 	{
 		public IEnumerable<Article> Articles { get; set; }
 		public PageInfo PageInfo { get; set; }
-
+		public string CurrentCategory { get; set; }
 	}
 }

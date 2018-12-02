@@ -51,7 +51,7 @@ namespace InfoPortal.WebUI.Controllers
         }
 
         //
-        // GET: /Manage/Index
+        // GET: /Manage/List
         public async Task<ActionResult> Index(ManageMessageId? message)
         {
             ViewBag.StatusMessage =

@@ -17,12 +17,13 @@ namespace InfoPortal.WebUI.Controllers
 			_articles = res;
 		}
 
-		public ActionResult Index(int page=1)
+		public ActionResult List(string category, int page=1)
 		{
 
 			ArticlesListViewModel model = new ArticlesListViewModel
 			{
 				Articles = _articles.Articles
+					.Where(a=>category==null||a.Category==category)
 					.OrderBy(a => a.ArticleID)
 					.Skip((page - 1) * PageSize)
 					.Take(PageSize),
@@ -30,8 +31,11 @@ namespace InfoPortal.WebUI.Controllers
 				{
 					CurrentPage = page,
 					ItemsPerPage = PageSize,
-					TotalItems = _articles.Articles.Count()
-				}
+					TotalItems = category==null?
+						_articles.Articles.Count():
+						_articles.Articles.Count(a => a.Category==category)
+				},
+				CurrentCategory = category
 			};
 
 			return View(model);

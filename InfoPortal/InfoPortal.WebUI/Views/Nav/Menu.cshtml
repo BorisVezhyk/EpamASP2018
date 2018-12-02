@@ -6,19 +6,21 @@
 		@Html.RouteLink("Home",new
 		{
 			controller="Main",
-			action="Index"
-		},new{@class="nav-link text-dark"})
+			action="List"
+		},new{@class="nav-link "+(ViewBag.SelectedCategory??"active")})
 	</li>
-	@foreach (var category in Model)
+	@foreach (var link in Model)
 	{
 		<li class="nav-item">
 
-			@Html.RouteLink(category, new
+			@Html.RouteLink(link, new
 	   {
-		   controller = "Article",
-		   action = "Article",
+		   controller = "Main",
+		   action = "List",
+		   category=link,
+		   page=1
 
-	   }, new {@class = "nav-link", role="tab"})
+	   }, new {@class ="nav-link "+(link == ViewBag.SelectedCategory ? "active" : null) })
 		</li>
 
 	}

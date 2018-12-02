@@ -15,8 +15,6 @@
 			
 			@foreach(var art in Model.Articles.Skip(i).Take(MAX_CARD_IN_ROW))
 			{
-
-				
 				<div class="card">
 					<a href="@Url.RouteUrl(new{controller="Article",action="Article", id=@art.ArticleID})">
 						<img class="card-img-top" src="@art.Image" alt="Card image cap" />
@@ -34,7 +32,9 @@
 }
 
 <div class="text-center row btn-group" role="group" aria-label="Basic exapmle">
-	@Html.PageLinks(Model.PageInfo,x=>Url.Action("Index",new{page=x}),new {@class= "btn btn-secondary" })
+	@Html.PageLinks(Model.PageInfo,x=>Url.Action("List",
+		new{page=x, category=Model.CurrentCategory}),
+		new {@class= "btn btn-secondary" })
 </div>
 	
 

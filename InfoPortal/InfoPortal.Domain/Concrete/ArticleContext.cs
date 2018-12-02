@@ -33,7 +33,8 @@ namespace InfoPortal.DAL.Concrete
 		private List<Article> GetAllArticles()
 		{
 			List<Article> articles = new List<Article>();
-			string sqlCommand = "select * from Articles,Users";
+			//Исправить запрос
+			string sqlCommand = "select * from GetDataArticles";
 
 			OpenConnection();
 
@@ -56,7 +57,10 @@ namespace InfoPortal.DAL.Concrete
 						{
 							Name = (string)reader["Name"],
 							Email = (string) reader["E-mail"]
-						}
+						},
+						CategoryID = (int)reader["CategoryID"],
+						Category = (string)reader["CategoryName"]
+						
 					});
 				}
 				reader.Close();
