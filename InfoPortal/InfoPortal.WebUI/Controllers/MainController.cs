@@ -10,7 +10,7 @@ namespace InfoPortal.WebUI.Controllers
 
 		private readonly IArticlesRepository _articles;
 
-		public  int PageSize = 6;
+		private const  int PAGE_SIZE = 6;
 
 		public MainController(IArticlesRepository res)
 		{
@@ -25,12 +25,12 @@ namespace InfoPortal.WebUI.Controllers
 				Articles = _articles.Articles
 					.Where(a=>category==null||a.Category==category)
 					.OrderBy(a => a.ArticleID)
-					.Skip((page - 1) * PageSize)
-					.Take(PageSize),
+					.Skip((page - 1) * PAGE_SIZE)
+					.Take(PAGE_SIZE),
 				PageInfo = new PageInfo
 				{
 					CurrentPage = page,
-					ItemsPerPage = PageSize,
+					ItemsPerPage = PAGE_SIZE,
 					TotalItems = category==null?
 						_articles.Articles.Count():
 						_articles.Articles.Count(a => a.Category==category)

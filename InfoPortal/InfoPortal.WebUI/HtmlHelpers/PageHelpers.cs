@@ -30,7 +30,7 @@ namespace InfoPortal.WebUI.HtmlHelpers
 					tag.MergeAttributes(attributes);
 				}
 
-				result.Append(tag.ToString());
+				result.Append(tag);
 			}
 			return MvcHtmlString.Create(result.ToString());
 		}

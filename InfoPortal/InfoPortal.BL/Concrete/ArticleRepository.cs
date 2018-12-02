@@ -2,7 +2,6 @@
 using Common;
 using InfoPortal.BL.Abstract;
 using InfoPortal.DAL.Abstract;
-using InfoPortal.DAL.Concrete;
 
 namespace InfoPortal.BL.Concrete
 {
@@ -16,10 +15,7 @@ namespace InfoPortal.BL.Concrete
 			_context = context;
 		}
 
-		public IEnumerable<Article> Articles
-		{
-			get { return _context.Articles; }
-		}
+		public IEnumerable<Article> Articles => _context.Articles;
 
 		public void SaveArticle(Article article)
 		{

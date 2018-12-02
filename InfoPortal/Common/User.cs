@@ -5,7 +5,7 @@ namespace Common
 {
 	public class User
 	{
-		[Required]
+		
 		public int UserID { get; set; }
 
 		[Required]
@@ -21,7 +21,10 @@ namespace Common
 		[StringLength(20,MinimumLength = 6,ErrorMessage = "Minimum length of password is 6 chars")]
 		public string Password { get; set; }
 
+		public Role Role { get; set; }
+
 		public ICollection<Article> Articles { get; set; }
+
 		public ICollection<Role> Roles { get; set; }
 
 		public User()

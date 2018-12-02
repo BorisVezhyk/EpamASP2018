@@ -7,18 +7,19 @@ namespace InfoPortal.WebUI.Controllers
 {
     public class NavController : Controller
     {
-	    private readonly IArticlesRepository _repository;
+	    private readonly ICategoryRepository _categoryRepository;
 
-	    public NavController(IArticlesRepository repository)
+	    public NavController(ICategoryRepository categoryRepository)
 	    {
-		    _repository = repository;
+		    _categoryRepository = categoryRepository;
 	    }
-        // GET: Nav
+        
+	    // GET: Nav
         public PartialViewResult Menu(string category=null)
         {
 	        ViewBag.SelectedCategory = category;
-	        IEnumerable<string> topCategories = _repository.Articles
-		        .Select(x => x.Category)
+	        IEnumerable<string> topCategories = _categoryRepository.Categories
+		        .Select(c => c.CategoryName)
 		        .Distinct();
 
             return PartialView(topCategories);

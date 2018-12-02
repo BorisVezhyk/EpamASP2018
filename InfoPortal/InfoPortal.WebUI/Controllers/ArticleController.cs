@@ -2,6 +2,7 @@
 using System.Web.Mvc;
 using Common;
 using InfoPortal.BL.Abstract;
+using InfoPortal.WebUI.Models;
 
 
 namespace InfoPortal.WebUI.Controllers
@@ -9,27 +10,65 @@ namespace InfoPortal.WebUI.Controllers
     public class ArticleController : Controller
     {
         // GET: Article
-	    private readonly IArticlesRepository _repository;
+	    private readonly IArticlesRepository _articlesRepository;
+	    private readonly ICategoryRepository _categoryRepository;
 
-	    public ArticleController(IArticlesRepository articlesRepository)
+	    public ArticleController(IArticlesRepository articlesArticlesRepository,ICategoryRepository categoryRepository)
 	    {
-			
-		    _repository = articlesRepository;
+		    _categoryRepository = categoryRepository;
+		    _articlesRepository = articlesArticlesRepository;
 	    }
 
 
-        public ActionResult Article(int? id)
-        {
+	    
 
+        public ActionResult Article(int? id,Article article=null)
+        {
 			if (id!=null)
 	        {
-				Article art = _repository.Articles.FirstOrDefault(a => a.ArticleID == id);
-
+				Article art = _articlesRepository.Articles.FirstOrDefault(a => a.ArticleID == id);
 		        return View(art);
+	        }
 
-			}
-
+	        if (article!=null)
+	        {
+		        return View(article);
+	        }
 	        return HttpNotFound();
         }
+
+
+		[HttpGet]
+	    public ActionResult CreateNewArticle()
+		{
+			ViewBag.SelectCategory = _categoryRepository.Categories;
+
+		    return View();
+	    }
+
+	    [HttpPost]
+	    public ActionResult CreateNewArticle(CreateNewArticle newArticle)
+	    {
+		    if (ModelState.IsValid)
+		    {
+			    Article preArticle = new Article
+			    {
+				    Caption = newArticle.Caption,
+				    Text = newArticle.Text,
+				    Image = newArticle.Image,
+				    Video = newArticle.Video,
+				    Language = newArticle.Language,
+				    CategoryID = newArticle.CategoryID,
+				    ArticleID = 123,
+				    User = new User {Name = "Boris"},
+				    UserID = 1
+			    };
+			    return RedirectToAction("Article");
+			}
+
+		    return View();
+	    }
+
+
     }
 }
