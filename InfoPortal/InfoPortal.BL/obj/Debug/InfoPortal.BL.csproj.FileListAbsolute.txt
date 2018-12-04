@@ -10,3 +10,6 @@ F:\Учеба\Epam courses\HomeWork\HomeWork\InfoPortal\InfoPortal.BL\bin\Debug\
 F:\Учеба\Epam courses\HomeWork\HomeWork\InfoPortal\InfoPortal.BL\obj\Debug\InfoPortal.BL.csproj.CopyComplete
 F:\Учеба\Epam courses\HomeWork\HomeWork\InfoPortal\InfoPortal.BL\obj\Debug\InfoPortal.BL.dll
 F:\Учеба\Epam courses\HomeWork\HomeWork\InfoPortal\InfoPortal.BL\obj\Debug\InfoPortal.BL.pdb
+F:\Учеба\Epam courses\HomeWork\HomeWork\InfoPortal\InfoPortal.BL\bin\Debug\InfoPortal.BL.dll.config
+F:\Учеба\Epam courses\HomeWork\HomeWork\InfoPortal\InfoPortal.BL\bin\Debug\log4net.dll
+F:\Учеба\Epam courses\HomeWork\HomeWork\InfoPortal\InfoPortal.BL\bin\Debug\log4net.xml

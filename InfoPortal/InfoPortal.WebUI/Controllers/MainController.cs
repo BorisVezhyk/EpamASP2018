@@ -7,6 +7,7 @@ namespace InfoPortal.WebUI.Controllers
 {
 	public class MainController : Controller
 	{
+		readonly log4net.ILog logger = log4net.LogManager.GetLogger(System.Reflection.MethodBase.GetCurrentMethod().DeclaringType);
 
 		private readonly IArticlesRepository _articles;
 
@@ -19,12 +20,11 @@ namespace InfoPortal.WebUI.Controllers
 
 		public ActionResult List(string category, int page=1)
 		{
-
 			ArticlesListViewModel model = new ArticlesListViewModel
 			{
 				Articles = _articles.Articles
 					.Where(a=>category==null||a.Category==category)
-					.OrderBy(a => a.ArticleID)
+					.OrderByDescending(a => a.Date)
 					.Skip((page - 1) * PAGE_SIZE)
 					.Take(PAGE_SIZE),
 				PageInfo = new PageInfo

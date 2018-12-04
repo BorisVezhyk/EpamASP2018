@@ -15,3 +15,6 @@ F:\Учеба\Epam courses\HomeWork\HomeWork\InfoPortal\InfoPortal.DI\obj\Debug\
 F:\Учеба\Epam courses\HomeWork\HomeWork\InfoPortal\InfoPortal.DI\bin\Debug\StructureMap.dll
 F:\Учеба\Epam courses\HomeWork\HomeWork\InfoPortal\InfoPortal.DI\bin\Debug\StructureMap.pdb
 F:\Учеба\Epam courses\HomeWork\HomeWork\InfoPortal\InfoPortal.DI\bin\Debug\StructureMap.xml
+F:\Учеба\Epam courses\HomeWork\HomeWork\InfoPortal\InfoPortal.DI\bin\Debug\log4net.dll
+F:\Учеба\Epam courses\HomeWork\HomeWork\InfoPortal\InfoPortal.DI\bin\Debug\InfoPortal.BL.dll.config
+F:\Учеба\Epam courses\HomeWork\HomeWork\InfoPortal\InfoPortal.DI\bin\Debug\log4net.xml
