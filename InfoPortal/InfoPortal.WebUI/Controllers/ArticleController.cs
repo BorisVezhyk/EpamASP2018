@@ -19,16 +19,9 @@ namespace InfoPortal.WebUI.Controllers
 		    _articlesRepository = articlesArticlesRepository;
 	    }
 
-
-	    
-
-        public ActionResult Article(int? id,Article article=null)
+        public ActionResult Article(int id)
         {
-			if (id!=null)
-	        {
-				Article art = _articlesRepository.Articles.FirstOrDefault(a => a.ArticleID == id);
-		        return View(art);
-	        }
+	        Article article = _articlesRepository.GetArticle(id);
 
 	        if (article!=null)
 	        {

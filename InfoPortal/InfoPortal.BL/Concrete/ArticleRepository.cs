@@ -11,41 +11,34 @@ namespace InfoPortal.BL.Concrete
 
 		public ArticleRepository(IArticleContext context)
 		{
-			//_context = new ArticleContext();
 			_context = context;
 		}
 
-		public IEnumerable<Article> Articles => _context.Articles;
+		public List<Article> GetArticlesForMainPage(int maxArticlesInPage, string category, int page = 1)
+		{
+			return _context.GetArticlesForMainPage(maxArticlesInPage, category, page);
+		}
+
+		public Article GetArticle(int articleID)
+		{
+			return _context.GetArticle(articleID);
+		}
+
+		public int GetCountArtiles(string category)
+		{
+			return _context.GetCountArtiles(category);
+		}
 
 		public void SaveArticle(Article article)
 		{
-			if (article.ArticleID==0)
-			{
-				_context.Articles.Add(article);
+			
 				_context.InsertNewArticle(article);
-			}
-			else
-			{
-				Article changedArticle = _context.Articles.Find(a=>a.ArticleID==article.ArticleID);
-				if (changedArticle!=null)
-				{
-					changedArticle.Caption = article.Caption;
-					changedArticle.Date = article.Date;
-					changedArticle.Image = article.Image;
-					changedArticle.Text = article.Text;
-					changedArticle.Video = article.Video;
-					changedArticle.Tags = article.Tags;
-					changedArticle.Language = article.Language;
-					changedArticle.UserID = article.UserID;
-				}
-				_context.UpdateArticle(article);
-			}
+			
 		}
 
 
 		public void DeleteArticle(int articleId)
 		{
-			_context.Articles.RemoveAll(a=>a.ArticleID==articleId);
 			_context.DeleteArticle(articleId);
 		}
 	}

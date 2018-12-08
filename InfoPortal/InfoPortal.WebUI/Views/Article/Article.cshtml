@@ -25,10 +25,10 @@
 	}
 	
 	
-	<p class="lead">Categories: <b>Here will be link tags </b>
+	<p class="lead">Tags:
 		@foreach (var link in @Model.Tags)
 		{
-			<a class="badge badge-secondary" href="#">@link</a>
+			<a class="badge badge-secondary" href="#">@link.TagName</a>
 		}</p>
 </div>
 

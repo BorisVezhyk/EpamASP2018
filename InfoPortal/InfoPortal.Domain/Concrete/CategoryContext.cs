@@ -10,45 +10,38 @@ namespace InfoPortal.Domain.Concrete
 	{
 		public List<Category> Categories { get; set; }
 
-		private SqlConnection sqlConnection = null;
+		private readonly SqlConnection _sqlConnection;
 
 		public CategoryContext()
 		{
-			Categories = GetAllCategories();
-		}
-
-		private void OpenConnection()
-		{
 			string connectionString = ConfigurationManager.ConnectionStrings["DbInfoPortal"].ConnectionString;
-			sqlConnection = new SqlConnection(connectionString);
-			sqlConnection.Open();
-		}
-
-		private void CloseConnection()
-		{
-			sqlConnection.Close();
+			_sqlConnection = new SqlConnection(connectionString);
+			Categories = GetAllCategories();
 		}
 
 		private List<Category> GetAllCategories()
 		{
-			List<Category> result=new List<Category>();
-			string sqlCommand = "select * from Categories";
+			List<Category> result = new List<Category>();
 
-			OpenConnection();
-
-			using (SqlCommand cmd=new SqlCommand(sqlCommand,sqlConnection))
+			using (_sqlConnection)
 			{
-				SqlDataReader reader = cmd.ExecuteReader();
-				while (reader.Read())
+				string sqlCommand = "select * from Categories";
+				SqlCommand cmd = new SqlCommand(sqlCommand, _sqlConnection);
+
+				_sqlConnection.Open();
+
+				using (SqlDataReader reader = cmd.ExecuteReader())
 				{
-					result.Add(new Category
+					while (reader.Read())
 					{
-						CategoryID = (int)reader["CategoryID"],
-						CategoryName = (string)reader["CategoryName"]
-					});
+						result.Add(new Category
+						{
+							CategoryID = (int) reader["CategoryID"],
+							CategoryName = (string) reader["CategoryName"]
+						});
+					}
 				}
 			}
-			CloseConnection();
 			return result;
 		}
 	}

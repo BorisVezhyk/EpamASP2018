@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Data.SqlClient;
 using System.Configuration;
+using System.Web.Mvc;
 using Common;
 using InfoPortal.DAL.Abstract;
 
@@ -12,27 +13,29 @@ namespace InfoPortal.DAL.Concrete
 		readonly log4net.ILog _logger =
 			log4net.LogManager.GetLogger(System.Reflection.MethodBase.GetCurrentMethod().DeclaringType);
 
-		private readonly SqlConnection _sqlConnection;
+		private SqlConnection _sqlConnection;
 
-		public List<Article> Articles { get; set; }
+		private readonly string _connectionString =
+			ConfigurationManager.ConnectionStrings["DbInfoPortal"].ConnectionString;
+
 
 		public ArticleContext()
 		{
-			string connectionString = ConfigurationManager.ConnectionStrings["DbInfoPortal"].ConnectionString;
-			_sqlConnection = new SqlConnection(connectionString);
-
-			Articles = GetAllArticles();
+			_sqlConnection = new SqlConnection(_connectionString);
 		}
 
-		private List<Article> GetAllArticles()
+		public List<Article> GetArticlesForMainPage(int maxArticlesInPage, string category, int page = 1)
 		{
 			List<Article> articles = new List<Article>();
-			//Исправить запрос
-			using (_sqlConnection)
+
+			using (_sqlConnection = new SqlConnection(_connectionString))
 			{
+				string sqlCommand = "exec sp_GetArticles @page,@maxArticlesInPage,@category";
 				_sqlConnection.Open();
-				string sqlCommand = "select * from GetDataArticles";
 				SqlCommand cmd = new SqlCommand(sqlCommand, _sqlConnection);
+				cmd.Parameters.AddWithValue("@page", page);
+				cmd.Parameters.AddWithValue("@maxArticlesInPage", maxArticlesInPage);
+				cmd.Parameters.AddWithValue("@category", category ?? (object) DBNull.Value);
 
 				using (SqlDataReader reader = cmd.ExecuteReader())
 				{
@@ -44,25 +47,124 @@ namespace InfoPortal.DAL.Concrete
 							Caption = (string) reader["Caption"],
 							Text = (string) reader["Text"],
 							Date = (DateTime) reader["Date"],
-							UserID = (int) reader["UserID"],
 							Language = reader["Language"] as string,
 							Video = reader["Video"] as string,
 							Image = reader["Image"] as string,
 							User = new User
 							{
 								Name = (string) reader["Name"],
-								Email = (string) reader["E-mail"]
 							},
-							CategoryID = (int) reader["CategoryID"],
 							Category = (string) reader["CategoryName"]
 						});
 					}
-
-					reader.Close();
 				}
 			}
 
+			foreach (var art in articles)
+			{
+				art.Tags = GetTagsByArticleID(art.ArticleID);
+			}
+
 			return articles;
+		}
+
+		private List<Tag> GetTagsByArticleID(int articleID)
+		{
+			List<Tag> tags = new List<Tag>();
+
+			using (_sqlConnection = new SqlConnection(_connectionString))
+			{
+				string sqlCommand = "exec sp_GetTagsByArticleID @articleID";
+
+				SqlCommand cmd = new SqlCommand(sqlCommand, _sqlConnection);
+				cmd.Parameters.AddWithValue("@articleID", articleID);
+				_sqlConnection.Open();
+
+				using (SqlDataReader reader = cmd.ExecuteReader())
+				{
+					while (reader.Read())
+					{
+						tags.Add(new Tag
+						{
+							TagID = (int) reader["TagID"],
+							TagName = (string) reader["TagName"]
+						});
+					}
+				}
+			}
+
+			return tags;
+		}
+
+		public int GetCountArtiles(string category)
+		{
+			int result = 0;
+
+			using (_sqlConnection = new SqlConnection(_connectionString))
+			{
+				string sqlCommmand = "exec sp_get_count_articles_by_category @category";
+
+				SqlCommand cmd = new SqlCommand(sqlCommmand, _sqlConnection);
+				cmd.Parameters.AddWithValue("@category", category ?? (object) DBNull.Value);
+				try
+				{
+					_sqlConnection.Open();
+					var count = cmd.ExecuteScalar();
+					if (count != null)
+					{
+						result = (int) count;
+					}
+				}
+				catch (Exception e)
+				{
+					_logger.Error(e.Message);
+				}
+			}
+
+			return result;
+		}
+
+		public Article GetArticle(int articleID)
+		{
+			Article article = null;
+
+			using (_sqlConnection = new SqlConnection(_connectionString))
+			{
+				string sqlCommand = "exec sp_get_article_by_articleID @articleID";
+
+				SqlCommand cmd = new SqlCommand(sqlCommand, _sqlConnection);
+				cmd.Parameters.AddWithValue("@articleID", articleID);
+				_sqlConnection.Open();
+				using (SqlDataReader reader = cmd.ExecuteReader())
+				{
+					while (reader.Read())
+					{
+						article = new Article
+						{
+							ArticleID = (int) reader["ArticleID"],
+							Caption = (string) reader["Caption"],
+							Text = (string) reader["Text"],
+							Date = (DateTime) reader["Date"],
+							Language = reader["Language"] as string,
+							Video = reader["Video"] as string,
+							Image = reader["Image"] as string,
+							User = new User
+							{
+								Name = (string) reader["Name"],
+							},
+							Category = (string) reader["CategoryName"]
+						};
+					}
+				}
+			}
+
+			if (article != null)
+			{
+				article.Tags = GetTagsByArticleID(articleID);
+				return article;
+			}
+
+			return null;
 		}
 
 		public void InsertNewArticle(Article article)
@@ -126,11 +228,10 @@ namespace InfoPortal.DAL.Concrete
 
 		public void DeleteArticle(int articleId)
 		{
-			
 			using (_sqlConnection)
 			{
 				string sqlCommand = "DELETE FROM Articles " +
-			                    "WHERE ArticleID=@id";
+				                    "WHERE ArticleID=@id";
 
 				SqlCommand cmd = new SqlCommand(sqlCommand, _sqlConnection);
 				cmd.Parameters.AddWithValue("@id", articleId);
@@ -145,7 +246,6 @@ namespace InfoPortal.DAL.Concrete
 					_logger.Error(e.Message);
 				}
 			}
-			
 		}
 	}
 }

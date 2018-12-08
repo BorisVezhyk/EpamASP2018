@@ -16,7 +16,7 @@
 			@foreach(var art in Model.Articles.Skip(i).Take(MAX_CARD_IN_ROW))
 			{
 				<div class="card">
-					<a href="@Url.RouteUrl(new{controller="Article",action="Article", id=@art.ArticleID})">
+					<a href="@Url.RouteUrl(new{controller="Article",action="Article", id=art.ArticleID})">
 						<img class="card-img-top" src="@art.Image" alt="Card image cap" />
 						<div class="card-body text-dark" style="display: inline-block">
 							<h5 class="card-title">@art.Caption</h5>

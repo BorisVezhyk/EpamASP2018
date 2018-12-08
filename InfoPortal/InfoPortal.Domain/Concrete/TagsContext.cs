@@ -6,70 +6,58 @@ using InfoPortal.DAL.Abstract;
 
 namespace InfoPortal.DAL.Concrete
 {
-	public class TagsContext:ITagsContext
+	public class TagsContext : ITagsContext
 	{
-		private SqlConnection sqlConnection = null;
+		readonly log4net.ILog _logger =
+			log4net.LogManager.GetLogger(System.Reflection.MethodBase.GetCurrentMethod().DeclaringType);
+
+		private readonly SqlConnection _sqlConnection;
 
 		public List<Tag> Tags { get; set; }
 
 		public TagsContext()
 		{
 			Tags = GetAllTags();
-		}
-
-		private void OpenConnection()
-		{
 			string connectionString = ConfigurationManager.ConnectionStrings["DbInfoPortal"].ConnectionString;
-			sqlConnection = new SqlConnection(connectionString);
-			sqlConnection.Open();
-		}
-
-		private void CloseConnection()
-		{
-			sqlConnection.Close();
+			_sqlConnection = new SqlConnection(connectionString);
 		}
 
 		private List<Tag> GetAllTags()
 		{
 			List<Tag> tags = new List<Tag>();
 
-			string sqlCommand = "Select Tags.TagID,TagName,ArticleID FROM Tags " +
-			                    "FULL OUTER JOIN ArticlesOfTag " +
-			                    "ON Tags.TagID=ArticlesOfTag.TagID";
-
-			OpenConnection();
-
-			using (SqlCommand cmd=new SqlCommand(sqlCommand,sqlConnection))
+			using (_sqlConnection)
 			{
-				SqlDataReader reader=cmd.ExecuteReader();
+				string sqlCommand = "Select Tags.TagID,TagName,ArticleID FROM Tags " +
+				                    "FULL OUTER JOIN ArticlesOfTag " +
+				                    "ON Tags.TagID=ArticlesOfTag.TagID";
 
-				while (reader.Read())
+				SqlCommand cmd = new SqlCommand(sqlCommand, _sqlConnection);
+
+				_sqlConnection.Open();
+
+				using (SqlDataReader reader = cmd.ExecuteReader())
 				{
-					Tag oldTag = tags.Find(t => t.TagID == (int) reader["TagID"]);
-					if (oldTag==null)
+					while (reader.Read())
 					{
-						tags.Add(new Tag
+						Tag oldTag = tags.Find(t => t.TagID == (int) reader["TagID"]);
+						if (oldTag == null)
 						{
-							TagID = (int)reader["TagID"],
-							TagName = (string)reader["TagName"],
-							//Articles = new List<Article>
-							//{
-							//	new Article{ArticleID =(int) reader["ArticleID"]}
-							//}
-							
-						});
-						
-					}
-					else
-					{
-						oldTag.Articles.Add(new Article
+							tags.Add(new Tag
+							{
+								TagID = (int) reader["TagID"],
+								TagName = (string) reader["TagName"],
+							});
+						}
+						else
 						{
-							ArticleID = (int)reader["ArticleID"]
-						});
+							oldTag.Articles.Add(new Article
+							{
+								ArticleID = (int) reader["ArticleID"]
+							});
+						}
 					}
 				}
-
-				CloseConnection();
 
 				return tags;
 			}
@@ -79,17 +67,21 @@ namespace InfoPortal.DAL.Concrete
 		{
 			string sqlCommand = "INSERT INTO TAGS(TagName) " +
 			                    "VALUES(@TagName)";
-			OpenConnection();
-
-			using (SqlCommand cmd = new SqlCommand(sqlCommand,sqlConnection))
+			using (_sqlConnection)
 			{
+				SqlCommand cmd = new SqlCommand(sqlCommand, _sqlConnection);
 				cmd.Parameters.AddWithValue("@TagName", tag.TagName);
 
-				cmd.ExecuteNonQuery();
+				try
+				{
+					_sqlConnection.Open();
+					cmd.ExecuteNonQuery();
+				}
+				catch (System.Exception e)
+				{
+					_logger.Error(e.Message);
+				}
 			}
-
-			CloseConnection();
 		}
-
 	}
 }
