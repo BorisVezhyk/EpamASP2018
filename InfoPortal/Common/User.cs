@@ -21,6 +21,7 @@ namespace Common
 		[StringLength(20,MinimumLength = 6,ErrorMessage = "Minimum length of password is 6 chars")]
 		public string Password { get; set; }
 
+		
 		public Role Role { get; set; }
 
 		public ICollection<Article> Articles { get; set; }

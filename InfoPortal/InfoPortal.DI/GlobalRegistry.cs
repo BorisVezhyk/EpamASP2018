@@ -16,6 +16,8 @@ namespace InfoPortal.DI
 		    For<ITagsContext>().Use<TagsContext>();
 		    For<ICategoryContext>().Use<CategoryContext>();
 		    For<ICategoryRepository>().Use<CategoryRepository>();
+		    For<IUserRepository>().Use<UserRepository>();
+		    For<IUserContext>().Use<UserContext>();
 	    }
 
     }

@@ -38,6 +38,7 @@ namespace InfoPortal.WebUI.DependencyResolution {
                 });
 	        For<IArticlesRepository>().Use<ArticleRepository>();
 			For<ITagsRepository>().Use<TagsRepository>();
+			
         }
 
         #endregion

@@ -1,24 +1,14 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Data.SqlClient;
-using System.Configuration;
-using System.Web.Mvc;
 using Common;
 using InfoPortal.DAL.Abstract;
+using InfoPortal.Domain.Concrete;
 
 namespace InfoPortal.DAL.Concrete
 {
-	public class ArticleContext : IArticleContext
+	public class ArticleContext : DBContext, IArticleContext
 	{
-		readonly log4net.ILog _logger =
-			log4net.LogManager.GetLogger(System.Reflection.MethodBase.GetCurrentMethod().DeclaringType);
-
-		private SqlConnection _sqlConnection;
-
-		private readonly string _connectionString =
-			ConfigurationManager.ConnectionStrings["DbInfoPortal"].ConnectionString;
-
-
 		public ArticleContext()
 		{
 			_sqlConnection = new SqlConnection(_connectionString);

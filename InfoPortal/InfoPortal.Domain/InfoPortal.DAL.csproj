@@ -50,8 +50,11 @@
     <Compile Include="Abstract\IArticleContext.cs" />
     <Compile Include="Abstract\ICategoryContext.cs" />
     <Compile Include="Abstract\ITagsContext.cs" />
+    <Compile Include="Abstract\IUserContext.cs" />
     <Compile Include="Concrete\ArticleContext.cs" />
     <Compile Include="Concrete\CategoryContext.cs" />
+    <Compile Include="Concrete\DBContext.cs" />
+    <Compile Include="Concrete\UserContext.cs" />
     <Compile Include="Concrete\TagsContext.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

@@ -32,6 +32,7 @@ namespace InfoPortal.WebUI.Controllers
 
 
 		[HttpGet]
+		[Authorize]
 	    public ActionResult CreateNewArticle()
 		{
 			ViewBag.SelectCategory = _categoryRepository.Categories;

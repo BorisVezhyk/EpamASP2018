@@ -1,7 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web;
+﻿using System.Collections.Generic;
 using System.Web.Mvc;
 using InfoPortal.WebUI.Models;
 
@@ -10,7 +7,7 @@ namespace InfoPortal.WebUI.Controllers
     public class SearchController : Controller
     {
         // GET: Search
-		[HttpGet]
+		//[HttpGet]
         public PartialViewResult SearchMenu()
         {
 			var model=new SearchAttributes();
