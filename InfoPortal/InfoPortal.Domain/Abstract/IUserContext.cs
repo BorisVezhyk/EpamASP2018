@@ -7,5 +7,6 @@ namespace InfoPortal.Domain.Abstract
 		int CheckUserExist(string userEmail, string userName);
 		void SaveNewUser(User newUser);
 		User GetUserByLogin(string userName, string userPassword);
+		string[] GetRolesForUser(string userName);
 	}
 }

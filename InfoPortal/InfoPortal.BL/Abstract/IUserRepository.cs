@@ -7,5 +7,6 @@ namespace InfoPortal.BL.Abstract
 		void RegisterUser(User user);
 		int CheckUserExist(string userEmail, string userName);
 		User GetUserByLogin(string userName, string userPassword);
+		string[] GetRolesForUser(string userName);
 	}
 }

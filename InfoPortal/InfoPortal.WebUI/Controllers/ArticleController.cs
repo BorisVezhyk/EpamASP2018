@@ -32,11 +32,10 @@ namespace InfoPortal.WebUI.Controllers
 
 
 		[HttpGet]
-		[Authorize]
+		[Authorize(Roles = "Author")]
 	    public ActionResult CreateNewArticle()
 		{
 			ViewBag.SelectCategory = _categoryRepository.Categories;
-
 		    return View();
 	    }
 
@@ -45,6 +44,7 @@ namespace InfoPortal.WebUI.Controllers
 	    {
 		    if (ModelState.IsValid)
 		    {
+				//need to change!!
 			    Article preArticle = new Article
 			    {
 				    Caption = newArticle.Caption,

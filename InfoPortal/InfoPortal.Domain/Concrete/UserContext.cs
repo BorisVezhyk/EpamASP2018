@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Data.SqlClient;
 using Common;
 using InfoPortal.Domain.Abstract;
@@ -82,6 +83,30 @@ namespace InfoPortal.Domain.Concrete
 			}
 
 			return result;
+		}
+
+		public string[] GetRolesForUser(string userName)
+		{
+			List<string> roles=new List<string>();
+
+			using (_sqlConnection = new SqlConnection(_connectionString))
+			{
+				string sqlCommand = "exec sp_get_roles_for_user @userName";
+
+				SqlCommand cmd = new SqlCommand(sqlCommand, _sqlConnection);
+				cmd.Parameters.AddWithValue("@userName", userName);
+				_sqlConnection.Open();
+
+				using (SqlDataReader readear = cmd.ExecuteReader())
+				{
+					while (readear.Read())
+					{
+						roles.Add((string) readear["Name"]);
+					}
+				}
+			}
+
+			return roles.ToArray();
 		}
 	}
 }

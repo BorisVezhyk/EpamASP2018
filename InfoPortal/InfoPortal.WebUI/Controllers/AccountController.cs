@@ -1,9 +1,10 @@
-﻿using System.CodeDom;
+﻿using System.Web;
 using System.Web.Mvc;
 using System.Web.Security;
 using Common;
 using InfoPortal.BL.Abstract;
 using InfoPortal.WebUI.Models;
+using Microsoft.Owin.Security;
 
 namespace InfoPortal.WebUI.Controllers
 {
@@ -78,6 +79,7 @@ namespace InfoPortal.WebUI.Controllers
 					User userLogin = _userRepository.GetUserByLogin(newUser.Name, newUser.Password);
 					if (userLogin!=null)
 					{
+						//ClaimsIdentity ident=
 						FormsAuthentication.SetAuthCookie(userLogin.Name, true);
 						return RedirectToAction("List", "Main");
 					}
@@ -91,6 +93,11 @@ namespace InfoPortal.WebUI.Controllers
 		{
 			FormsAuthentication.SignOut();
 			return RedirectToAction("List", "Main");
+		}
+
+		private IAuthenticationManager AuthManager
+		{
+			get { return HttpContext.GetOwinContext().Authentication; }
 		}
 	}
 }

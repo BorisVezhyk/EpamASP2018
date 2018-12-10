@@ -27,5 +27,10 @@ namespace InfoPortal.BL.Concrete
 		{
 			return _userContext.GetUserByLogin(userName, userPassword);
 		}
+
+		public string[] GetRolesForUser(string userName)
+		{
+			return _userContext.GetRolesForUser(userName);
+		}
 	}
 }

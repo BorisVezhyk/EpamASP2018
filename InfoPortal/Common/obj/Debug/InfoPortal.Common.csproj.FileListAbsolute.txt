@@ -1,6 +1,5 @@
 F:\Учеба\Epam courses\HomeWork\HomeWork\InfoPortal\Common\bin\Debug\Common.dll
 F:\Учеба\Epam courses\HomeWork\HomeWork\InfoPortal\Common\bin\Debug\Common.pdb
-F:\Учеба\Epam courses\HomeWork\HomeWork\InfoPortal\Common\obj\Debug\InfoPortal.Common.csprojAssemblyReference.cache
 F:\Учеба\Epam courses\HomeWork\HomeWork\InfoPortal\Common\obj\Debug\InfoPortal.Common.csproj.CoreCompileInputs.cache
 F:\Учеба\Epam courses\HomeWork\HomeWork\InfoPortal\Common\obj\Debug\Common.dll
 F:\Учеба\Epam courses\HomeWork\HomeWork\InfoPortal\Common\obj\Debug\Common.pdb
