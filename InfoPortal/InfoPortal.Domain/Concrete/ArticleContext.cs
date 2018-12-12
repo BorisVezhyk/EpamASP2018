@@ -50,10 +50,10 @@ namespace InfoPortal.DAL.Concrete
 				}
 			}
 
-			foreach (var art in articles)
-			{
-				art.Tags = GetTagsByArticleID(art.ArticleID);
-			}
+			//foreach (var art in articles)
+			//{
+			//	art.Tags = GetTagsByArticleID(art.ArticleID);
+			//}
 
 			return articles;
 		}
@@ -157,11 +157,146 @@ namespace InfoPortal.DAL.Concrete
 			return null;
 		}
 
+		public List<Article> GetSearchByNamesOfArticles(string searchQuery, int pageSize, int page = 1)
+		{
+			List<Article> result = new List<Article>();
+			using (_sqlConnection = new SqlConnection(_connectionString))
+			{
+				string sqlCommand = "exec sp_get_search_result_by_name_article @page, @pageSize, @searchQuery";
+
+				SqlCommand cmd = new SqlCommand(sqlCommand, _sqlConnection);
+				cmd.Parameters.AddWithValue("@page", page);
+				cmd.Parameters.AddWithValue("@pageSize", pageSize);
+				cmd.Parameters.AddWithValue("@searchQuery", searchQuery);
+				_sqlConnection.Open();
+				using (SqlDataReader reader = cmd.ExecuteReader())
+				{
+					while (reader.Read())
+					{
+						result.Add(new Article
+						{
+							ArticleID = (int) reader["ArticleID"],
+							Caption = (string) reader["Caption"],
+							Text = (string) reader["Text"],
+							Date = (DateTime) reader["Date"],
+							Language = reader["Language"] as string,
+							Video = reader["Video"] as string,
+							Image = reader["Image"] as string,
+							User = new User
+							{
+								Name = (string) reader["Name"],
+							}
+						});
+					}
+				}
+			}
+
+			return result;
+		}
+
+		public List<Article> GetSearchByDate(string searchQuery, int pageSize, int page = 1)
+		{
+			List<Article> result = new List<Article>();
+
+			using (_sqlConnection = new SqlConnection(_connectionString))
+			{
+				string sqlCommand = "exec sp_get_search_result_by_date @page, @pageSize, @date";
+				SqlCommand cmd = new SqlCommand(sqlCommand, _sqlConnection);
+				cmd.Parameters.AddWithValue("@page", page);
+				cmd.Parameters.AddWithValue("@pageSize", pageSize);
+				cmd.Parameters.AddWithValue("@date", searchQuery);
+				_sqlConnection.Open();
+				using (SqlDataReader reader = cmd.ExecuteReader())
+				{
+					while (reader.Read())
+					{
+						result.Add(new Article
+						{
+							ArticleID = (int) reader["ArticleID"],
+							Caption = (string) reader["Caption"],
+							Text = (string) reader["Text"],
+							Date = (DateTime) reader["Date"],
+							Language = reader["Language"] as string,
+							Video = reader["Video"] as string,
+							Image = reader["Image"] as string,
+							User = new User
+							{
+								Name = (string) reader["Name"],
+							}
+						});
+					}
+				}
+			}
+
+			return result;
+		}
+
+		public List<Article> GetSearchByTagName(string searchQuery, int pageSize, int page = 1)
+		{
+			List<Article> result = new List<Article>();
+			using (_sqlConnection = new SqlConnection(_connectionString))
+			{
+				string sqlCommand = "exec sp_get_search_result_by_tagname @page, @pageSize, @tagName";
+
+				SqlCommand cmd = new SqlCommand(sqlCommand, _sqlConnection);
+				cmd.Parameters.AddWithValue("@page", page);
+				cmd.Parameters.AddWithValue("@pageSize", pageSize);
+				cmd.Parameters.AddWithValue("@tagName", searchQuery);
+				_sqlConnection.Open();
+
+				using (SqlDataReader reader = cmd.ExecuteReader())
+				{
+					while (reader.Read())
+					{
+						result.Add(new Article
+						{
+							ArticleID = (int) reader["ArticleID"],
+							Caption = (string) reader["Caption"],
+							Text = (string) reader["Text"],
+							Date = (DateTime) reader["Date"],
+							Language = reader["Language"] as string,
+							Video = reader["Video"] as string,
+							Image = reader["Image"] as string,
+							User = new User
+							{
+								Name = (string) reader["Name"],
+							}
+						});
+					}
+				}
+			}
+
+			return result;
+		}
+
+		public int GetCountArticlesSearchResult(int selectSearch, string searchQuery)
+		{
+			int result = 0;
+			using (_sqlConnection = new SqlConnection(_connectionString))
+			{
+				string sqlCommand = "exec sp_get_count_result_search @select, @query";
+				SqlCommand cmd = new SqlCommand(sqlCommand, _sqlConnection);
+				cmd.Parameters.AddWithValue("@select", selectSearch);
+				cmd.Parameters.AddWithValue("@query", searchQuery);
+				try
+				{
+					_sqlConnection.Open();
+					result = (int) cmd.ExecuteScalar();
+				}
+				catch (Exception e)
+				{
+					_logger.Error(e.Message);
+				}
+			}
+
+			return result;
+		}
+
 		public void InsertNewArticle(Article article)
 		{
 			using (_sqlConnection)
 			{
-				string sqlCommand = "INSERT INTO Articles (Caption,Text,Date,Language,Video,Image,UserID) " +
+				string sqlCommand = "INSERT INTO ByNamesOrArticles (Caption,Text,ByDate,Language,Video,Image,UserID) " +
 				                    "VALUES(@Caption,@Text,@Date,@Language,@Video,@Image,@UserID)";
 
 				SqlCommand cmd = new SqlCommand(sqlCommand, _sqlConnection);
@@ -188,7 +323,7 @@ namespace InfoPortal.DAL.Concrete
 		{
 			using (_sqlConnection)
 			{
-				string sqlCommand = "UPDATE Articles SET " +
+				string sqlCommand = "UPDATE ByNamesOrArticles SET " +
 				                    "Caption=@Caption," +
 				                    "Text=@Text," +
 				                    "Date=@Date," +
@@ -220,7 +355,7 @@ namespace InfoPortal.DAL.Concrete
 		{
 			using (_sqlConnection)
 			{
-				string sqlCommand = "DELETE FROM Articles " +
+				string sqlCommand = "DELETE FROM ByNamesOrArticles " +
 				                    "WHERE ArticleID=@id";
 
 				SqlCommand cmd = new SqlCommand(sqlCommand, _sqlConnection);

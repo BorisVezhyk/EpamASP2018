@@ -1,5 +1,4 @@
-﻿using System.Linq;
-using System.Web.Mvc;
+﻿using System.Web.Mvc;
 using InfoPortal.BL.Abstract;
 using InfoPortal.WebUI.Models;
 
@@ -29,9 +28,27 @@ namespace InfoPortal.WebUI.Controllers
 				{
 					CurrentPage = page,
 					ItemsPerPage = PAGE_SIZE,
-					TotalItems =_articles.GetCountArtiles(category)
+					TotalItems = _articles.GetCountArtiles(category)
 				},
 				CurrentCategory = category
+			};
+
+			return View(model);
+		}
+
+		public ActionResult ResultSearch(string searchQuery, int selectSearch, int page = 1)
+		{
+			ResultSearchArticlesViewModel model = new ResultSearchArticlesViewModel
+			{
+				Articles = _articles.GetResultSearch(searchQuery, selectSearch, PAGE_SIZE, page),
+				PageInfo = new PageInfo
+				{
+					CurrentPage = page,
+					ItemsPerPage = PAGE_SIZE,
+					TotalItems = _articles.GetCountArticlesSearchResult(selectSearch, searchQuery)
+				},
+				SearchQuery = searchQuery,
+				SelectSearch = selectSearch
 			};
 
 			return View(model);

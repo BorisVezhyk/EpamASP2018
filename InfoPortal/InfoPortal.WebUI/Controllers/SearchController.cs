@@ -1,35 +1,36 @@
 ﻿using System.Collections.Generic;
 using System.Web.Mvc;
+using Common;
 using InfoPortal.WebUI.Models;
 
 namespace InfoPortal.WebUI.Controllers
 {
-    public class SearchController : Controller
-    {
-        // GET: Search
-		//[HttpGet]
-        public PartialViewResult SearchMenu()
-        {
-			var model=new SearchAttributes();
-	        model.SelectList = new List<SelectListItem>
-	        {
-		        new SelectListItem {Value = "1", Text = "Articles"},
-		        new SelectListItem {Value = "2", Text = "Tags"},
-		        new SelectListItem {Value = "3", Text = "Date"}
-	        };
-            return PartialView(model);
-        }
+	public class SearchController : Controller
+	{
 
-	    [HttpPost]
-	    public ActionResult ResultSearch(SearchAttributes search)
-	    {
-		    if (search!=null)
-		    {
-			    string res = "select= " + search.Select.ToString() + " date= " + search.Date.ToString("d");
-			    return View(res);
-		    }
+		public PartialViewResult SearchMenu()
+		{
+			var model = new SearchAttributes();
+			model.SelectList = new List<SelectListItem>
+			{
+				new SelectListItem {Value = ((int) TypeSearch.ByNamesOrArticles).ToString(), Text = "Articles"},
+				new SelectListItem {Value = ((int) TypeSearch.ByTags).ToString(), Text = "Tags"},
+				new SelectListItem {Value = ((int) TypeSearch.ByDate).ToString(), Text = "Date"}
+			};
+			return PartialView(model);
+		}
 
-		    return HttpNotFound();
-	    }
-    }
+		[HttpPost]
+		public ActionResult ResultSearch(SearchAttributes searchParameters)
+		{
+			if (searchParameters.SearchQuery != null)
+			{
+				return RedirectToAction("ResultSearch","Main",
+					new {searchQuery = searchParameters.SearchQuery, selectSearch = searchParameters.Select});
+			}
+
+			return HttpNotFound();
+		}
+		
+	}
 }

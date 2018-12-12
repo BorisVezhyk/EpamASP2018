@@ -36,7 +36,7 @@ namespace InfoPortal.WebUI.Controllers
 
 				if (user!=null)
 				{
-					FormsAuthentication.SetAuthCookie(login.Name, true);
+					FormsAuthentication.SetAuthCookie(login.Name, login.RememberMe);
 					return RedirectToAction("List", "Main");
 				}
 				else

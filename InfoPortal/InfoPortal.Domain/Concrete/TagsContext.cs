@@ -28,9 +28,9 @@ namespace InfoPortal.DAL.Concrete
 
 			using (_sqlConnection)
 			{
-				string sqlCommand = "Select Tags.TagID,TagName,ArticleID FROM Tags " +
+				string sqlCommand = "Select ByTags.TagID,TagName,ArticleID FROM ByTags " +
 				                    "FULL OUTER JOIN ArticlesOfTag " +
-				                    "ON Tags.TagID=ArticlesOfTag.TagID";
+				                    "ON ByTags.TagID=ArticlesOfTag.TagID";
 
 				SqlCommand cmd = new SqlCommand(sqlCommand, _sqlConnection);
 

@@ -6,7 +6,7 @@
 	</h5>
 	<div class="card-body">
 
-		@using (Html.BeginForm("ResultSearch", "Search", new {@class = "filterbox"}))
+		@using (Html.BeginForm("ResultSearch", "Search", new { @class = "filterbox" }))
 		{
 			<div class="form-group" id="search-option">
 				@Html.DropDownListFor(model => model.Select,
@@ -14,7 +14,8 @@
 			</div>
 			<div class="form-group">
 				<div class="input-group" id="form-input">
-					<input type="text" class="form-control disabled" id="search-input" placeholder="Search for..." disabled/>
+					<input type="text" class="form-control disabled" name="SearchQuery" id="search-input" placeholder="Search for..." disabled required/>
+
 					<button class="btn btn-secondary" type="submit" id="btn-search" disabled>Go!</button>
 				</div>
 			</div>
@@ -22,22 +23,26 @@
 	</div>
 </div>
 
+@section Scripts {
+	@Scripts.Render("~/bundles/jqueryval")
+}
+
 <script src="~/Scripts/jquery-3.3.1.min.js" type="text/javascript"></script>
 <script type="text/javascript">
-	$(function() {
-		$("#search-option select").change(function() {
+	$(function () {
+		$("#search-option select").change(function () {
 			var selectedVal = $(this).val();
 			if (selectedVal == 1) {
-				$("#form-input input").attr({ "type": "text", "name": "ArtName", "id": "ArtName" });
+				$("#form-input input").attr({ "type": "text" });
 				$("#form-input input").removeAttr("disabled");
 				$("#btn-search").removeAttr("disabled");
 			} else if (selectedVal == 2) {
-				$("#form-input input").attr({ "type": "text", "name": "TagName", "id": "TagName" });
+				$("#form-input input").attr({ "type": "text" });
 				$("#form-input input").removeAttr("disabled");
 				$("#btn-search").removeAttr("disabled");
 
 			} else if (selectedVal == 3) {
-				$("#form-input input").attr({ "type": "date", "name": "Date", "id": "Date" });
+				$("#form-input input").attr({ "type": "date" });
 				$("#form-input input").removeAttr("disabled");
 				$("#btn-search").removeAttr("disabled");
 

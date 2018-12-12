@@ -1,11 +1,30 @@
-﻿@model InfoPortal.WebUI.Models.ArticlesListViewModel
+﻿@using Common
+@model InfoPortal.WebUI.Models.ResultSearchArticlesViewModel
 
 @{
+	ViewBag.Title = "ResultSearch";
+	Layout = "~/Views/Shared/_Layout.cshtml";
 	const int MAX_CARD_IN_ROW = 2;
-	ViewBag.Title = "Home";
 }
 
-
+<h2 class="py-3">
+	Result Search by
+	@switch (Model.SelectSearch)
+	{
+		case (int) TypeSearch.ByNamesOrArticles:
+			<text>caption </text>
+			@Model.SearchQuery
+			break;
+		case (int) TypeSearch.ByTags:
+			<text>tags </text>
+			@Model.SearchQuery
+			break;
+		case (int) TypeSearch.ByDate:
+			<text>date </text>
+			@Model.SearchQuery
+			break;
+	}
+</h2>
 
 @for (int i = 0; i < Model.Articles.Count(); i += MAX_CARD_IN_ROW)
 {
@@ -32,7 +51,7 @@
 }
 
 <div class="text-center row btn-group" role="group" aria-label="Basic exapmle">
-	@Html.PageLinks(Model.PageInfo, x => Url.Action("List",
-		new {page = x, category = Model.CurrentCategory}),
+	@Html.PageLinks(Model.PageInfo, x => Url.Action("ResultSearch",
+		new {page = x, searchQuery = Model.SearchQuery, selectSearch = Model.SelectSearch}),
 		new {@class = "btn btn-secondary"})
 </div>

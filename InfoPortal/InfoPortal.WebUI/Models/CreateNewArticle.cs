@@ -24,7 +24,7 @@ namespace InfoPortal.WebUI.Models
 		public string Image { get; set; }
 
 		[RegularExpression(@"^[a-zA-Z\,]+$",ErrorMessage = "Words have to be only with comma")]
-		[Display(Name = "Tags")]
+		[Display(Name = "ByTags")]
 		public string Tags { get; set; }
 		
 		[Required(ErrorMessage = "This is required")]

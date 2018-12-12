@@ -10,5 +10,7 @@ namespace InfoPortal.BL.Abstract
 		List<Article> GetArticlesForMainPage(int maxArticlesInPage, string category, int page = 1);
 		int GetCountArtiles(string category);
 		Article GetArticle(int articleID);
+		List<Article> GetResultSearch(string searchQuery, int selectSearch, int pageSize, int page = 1);
+		int GetCountArticlesSearchResult(int selectSearch, string searchQuery);
 	}
 }
