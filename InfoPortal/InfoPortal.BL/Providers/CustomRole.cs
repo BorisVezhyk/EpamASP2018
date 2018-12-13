@@ -1,9 +1,9 @@
-﻿using InfoPortal.BL.Abstract;
+﻿using InfoPortal.BL.Interfaces;
 using System;
 using System.Linq;
 using System.Web.Security;
-using InfoPortal.BL.Concrete;
-using InfoPortal.Domain.Concrete;
+using InfoPortal.BL.Implements;
+using InfoPortal.DAL.Implements;
 
 namespace InfoPortal.BL.Providers
 {
@@ -20,8 +20,8 @@ namespace InfoPortal.BL.Providers
 
 		public override bool IsUserInRole(string username, string roleName)
 		{
-			var rolesUser = UserRepository.GetRolesForUser(username);
-			return rolesUser.Length != 0 && rolesUser.Contains(roleName);
+			var rolesUser = UserRepository.GetRolesForUser(username); // dont use var for uncknown return type
+			return rolesUser.Any() && rolesUser.Contains(roleName);
 		}
 
 		public override string[] GetRolesForUser(string username)

@@ -87,9 +87,6 @@ F:\Учеба\Epam courses\HomeWork\HomeWork\InfoPortal\InfoPortal.WebUI\obj\Deb
 F:\Учеба\Epam courses\HomeWork\HomeWork\InfoPortal\InfoPortal.WebUI\obj\Debug\InfoPortal.WebUI.csproj.CopyComplete
 F:\Учеба\Epam courses\HomeWork\HomeWork\InfoPortal\InfoPortal.WebUI\obj\Debug\InfoPortal.WebUI.dll
 F:\Учеба\Epam courses\HomeWork\HomeWork\InfoPortal\InfoPortal.WebUI\obj\Debug\InfoPortal.WebUI.pdb
-F:\Учеба\Epam courses\HomeWork\HomeWork\InfoPortal\InfoPortal.WebUI\bin\InfoPortal.Domain.dll
-F:\Учеба\Epam courses\HomeWork\HomeWork\InfoPortal\InfoPortal.WebUI\bin\InfoPortal.Domain.pdb
-F:\Учеба\Epam courses\HomeWork\HomeWork\InfoPortal\InfoPortal.WebUI\bin\InfoPortal.Domain.dll.config
 F:\Учеба\Epam courses\HomeWork\HomeWork\InfoPortal\InfoPortal.WebUI\bin\log4net.dll
 F:\Учеба\Epam courses\HomeWork\HomeWork\InfoPortal\InfoPortal.WebUI\bin\log4net.xml
 F:\Учеба\Epam courses\HomeWork\HomeWork\InfoPortal\InfoPortal.WebUI\bin\Microsoft.Practices.ServiceLocation.dll
@@ -111,3 +108,6 @@ F:\Учеба\Epam courses\HomeWork\HomeWork\InfoPortal\InfoPortal.WebUI\bin\Inf
 F:\Учеба\Epam courses\HomeWork\HomeWork\InfoPortal\InfoPortal.WebUI\bin\InfoPortal.DI.dll
 F:\Учеба\Epam courses\HomeWork\HomeWork\InfoPortal\InfoPortal.WebUI\bin\InfoPortal.DI.pdb
 F:\Учеба\Epam courses\HomeWork\HomeWork\InfoPortal\InfoPortal.WebUI\bin\InfoPortal.BL.dll.config
+F:\Учеба\Epam courses\HomeWork\HomeWork\InfoPortal\InfoPortal.WebUI\bin\InfoPortal.DAL.dll
+F:\Учеба\Epam courses\HomeWork\HomeWork\InfoPortal\InfoPortal.WebUI\bin\InfoPortal.DAL.pdb
+F:\Учеба\Epam courses\HomeWork\HomeWork\InfoPortal\InfoPortal.WebUI\bin\InfoPortal.DAL.dll.config

@@ -1,5 +1,5 @@
 ﻿using System.Web.Mvc;
-using InfoPortal.BL.Abstract;
+using InfoPortal.BL.Interfaces;
 using InfoPortal.WebUI.Models;
 
 namespace InfoPortal.WebUI.Controllers
@@ -9,26 +9,26 @@ namespace InfoPortal.WebUI.Controllers
 		readonly log4net.ILog logger =
 			log4net.LogManager.GetLogger(System.Reflection.MethodBase.GetCurrentMethod().DeclaringType);
 
-		private readonly IArticlesRepository _articles;
+		private readonly IArticlesRepository articles;
 
-		private const int PAGE_SIZE = 6;
+		private const int PageSize = 6;
 
 		public MainController(IArticlesRepository res)
 		{
-			_articles = res;
+			articles = res;
 		}
 
 		public ActionResult List(string category, int page = 1)
 		{
 			ArticlesListViewModel model = new ArticlesListViewModel
 			{
-				Articles = _articles.GetArticlesForMainPage(PAGE_SIZE, category, page),
+				Articles = articles.GetArticlesForMainPage(PageSize, category, page),
 
 				PageInfo = new PageInfo
 				{
 					CurrentPage = page,
-					ItemsPerPage = PAGE_SIZE,
-					TotalItems = _articles.GetCountArtiles(category)
+					ItemsPerPage = PageSize,
+					TotalItems = articles.GetCountArtiles(category)
 				},
 				CurrentCategory = category
 			};
@@ -40,12 +40,12 @@ namespace InfoPortal.WebUI.Controllers
 		{
 			ResultSearchArticlesViewModel model = new ResultSearchArticlesViewModel
 			{
-				Articles = _articles.GetResultSearch(searchQuery, selectSearch, PAGE_SIZE, page),
+				Articles = articles.GetResultSearch(searchQuery, selectSearch, PageSize, page),
 				PageInfo = new PageInfo
 				{
 					CurrentPage = page,
-					ItemsPerPage = PAGE_SIZE,
-					TotalItems = _articles.GetCountArticlesSearchResult(selectSearch, searchQuery)
+					ItemsPerPage = PageSize,
+					TotalItems = articles.GetCountArticlesSearchResult(selectSearch, searchQuery)
 				},
 				SearchQuery = searchQuery,
 				SelectSearch = selectSearch

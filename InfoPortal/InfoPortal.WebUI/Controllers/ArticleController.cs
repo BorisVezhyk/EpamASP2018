@@ -1,7 +1,7 @@
 ﻿using System.Linq;
 using System.Web.Mvc;
 using Common;
-using InfoPortal.BL.Abstract;
+using InfoPortal.BL.Interfaces;
 using InfoPortal.WebUI.Models;
 
 
@@ -10,18 +10,18 @@ namespace InfoPortal.WebUI.Controllers
     public class ArticleController : Controller
     {
         // GET: Article
-	    private readonly IArticlesRepository _articlesRepository;
-	    private readonly ICategoryRepository _categoryRepository;
+	    private readonly IArticlesRepository articlesRepository;
+	    private readonly ICategoryRepository categoryRepository;
 
 	    public ArticleController(IArticlesRepository articlesArticlesRepository,ICategoryRepository categoryRepository)
 	    {
-		    _categoryRepository = categoryRepository;
-		    _articlesRepository = articlesArticlesRepository;
+		    this.categoryRepository = categoryRepository;
+		    articlesRepository = articlesArticlesRepository;
 	    }
 
         public ActionResult Article(int id)
         {
-	        Article article = _articlesRepository.GetArticle(id);
+	        Article article = articlesRepository.GetArticle(id);
 
 	        if (article!=null)
 	        {
@@ -35,7 +35,7 @@ namespace InfoPortal.WebUI.Controllers
 		[Authorize(Roles = "Author")]
 	    public ActionResult CreateNewArticle()
 		{
-			ViewBag.SelectCategory = _categoryRepository.Categories;
+			ViewBag.SelectCategory = categoryRepository.Categories;
 		    return View();
 	    }
 
@@ -52,10 +52,10 @@ namespace InfoPortal.WebUI.Controllers
 				    Image = newArticle.Image,
 				    Video = newArticle.Video,
 				    Language = newArticle.Language,
-				    CategoryID = newArticle.CategoryID,
-				    ArticleID = 123,
+				    CategoryId = newArticle.CategoryId,
+				    ArticleId = 123,
 				    User = new User {Name = "Boris"},
-				    UserID = 1
+				    UserId = 1
 			    };
 			    return RedirectToAction("Article");
 			}

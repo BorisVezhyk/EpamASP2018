@@ -1,7 +1,7 @@
 F:\Учеба\Epam courses\HomeWork\HomeWork\InfoPortal\InfoPortal.Service\bin\InfoPortal.Service.dll.config
 F:\Учеба\Epam courses\HomeWork\HomeWork\InfoPortal\InfoPortal.Service\bin\InfoPortal.Service.dll
 F:\Учеба\Epam courses\HomeWork\HomeWork\InfoPortal\InfoPortal.Service\bin\InfoPortal.Service.pdb
-F:\Учеба\Epam courses\HomeWork\HomeWork\InfoPortal\InfoPortal.Service\obj\Debug\InfoPortal.Service.csprojAssemblyReference.cache
 F:\Учеба\Epam courses\HomeWork\HomeWork\InfoPortal\InfoPortal.Service\obj\Debug\InfoPortal.Service.csproj.CoreCompileInputs.cache
 F:\Учеба\Epam courses\HomeWork\HomeWork\InfoPortal\InfoPortal.Service\obj\Debug\InfoPortal.Service.dll
 F:\Учеба\Epam courses\HomeWork\HomeWork\InfoPortal\InfoPortal.Service\obj\Debug\InfoPortal.Service.pdb
+F:\Учеба\Epam courses\HomeWork\HomeWork\InfoPortal\InfoPortal.Service\obj\Debug\InfoPortal.Service.csprojAssemblyReference.cache

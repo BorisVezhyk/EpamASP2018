@@ -4,11 +4,8 @@ F:\Учеба\Epam courses\HomeWork\HomeWork\InfoPortal\InfoPortal.DI\obj\Debug\
 F:\Учеба\Epam courses\HomeWork\HomeWork\InfoPortal\InfoPortal.DI\obj\Debug\InfoPortal.DI.dll
 F:\Учеба\Epam courses\HomeWork\HomeWork\InfoPortal\InfoPortal.DI\obj\Debug\InfoPortal.DI.pdb
 F:\Учеба\Epam courses\HomeWork\HomeWork\InfoPortal\InfoPortal.DI\bin\Debug\InfoPortal.BL.dll
-F:\Учеба\Epam courses\HomeWork\HomeWork\InfoPortal\InfoPortal.DI\bin\Debug\InfoPortal.Domain.dll
 F:\Учеба\Epam courses\HomeWork\HomeWork\InfoPortal\InfoPortal.DI\bin\Debug\Common.dll
 F:\Учеба\Epam courses\HomeWork\HomeWork\InfoPortal\InfoPortal.DI\bin\Debug\InfoPortal.BL.pdb
-F:\Учеба\Epam courses\HomeWork\HomeWork\InfoPortal\InfoPortal.DI\bin\Debug\InfoPortal.Domain.pdb
-F:\Учеба\Epam courses\HomeWork\HomeWork\InfoPortal\InfoPortal.DI\bin\Debug\InfoPortal.Domain.dll.config
 F:\Учеба\Epam courses\HomeWork\HomeWork\InfoPortal\InfoPortal.DI\bin\Debug\Common.pdb
 F:\Учеба\Epam courses\HomeWork\HomeWork\InfoPortal\InfoPortal.DI\obj\Debug\InfoPortal.DI.csprojAssemblyReference.cache
 F:\Учеба\Epam courses\HomeWork\HomeWork\InfoPortal\InfoPortal.DI\obj\Debug\InfoPortal.DI.csproj.CopyComplete
@@ -18,3 +15,6 @@ F:\Учеба\Epam courses\HomeWork\HomeWork\InfoPortal\InfoPortal.DI\bin\Debug\
 F:\Учеба\Epam courses\HomeWork\HomeWork\InfoPortal\InfoPortal.DI\bin\Debug\log4net.dll
 F:\Учеба\Epam courses\HomeWork\HomeWork\InfoPortal\InfoPortal.DI\bin\Debug\InfoPortal.BL.dll.config
 F:\Учеба\Epam courses\HomeWork\HomeWork\InfoPortal\InfoPortal.DI\bin\Debug\log4net.xml
+F:\Учеба\Epam courses\HomeWork\HomeWork\InfoPortal\InfoPortal.DI\bin\Debug\InfoPortal.DAL.dll
+F:\Учеба\Epam courses\HomeWork\HomeWork\InfoPortal\InfoPortal.DI\bin\Debug\InfoPortal.DAL.pdb
+F:\Учеба\Epam courses\HomeWork\HomeWork\InfoPortal\InfoPortal.DI\bin\Debug\InfoPortal.DAL.dll.config

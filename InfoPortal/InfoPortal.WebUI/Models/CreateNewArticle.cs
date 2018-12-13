@@ -29,7 +29,7 @@ namespace InfoPortal.WebUI.Models
 		
 		[Required(ErrorMessage = "This is required")]
 		[Display(Name = "Category")]
-		public int CategoryID { get; set; }
+		public int CategoryId { get; set; }
 
 	}
 }

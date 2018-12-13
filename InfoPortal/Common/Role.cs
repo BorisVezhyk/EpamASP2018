@@ -6,7 +6,7 @@ namespace Common
 	public class Role
 	{
 		[Required]
-		public int RoleID { get; set; }
+		public int RoleId { get; set; }
 
 		public string Name { get; set; }
 

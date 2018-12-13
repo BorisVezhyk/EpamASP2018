@@ -8,7 +8,7 @@ namespace Common
     {
 		//Need to add an attribute(display)
 		[Required]
-	    public int ArticleID { get; set; }
+	    public int ArticleId { get; set; }
 
 		[Required]
 	    public string Caption { get; set; }
@@ -26,7 +26,7 @@ namespace Common
 
 	    public string Image { get; set; }
 
-	    public int UserID { get; set; }
+	    public int UserId { get; set; }
 
 	    public User User { get; set; }
 
@@ -37,7 +37,7 @@ namespace Common
 		    Tags=new List<Tag>();
 	    }
 
-	    public int CategoryID { get; set; }
+	    public int CategoryId { get; set; }
 
 	    public string Category { get; set; }
 

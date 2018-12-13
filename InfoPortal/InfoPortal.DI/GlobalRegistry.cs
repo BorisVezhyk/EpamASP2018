@@ -1,9 +1,7 @@
-﻿using InfoPortal.BL.Abstract;
-using InfoPortal.BL.Concrete;
-using InfoPortal.DAL.Abstract;
-using InfoPortal.DAL.Concrete;
-using InfoPortal.Domain.Abstract;
-using InfoPortal.Domain.Concrete;
+﻿using InfoPortal.BL.Interfaces;
+using InfoPortal.BL.Implements;
+using InfoPortal.DAL.Interfaces;
+using InfoPortal.DAL.Implements;
 using StructureMap.Configuration.DSL;
 
 namespace InfoPortal.DI

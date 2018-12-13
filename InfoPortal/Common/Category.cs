@@ -8,6 +8,6 @@ namespace Common
 	    public string CategoryName { get; set; }
 
 		[Required]
-	    public int CategoryID { get; set; }
+	    public int CategoryId { get; set; }
     }
 }

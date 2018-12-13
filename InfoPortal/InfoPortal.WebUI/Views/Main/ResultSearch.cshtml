@@ -4,7 +4,7 @@
 @{
 	ViewBag.Title = "ResultSearch";
 	Layout = "~/Views/Shared/_Layout.cshtml";
-	const int MAX_CARD_IN_ROW = 2;
+	const int maxCardInRow = 2;
 }
 
 <h2 class="py-3">
@@ -26,15 +26,15 @@
 	}
 </h2>
 
-@for (int i = 0; i < Model.Articles.Count(); i += MAX_CARD_IN_ROW)
+@for (int i = 0; i < Model.Articles.Count(); i += maxCardInRow)
 {
 	<div class="row py-3">
 		<div class="card-deck">
 
-			@foreach (var art in Model.Articles.Skip(i).Take(MAX_CARD_IN_ROW))
+			@foreach (var art in Model.Articles.Skip(i).Take(maxCardInRow))
 			{
 				<div class="card">
-					<a href="@Url.RouteUrl(new {controller = "Article", action = "Article", id = art.ArticleID})">
+					<a href="@Url.RouteUrl(new {controller = "Article", action = "Article", id = art.ArticleId})">
 						<img class="card-img-top" src="@art.Image" alt="Card image cap"/>
 						<div class="card-body text-dark" style="display: inline-block">
 							<h5 class="card-title">@art.Caption</h5>

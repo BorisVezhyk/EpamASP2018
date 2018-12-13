@@ -7,7 +7,7 @@ namespace Common
 	{
 
 		[Required]
-		public int TagID { get; set; }
+		public int TagId { get; set; }
 
 		[Required]
 		public string TagName { get; set; }

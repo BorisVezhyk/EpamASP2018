@@ -6,7 +6,7 @@ namespace Common
 	public class User
 	{
 		
-		public int UserID { get; set; }
+		public int UserId { get; set; }
 
 		[Required]
 		[StringLength(20,MinimumLength = 4,ErrorMessage = "Minimum length of user's name is 4 chars")]

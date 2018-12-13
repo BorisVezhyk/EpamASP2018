@@ -46,14 +46,14 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Abstract\IArticlesRepository.cs" />
-    <Compile Include="Abstract\ICategoryRepository.cs" />
-    <Compile Include="Abstract\ITagsRepository.cs" />
-    <Compile Include="Abstract\IUserRepository.cs" />
-    <Compile Include="Concrete\ArticleRepository.cs" />
-    <Compile Include="Concrete\CategoryRepository.cs" />
-    <Compile Include="Concrete\TagsRepository.cs" />
-    <Compile Include="Concrete\UserRepository.cs" />
+    <Compile Include="Interfaces\IArticlesRepository.cs" />
+    <Compile Include="Interfaces\ICategoryRepository.cs" />
+    <Compile Include="Interfaces\ITagsRepository.cs" />
+    <Compile Include="Interfaces\IUserRepository.cs" />
+    <Compile Include="Implements\ArticleRepository.cs" />
+    <Compile Include="Implements\CategoryRepository.cs" />
+    <Compile Include="Implements\TagsRepository.cs" />
+    <Compile Include="Implements\UserRepository.cs" />
     <Compile Include="Connected Services\ServiceReference1\Reference.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>

@@ -1,20 +1,18 @@
-﻿using System.Web;
-using System.Web.Mvc;
+﻿using System.Web.Mvc;
 using System.Web.Security;
 using Common;
-using InfoPortal.BL.Abstract;
+using InfoPortal.BL.Interfaces;
 using InfoPortal.WebUI.Models;
-using Microsoft.Owin.Security;
 
 namespace InfoPortal.WebUI.Controllers
 {
 	public class AccountController : Controller
 	{
-		private readonly IUserRepository _userRepository;
+		private readonly IUserRepository userRepository;
 
 		public AccountController(IUserRepository userRepository)
 		{
-			_userRepository = userRepository;
+			this.userRepository = userRepository;
 		}
 
 		//
@@ -22,6 +20,7 @@ namespace InfoPortal.WebUI.Controllers
 		[AllowAnonymous]
 		public ActionResult Login(string returnUrl)
 		{
+
 			ViewBag.ReturnUrl = returnUrl;
 			return View();
 		}
@@ -32,7 +31,7 @@ namespace InfoPortal.WebUI.Controllers
 		{
 			if (ModelState.IsValid)
 			{
-				User user = _userRepository.GetUserByLogin(login.Name, login.Password);
+				User user = userRepository.GetUserByLogin(login.Name, login.Password);
 
 				if (user!=null)
 				{
@@ -62,7 +61,7 @@ namespace InfoPortal.WebUI.Controllers
 		{
 			if (ModelState.IsValid)
 			{
-				if (_userRepository.CheckUserExist(newUser.Email, newUser.Name) == 1)
+				if (userRepository.CheckUserExist(newUser.Email, newUser.Name) == 1)
 				{
 					ModelState.AddModelError("","User with this Name or Email already exist");
 				}
@@ -74,9 +73,9 @@ namespace InfoPortal.WebUI.Controllers
 						Email = newUser.Email,
 						Password = newUser.Password
 					};
-					_userRepository.RegisterUser(userForSave);
+					userRepository.RegisterUser(userForSave);
 
-					User userLogin = _userRepository.GetUserByLogin(newUser.Name, newUser.Password);
+					User userLogin = userRepository.GetUserByLogin(newUser.Name, newUser.Password);
 					if (userLogin!=null)
 					{
 						//ClaimsIdentity ident=
@@ -93,11 +92,6 @@ namespace InfoPortal.WebUI.Controllers
 		{
 			FormsAuthentication.SignOut();
 			return RedirectToAction("List", "Main");
-		}
-
-		private IAuthenticationManager AuthManager
-		{
-			get { return HttpContext.GetOwinContext().Authentication; }
 		}
 	}
 }

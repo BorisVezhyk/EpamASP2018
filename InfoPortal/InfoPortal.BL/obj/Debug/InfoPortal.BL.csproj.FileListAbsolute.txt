@@ -3,13 +3,13 @@ F:\Учеба\Epam courses\HomeWork\HomeWork\InfoPortal\InfoPortal.BL\obj\Debug\
 F:\Учеба\Epam courses\HomeWork\HomeWork\InfoPortal\InfoPortal.BL\bin\Debug\InfoPortal.BL.dll
 F:\Учеба\Epam courses\HomeWork\HomeWork\InfoPortal\InfoPortal.BL\bin\Debug\InfoPortal.BL.pdb
 F:\Учеба\Epam courses\HomeWork\HomeWork\InfoPortal\InfoPortal.BL\bin\Debug\Common.dll
-F:\Учеба\Epam courses\HomeWork\HomeWork\InfoPortal\InfoPortal.BL\bin\Debug\InfoPortal.Domain.dll
 F:\Учеба\Epam courses\HomeWork\HomeWork\InfoPortal\InfoPortal.BL\bin\Debug\Common.pdb
-F:\Учеба\Epam courses\HomeWork\HomeWork\InfoPortal\InfoPortal.BL\bin\Debug\InfoPortal.Domain.pdb
-F:\Учеба\Epam courses\HomeWork\HomeWork\InfoPortal\InfoPortal.BL\bin\Debug\InfoPortal.Domain.dll.config
 F:\Учеба\Epam courses\HomeWork\HomeWork\InfoPortal\InfoPortal.BL\obj\Debug\InfoPortal.BL.csproj.CopyComplete
 F:\Учеба\Epam courses\HomeWork\HomeWork\InfoPortal\InfoPortal.BL\obj\Debug\InfoPortal.BL.dll
 F:\Учеба\Epam courses\HomeWork\HomeWork\InfoPortal\InfoPortal.BL\obj\Debug\InfoPortal.BL.pdb
 F:\Учеба\Epam courses\HomeWork\HomeWork\InfoPortal\InfoPortal.BL\bin\Debug\InfoPortal.BL.dll.config
 F:\Учеба\Epam courses\HomeWork\HomeWork\InfoPortal\InfoPortal.BL\bin\Debug\log4net.dll
 F:\Учеба\Epam courses\HomeWork\HomeWork\InfoPortal\InfoPortal.BL\bin\Debug\log4net.xml
+F:\Учеба\Epam courses\HomeWork\HomeWork\InfoPortal\InfoPortal.BL\bin\Debug\InfoPortal.DAL.dll
+F:\Учеба\Epam courses\HomeWork\HomeWork\InfoPortal\InfoPortal.BL\bin\Debug\InfoPortal.DAL.pdb
+F:\Учеба\Epam courses\HomeWork\HomeWork\InfoPortal\InfoPortal.BL\bin\Debug\InfoPortal.DAL.dll.config

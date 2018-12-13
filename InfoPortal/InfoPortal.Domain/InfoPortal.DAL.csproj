@@ -7,8 +7,8 @@
     <ProjectGuid>{B85B49B6-7671-4299-9411-1FAA78376B4B}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>InfoPortal.Domain</RootNamespace>
-    <AssemblyName>InfoPortal.Domain</AssemblyName>
+    <RootNamespace>InfoPortal.DAL</RootNamespace>
+    <AssemblyName>InfoPortal.DAL</AssemblyName>
     <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <Deterministic>true</Deterministic>
@@ -47,15 +47,15 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Abstract\IArticleContext.cs" />
-    <Compile Include="Abstract\ICategoryContext.cs" />
-    <Compile Include="Abstract\ITagsContext.cs" />
-    <Compile Include="Abstract\IUserContext.cs" />
-    <Compile Include="Concrete\ArticleContext.cs" />
-    <Compile Include="Concrete\CategoryContext.cs" />
-    <Compile Include="Concrete\DBContext.cs" />
-    <Compile Include="Concrete\UserContext.cs" />
-    <Compile Include="Concrete\TagsContext.cs" />
+    <Compile Include="Interfaces\IArticleContext.cs" />
+    <Compile Include="Interfaces\ICategoryContext.cs" />
+    <Compile Include="Interfaces\ITagsContext.cs" />
+    <Compile Include="Interfaces\IUserContext.cs" />
+    <Compile Include="Implements\ArticleContext.cs" />
+    <Compile Include="Implements\CategoryContext.cs" />
+    <Compile Include="Implements\DBContext.cs" />
+    <Compile Include="Implements\UserContext.cs" />
+    <Compile Include="Implements\TagsContext.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

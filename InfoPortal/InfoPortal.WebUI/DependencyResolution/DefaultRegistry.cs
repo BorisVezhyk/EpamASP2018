@@ -17,8 +17,8 @@
 
 
 using System.Reflection;
-using InfoPortal.BL.Abstract;
-using InfoPortal.BL.Concrete;
+using InfoPortal.BL.Interfaces;
+using InfoPortal.BL.Implements;
 
 namespace InfoPortal.WebUI.DependencyResolution {
     using StructureMap.Configuration.DSL;
