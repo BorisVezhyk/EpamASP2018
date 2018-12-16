@@ -11,15 +11,15 @@
 	Result Search by
 	@switch (Model.SelectSearch)
 	{
-		case (int) TypeSearch.ByNamesOrArticles:
+		case (int) SearchType.ByNamesOrArticles:
 			<text>caption </text>
 			@Model.SearchQuery
 			break;
-		case (int) TypeSearch.ByTags:
+		case (int) SearchType.ByTags:
 			<text>tags </text>
 			@Model.SearchQuery
 			break;
-		case (int) TypeSearch.ByDate:
+		case (int) SearchType.ByDate:
 			<text>date </text>
 			@Model.SearchQuery
 			break;

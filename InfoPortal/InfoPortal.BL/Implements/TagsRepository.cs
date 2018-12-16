@@ -1,11 +1,10 @@
-﻿using System;
-using System.Collections.Generic;
-using Common;
-using InfoPortal.BL.Interfaces;
-using InfoPortal.DAL.Interfaces;
-
-namespace InfoPortal.BL.Implements
+﻿namespace InfoPortal.BL.Implements
 {
+	using System.Collections.Generic;
+	using Common;
+	using Interfaces;
+	using InfoPortal.DAL.Interfaces;
+
 	public class TagsRepository : ITagsRepository
 	{
 		private readonly ITagsContext context;
@@ -15,14 +14,18 @@ namespace InfoPortal.BL.Implements
 			this.context = context;
 		}
 
-		public IEnumerable<Tag> Tags
+		public List<Tag> GetTagsFromStrings(string[] tags)
 		{
-			get { return context.Tags; }
-		}
+			List<Tag> result = new List<Tag>();
+			foreach (var tag in tags)
+			{
+				result.Add(new Tag
+				{
+					TagName = tag
+				});
+			}
 
-		public void SaveTag(Tag tag)
-		{
-			throw new NotImplementedException();
+			return result;
 		}
 	}
 }

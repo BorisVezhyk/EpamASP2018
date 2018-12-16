@@ -13,3 +13,16 @@ F:\Учеба\Epam courses\HomeWork\HomeWork\InfoPortal\InfoPortal.BL\bin\Debug\
 F:\Учеба\Epam courses\HomeWork\HomeWork\InfoPortal\InfoPortal.BL\bin\Debug\InfoPortal.DAL.dll
 F:\Учеба\Epam courses\HomeWork\HomeWork\InfoPortal\InfoPortal.BL\bin\Debug\InfoPortal.DAL.pdb
 F:\Учеба\Epam courses\HomeWork\HomeWork\InfoPortal\InfoPortal.BL\bin\Debug\InfoPortal.DAL.dll.config
+F:\Учеба\Epam courses\HomeWork\HomeWork\InfoPortal\InfoPortal.BL\bin\Debug\Microsoft.Web.Infrastructure.dll
+F:\Учеба\Epam courses\HomeWork\HomeWork\InfoPortal\InfoPortal.BL\bin\Debug\System.Web.Helpers.dll
+F:\Учеба\Epam courses\HomeWork\HomeWork\InfoPortal\InfoPortal.BL\bin\Debug\System.Web.Mvc.dll
+F:\Учеба\Epam courses\HomeWork\HomeWork\InfoPortal\InfoPortal.BL\bin\Debug\System.Web.Razor.dll
+F:\Учеба\Epam courses\HomeWork\HomeWork\InfoPortal\InfoPortal.BL\bin\Debug\System.Web.WebPages.Deployment.dll
+F:\Учеба\Epam courses\HomeWork\HomeWork\InfoPortal\InfoPortal.BL\bin\Debug\System.Web.WebPages.dll
+F:\Учеба\Epam courses\HomeWork\HomeWork\InfoPortal\InfoPortal.BL\bin\Debug\System.Web.WebPages.Razor.dll
+F:\Учеба\Epam courses\HomeWork\HomeWork\InfoPortal\InfoPortal.BL\bin\Debug\System.Web.Helpers.xml
+F:\Учеба\Epam courses\HomeWork\HomeWork\InfoPortal\InfoPortal.BL\bin\Debug\System.Web.Mvc.xml
+F:\Учеба\Epam courses\HomeWork\HomeWork\InfoPortal\InfoPortal.BL\bin\Debug\System.Web.Razor.xml
+F:\Учеба\Epam courses\HomeWork\HomeWork\InfoPortal\InfoPortal.BL\bin\Debug\System.Web.WebPages.xml
+F:\Учеба\Epam courses\HomeWork\HomeWork\InfoPortal\InfoPortal.BL\bin\Debug\System.Web.WebPages.Deployment.xml
+F:\Учеба\Epam courses\HomeWork\HomeWork\InfoPortal\InfoPortal.BL\bin\Debug\System.Web.WebPages.Razor.xml

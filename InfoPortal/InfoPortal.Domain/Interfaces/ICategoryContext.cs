@@ -1,10 +1,10 @@
-﻿using System.Collections.Generic;
-using Common;
-
-namespace InfoPortal.DAL.Interfaces
+﻿namespace InfoPortal.DAL.Interfaces
 {
+	using System.Collections.Generic;
+	using Common;
+
 	public interface ICategoryContext
 	{
-		List<Category> Categories { get; set; }
+		List<Category> GetAllCategories();
 	}
 }

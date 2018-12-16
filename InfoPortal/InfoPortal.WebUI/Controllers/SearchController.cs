@@ -13,9 +13,9 @@ namespace InfoPortal.WebUI.Controllers
 			var model = new SearchAttributes();
 			model.SelectList = new List<SelectListItem>
 			{
-				new SelectListItem {Value = ((int) TypeSearch.ByNamesOrArticles).ToString(), Text = "Articles"},
-				new SelectListItem {Value = ((int) TypeSearch.ByTags).ToString(), Text = "Tags"},
-				new SelectListItem {Value = ((int) TypeSearch.ByDate).ToString(), Text = "Date"}
+				new SelectListItem {Value = ((int) SearchType.ByNamesOrArticles).ToString(), Text = "Articles"},
+				new SelectListItem {Value = ((int) SearchType.ByTags).ToString(), Text = "Tags"},
+				new SelectListItem {Value = ((int) SearchType.ByDate).ToString(), Text = "Date"}
 			};
 			return PartialView(model);
 		}

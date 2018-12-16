@@ -7,3 +7,18 @@ INFO  2018-11-29 22:06:12,559 499539ms ArticleController      Article           
 INFO  2018-11-29 22:06:19,041 506021ms ArticleController      Article            - Test log
 INFO  2018-11-29 22:06:27,846 514826ms ArticleController      Article            - Test log
 INFO  2018-11-30 17:30:43,158 184656ms ArticleController      Article            - Test log
+ERROR 2018-12-16 14:11:18,921 538173ms DbContext              InsertNewArticle   - The parameterized query '(@caption nvarchar(32),@text nvarchar(1048),@date datetime,@lang' expects the parameter '@video', which was not supplied.
+ERROR 2018-12-16 14:11:19,364 538616ms DbContext              ArticleIdByCaption - Object reference not set to an instance of an object.
+ERROR 2018-12-16 14:18:54,155 115805ms DbContext              InsertNewArticle   - The variable name '@articleId' has already been declared. Variable names must be unique within a query batch or stored procedure.
+ERROR 2018-12-16 14:18:54,218 115868ms DbContext              ArticleIdByCaption - Object reference not set to an instance of an object.
+ERROR 2018-12-16 14:20:59,696 241345ms DbContext              InsertNewArticle   - The variable name '@articleId' has already been declared. Variable names must be unique within a query batch or stored procedure.
+ERROR 2018-12-16 14:20:59,726 241375ms DbContext              ArticleIdByCaption - Object reference not set to an instance of an object.
+ERROR 2018-12-16 14:26:59,737 109923ms DbContext              InsertNewArticle   - The variable name '@articleIdenty' has already been declared. Variable names must be unique within a query batch or stored procedure.
+ERROR 2018-12-16 14:26:59,809 109995ms DbContext              ArticleIdByCaption - Object reference not set to an instance of an object.
+ERROR 2018-12-16 14:32:38,239 448425ms DbContext              InsertNewArticle   - The variable name '@articleIdenty' has already been declared. Variable names must be unique within a query batch or stored procedure.
+ERROR 2018-12-16 14:32:38,267 448453ms DbContext              ArticleIdByCaption - Object reference not set to an instance of an object.
+ERROR 2018-12-16 14:36:13,859 110629ms DbContext              InsertNewArticle   - The variable name '@articleIdenty' has already been declared. Variable names must be unique within a query batch or stored procedure.
+ERROR 2018-12-16 14:36:13,915 110685ms DbContext              ArticleIdByCaption - Object reference not set to an instance of an object.
+ERROR 2018-12-16 14:46:01,026 85313ms DbContext              InsertNewArticle   - The variable name '@tagname' has already been declared. Variable names must be unique within a query batch or stored procedure.
+ERROR 2018-12-16 14:53:02,720 149732ms DbContext              InsertNewArticle   - The variable name '@articleIdenty' has already been declared. Variable names must be unique within a query batch or stored procedure.
+ERROR 2018-12-16 14:53:10,223 157236ms DbContext              ArticleIdByCaption - Object reference not set to an instance of an object.

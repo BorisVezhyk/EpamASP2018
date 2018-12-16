@@ -1,8 +1,8 @@
-﻿using System.Configuration;
-using System.Data.SqlClient;
-
-namespace InfoPortal.DAL.Implements
+﻿namespace InfoPortal.DAL.Implements
 {
+	using System.Configuration;
+	using System.Data.SqlClient;
+
 	public class DbContext
 	{
 		protected readonly log4net.ILog logger =

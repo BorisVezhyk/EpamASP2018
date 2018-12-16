@@ -1,47 +1,37 @@
-﻿using System.Collections.Generic;
-using System.Configuration;
-using System.Data.SqlClient;
-using Common;
-using InfoPortal.DAL.Interfaces;
-
-namespace InfoPortal.DAL.Implements
+﻿namespace InfoPortal.DAL.Implements
 {
-	public class CategoryContext : ICategoryContext
+	using System.Collections.Generic;
+	using System.Data.SqlClient;
+	using Common;
+	using Interfaces;
+
+	public class CategoryContext : DbContext, ICategoryContext
 	{
-		public List<Category> Categories { get; set; }
-
-		private readonly SqlConnection sqlConnection;
-
-		public CategoryContext()
-		{
-			string connectionString = ConfigurationManager.ConnectionStrings["DbInfoPortal"].ConnectionString;
-			sqlConnection = new SqlConnection(connectionString);
-			Categories = GetAllCategories();
-		}
-
-		private List<Category> GetAllCategories()
+		public List<Category> GetAllCategories()
 		{
 			List<Category> result = new List<Category>();
 
-			using (sqlConnection)
+			using (this.SqlConnection = new SqlConnection(this.ConnectionString))
 			{
 				string sqlCommand = "select * from Categories";
-				SqlCommand cmd = new SqlCommand(sqlCommand, sqlConnection);
+				SqlCommand cmd = new SqlCommand(sqlCommand, this.SqlConnection);
 
-				sqlConnection.Open();
+				this.SqlConnection.Open();
 
 				using (SqlDataReader reader = cmd.ExecuteReader())
 				{
 					while (reader.Read())
 					{
-						result.Add(new Category
-						{
-							CategoryId = (int) reader["CategoryID"],
-							CategoryName = (string) reader["CategoryName"]
-						});
+						result.Add(
+							new Category
+							{
+								CategoryId = (int) reader["CategoryID"],
+								CategoryName = (string) reader["CategoryName"]
+							});
 					}
 				}
 			}
+
 			return result;
 		}
 	}

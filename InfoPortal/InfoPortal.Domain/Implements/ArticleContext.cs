@@ -1,27 +1,22 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Data.SqlClient;
-using Common;
-using InfoPortal.DAL.Interfaces;
-
-namespace InfoPortal.DAL.Implements
+﻿namespace InfoPortal.DAL.Implements
 {
+	using System;
+	using System.Collections.Generic;
+	using System.Data.SqlClient;
+	using Common;
+	using Interfaces;
+
 	public class ArticleContext : DbContext, IArticleContext
 	{
-		public ArticleContext()
-		{
-			SqlConnection = new SqlConnection(ConnectionString);
-		}
-
 		public List<Article> GetArticlesForMainPage(int maxArticlesInPage, string category, int page = 1)
 		{
 			List<Article> articles = new List<Article>();
 
-			using (SqlConnection = new SqlConnection(ConnectionString))
+			using (this.SqlConnection = new SqlConnection(this.ConnectionString))
 			{
 				string sqlCommand = "exec sp_GetArticles @page,@maxArticlesInPage,@category";
-				SqlConnection.Open();
-				SqlCommand cmd = new SqlCommand(sqlCommand, SqlConnection);
+				this.SqlConnection.Open();
+				SqlCommand cmd = new SqlCommand(sqlCommand, this.SqlConnection);
 				cmd.Parameters.AddWithValue("@page", page);
 				cmd.Parameters.AddWithValue("@maxArticlesInPage", maxArticlesInPage);
 				cmd.Parameters.AddWithValue("@category", category ?? (object) DBNull.Value);
@@ -30,74 +25,42 @@ namespace InfoPortal.DAL.Implements
 				{
 					while (reader.Read())
 					{
-						articles.Add(new Article
-						{
-							ArticleId = (int) reader["ArticleID"],
-							Caption = (string) reader["Caption"],
-							Text = (string) reader["Text"],
-							Date = (DateTime) reader["Date"],
-							Language = reader["Language"] as string,
-							Video = reader["Video"] as string,
-							Image = reader["Image"] as string,
-							User = new User
+						articles.Add(
+							new Article
 							{
-								Name = (string) reader["Name"],
-							},
-							Category = (string) reader["CategoryName"]
-						});
+								ArticleId = (int) reader["ArticleID"],
+								Caption = (string) reader["Caption"],
+								Text = (string) reader["Text"],
+								Date = (DateTime) reader["Date"],
+								Language = reader["Language"] as string,
+								Video = reader["Video"] as string,
+								Image = reader["Image"] as string,
+								User = new User
+								{
+									Name = (string) reader["Name"],
+								},
+								Category = (string) reader["CategoryName"]
+							});
 					}
 				}
 			}
-
-			//foreach (var art in articles)
-			//{
-			//	art.Tags = GetTagsByArticleID(art.ArticleID);
-			//}
 
 			return articles;
-		}
-
-		private List<Tag> GetTagsByArticleId(int articleId)
-		{
-			List<Tag> tags = new List<Tag>();
-
-			using (SqlConnection = new SqlConnection(ConnectionString))
-			{
-				string sqlCommand = "exec sp_GetTagsByArticleID @articleID";
-
-				SqlCommand cmd = new SqlCommand(sqlCommand, SqlConnection);
-				cmd.Parameters.AddWithValue("@articleID", articleId);
-				SqlConnection.Open();
-
-				using (SqlDataReader reader = cmd.ExecuteReader())
-				{
-					while (reader.Read())
-					{
-						tags.Add(new Tag
-						{
-							TagId = (int) reader["TagID"],
-							TagName = (string) reader["TagName"]
-						});
-					}
-				}
-			}
-
-			return tags;
 		}
 
 		public int GetCountArtiles(string category)
 		{
 			int result = 0;
 
-			using (SqlConnection = new SqlConnection(ConnectionString))
+			using (this.SqlConnection = new SqlConnection(this.ConnectionString))
 			{
 				string sqlCommmand = "exec sp_get_count_articles_by_category @category";
 
-				SqlCommand cmd = new SqlCommand(sqlCommmand, SqlConnection);
+				SqlCommand cmd = new SqlCommand(sqlCommmand, this.SqlConnection);
 				cmd.Parameters.AddWithValue("@category", category ?? (object) DBNull.Value);
 				try
 				{
-					SqlConnection.Open();
+					this.SqlConnection.Open();
 					var count = cmd.ExecuteScalar();
 					if (count != null)
 					{
@@ -106,7 +69,7 @@ namespace InfoPortal.DAL.Implements
 				}
 				catch (Exception e)
 				{
-					logger.Error(e.Message);
+					this.logger.Error(e.Message);
 				}
 			}
 
@@ -117,13 +80,13 @@ namespace InfoPortal.DAL.Implements
 		{
 			Article article = null;
 
-			using (SqlConnection = new SqlConnection(ConnectionString))
+			using (this.SqlConnection = new SqlConnection(this.ConnectionString))
 			{
 				string sqlCommand = "exec sp_get_article_by_articleID @articleID";
 
-				SqlCommand cmd = new SqlCommand(sqlCommand, SqlConnection);
+				SqlCommand cmd = new SqlCommand(sqlCommand, this.SqlConnection);
 				cmd.Parameters.AddWithValue("@articleID", articleId);
-				SqlConnection.Open();
+				this.SqlConnection.Open();
 				using (SqlDataReader reader = cmd.ExecuteReader())
 				{
 					while (reader.Read())
@@ -149,7 +112,7 @@ namespace InfoPortal.DAL.Implements
 
 			if (article != null)
 			{
-				article.Tags = GetTagsByArticleId(articleId);
+				article.Tags = this.GetTagsByArticleId(articleId);
 				return article;
 			}
 
@@ -159,33 +122,34 @@ namespace InfoPortal.DAL.Implements
 		public List<Article> GetSearchByNamesOfArticles(string searchQuery, int pageSize, int page = 1)
 		{
 			List<Article> result = new List<Article>();
-			using (SqlConnection = new SqlConnection(ConnectionString))
+			using (this.SqlConnection = new SqlConnection(this.ConnectionString))
 			{
 				string sqlCommand = "exec sp_get_search_result_by_name_article @page, @pageSize, @searchQuery";
 
-				SqlCommand cmd = new SqlCommand(sqlCommand, SqlConnection);
+				SqlCommand cmd = new SqlCommand(sqlCommand, this.SqlConnection);
 				cmd.Parameters.AddWithValue("@page", page);
 				cmd.Parameters.AddWithValue("@pageSize", pageSize);
 				cmd.Parameters.AddWithValue("@searchQuery", searchQuery);
-				SqlConnection.Open();
+				this.SqlConnection.Open();
 				using (SqlDataReader reader = cmd.ExecuteReader())
 				{
 					while (reader.Read())
 					{
-						result.Add(new Article
-						{
-							ArticleId = (int) reader["ArticleID"],
-							Caption = (string) reader["Caption"],
-							Text = (string) reader["Text"],
-							Date = (DateTime) reader["Date"],
-							Language = reader["Language"] as string,
-							Video = reader["Video"] as string,
-							Image = reader["Image"] as string,
-							User = new User
+						result.Add(
+							new Article
 							{
-								Name = (string) reader["Name"],
-							}
-						});
+								ArticleId = (int) reader["ArticleID"],
+								Caption = (string) reader["Caption"],
+								Text = (string) reader["Text"],
+								Date = (DateTime) reader["Date"],
+								Language = reader["Language"] as string,
+								Video = reader["Video"] as string,
+								Image = reader["Image"] as string,
+								User = new User
+								{
+									Name = (string) reader["Name"],
+								}
+							});
 					}
 				}
 			}
@@ -197,32 +161,33 @@ namespace InfoPortal.DAL.Implements
 		{
 			List<Article> result = new List<Article>();
 
-			using (SqlConnection = new SqlConnection(ConnectionString))
+			using (this.SqlConnection = new SqlConnection(this.ConnectionString))
 			{
 				string sqlCommand = "exec sp_get_search_result_by_date @page, @pageSize, @date";
-				SqlCommand cmd = new SqlCommand(sqlCommand, SqlConnection);
+				SqlCommand cmd = new SqlCommand(sqlCommand, this.SqlConnection);
 				cmd.Parameters.AddWithValue("@page", page);
 				cmd.Parameters.AddWithValue("@pageSize", pageSize);
 				cmd.Parameters.AddWithValue("@date", searchQuery);
-				SqlConnection.Open();
+				this.SqlConnection.Open();
 				using (SqlDataReader reader = cmd.ExecuteReader())
 				{
 					while (reader.Read())
 					{
-						result.Add(new Article
-						{
-							ArticleId = (int) reader["ArticleID"],
-							Caption = (string) reader["Caption"],
-							Text = (string) reader["Text"],
-							Date = (DateTime) reader["Date"],
-							Language = reader["Language"] as string,
-							Video = reader["Video"] as string,
-							Image = reader["Image"] as string,
-							User = new User
+						result.Add(
+							new Article
 							{
-								Name = (string) reader["Name"],
-							}
-						});
+								ArticleId = (int) reader["ArticleID"],
+								Caption = (string) reader["Caption"],
+								Text = (string) reader["Text"],
+								Date = (DateTime) reader["Date"],
+								Language = reader["Language"] as string,
+								Video = reader["Video"] as string,
+								Image = reader["Image"] as string,
+								User = new User
+								{
+									Name = (string) reader["Name"],
+								}
+							});
 					}
 				}
 			}
@@ -233,34 +198,35 @@ namespace InfoPortal.DAL.Implements
 		public List<Article> GetSearchByTagName(string searchQuery, int pageSize, int page = 1)
 		{
 			List<Article> result = new List<Article>();
-			using (SqlConnection = new SqlConnection(ConnectionString))
+			using (this.SqlConnection = new SqlConnection(this.ConnectionString))
 			{
 				string sqlCommand = "exec sp_get_search_result_by_tagname @page, @pageSize, @tagName";
 
-				SqlCommand cmd = new SqlCommand(sqlCommand, SqlConnection);
+				SqlCommand cmd = new SqlCommand(sqlCommand, this.SqlConnection);
 				cmd.Parameters.AddWithValue("@page", page);
 				cmd.Parameters.AddWithValue("@pageSize", pageSize);
 				cmd.Parameters.AddWithValue("@tagName", searchQuery);
-				SqlConnection.Open();
+				this.SqlConnection.Open();
 
 				using (SqlDataReader reader = cmd.ExecuteReader())
 				{
 					while (reader.Read())
 					{
-						result.Add(new Article
-						{
-							ArticleId = (int) reader["ArticleID"],
-							Caption = (string) reader["Caption"],
-							Text = (string) reader["Text"],
-							Date = (DateTime) reader["Date"],
-							Language = reader["Language"] as string,
-							Video = reader["Video"] as string,
-							Image = reader["Image"] as string,
-							User = new User
+						result.Add(
+							new Article
 							{
-								Name = (string) reader["Name"],
-							}
-						});
+								ArticleId = (int) reader["ArticleID"],
+								Caption = (string) reader["Caption"],
+								Text = (string) reader["Text"],
+								Date = (DateTime) reader["Date"],
+								Language = reader["Language"] as string,
+								Video = reader["Video"] as string,
+								Image = reader["Image"] as string,
+								User = new User
+								{
+									Name = (string) reader["Name"],
+								}
+							});
 					}
 				}
 			}
@@ -271,20 +237,20 @@ namespace InfoPortal.DAL.Implements
 		public int GetCountArticlesSearchResult(int selectSearch, string searchQuery)
 		{
 			int result = 0;
-			using (SqlConnection = new SqlConnection(ConnectionString))
+			using (this.SqlConnection = new SqlConnection(this.ConnectionString))
 			{
 				string sqlCommand = "exec sp_get_count_result_search @select, @query";
-				SqlCommand cmd = new SqlCommand(sqlCommand, SqlConnection);
+				SqlCommand cmd = new SqlCommand(sqlCommand, this.SqlConnection);
 				cmd.Parameters.AddWithValue("@select", selectSearch);
 				cmd.Parameters.AddWithValue("@query", searchQuery);
 				try
 				{
-					SqlConnection.Open();
+					this.SqlConnection.Open();
 					result = (int) cmd.ExecuteScalar();
 				}
 				catch (Exception e)
 				{
-					logger.Error(e.Message);
+					this.logger.Error(e.Message);
 				}
 			}
 
@@ -293,34 +259,86 @@ namespace InfoPortal.DAL.Implements
 
 		public void InsertNewArticle(Article article)
 		{
-			using (SqlConnection)
+			using (this.SqlConnection = new SqlConnection(this.ConnectionString))
 			{
-				string sqlCommand = "INSERT INTO ByNamesOrArticles (Caption,Text,ByDate,Language,Video,Image,UserID) " +
-				                    "VALUES(@Caption,@Text,@Date,@Language,@Video,@Image,@UserID)";
+				string sqlCommandWriteArticle =
+					"exec sp_save_article @caption , @text, @date, @lang, @video,	@image,	@userName,	@categoryid";
 
-				SqlCommand cmd = new SqlCommand(sqlCommand, SqlConnection);
-				cmd.Parameters.AddWithValue("@Caption", article.Caption);
-				cmd.Parameters.AddWithValue("@Text", article.Text);
-				cmd.Parameters.AddWithValue("@Date", article.Date);
-				cmd.Parameters.AddWithValue("@Language", article.Language);
-				cmd.Parameters.AddWithValue("@Video", article.Video);
-				cmd.Parameters.AddWithValue("@Image", article.Image);
-				cmd.Parameters.AddWithValue("@UserID", article.UserId);
+				string sqlCommandWriteTags = "exec sp_save_tags_for_atricle @articleIdenty, @tagname";
+
+				SqlTransaction transaction = null;
 				try
 				{
-					SqlConnection.Open();
-					cmd.ExecuteNonQuery();
+					this.SqlConnection.Open();
+					transaction = this.SqlConnection.BeginTransaction();
+
+					SqlCommand cmd = new SqlCommand(sqlCommandWriteArticle, this.SqlConnection, transaction);
+					cmd.Parameters.AddWithValue("@caption", article.Caption);
+					cmd.Parameters.AddWithValue("@text", article.Text);
+					cmd.Parameters.AddWithValue("@date", article.Date);
+					cmd.Parameters.AddWithValue("@lang", article.Language);
+					cmd.Parameters.AddWithValue("@video", article.Video ?? (object) DBNull.Value);
+					cmd.Parameters.AddWithValue("@image", article.Image);
+					cmd.Parameters.AddWithValue("@userName", article.User.Name);
+					cmd.Parameters.AddWithValue("@categoryid", article.CategoryId);
+
+					int articleId = (int) cmd.ExecuteScalar();
+
+					foreach (var tag in article.Tags)
+					{
+						using (SqlCommand command = new SqlCommand(
+							sqlCommandWriteTags,
+							this.SqlConnection,
+							transaction))
+						{
+							command.CommandText = sqlCommandWriteTags;
+							command.Parameters.AddWithValue("@articleIdenty", articleId);
+							command.Parameters.AddWithValue("@tagname", tag.TagName);
+							command.ExecuteNonQuery();
+						}
+					}
+
+					transaction.Commit();
 				}
 				catch (Exception e)
 				{
-					logger.Error(e.Message);
+					this.logger.Error(e.Message);
+					transaction?.Rollback();
 				}
 			}
 		}
 
+		public int GetArticleIdByCaption(string caption)
+		{
+			int result = 0;
+			string sqlCommand = "exec sp_get_articleId_by_caption @caption";
+
+			using (this.SqlConnection = new SqlConnection(this.ConnectionString))
+			{
+				SqlCommand cmd = new SqlCommand(sqlCommand, this.SqlConnection);
+				cmd.Parameters.AddWithValue("@caption", caption);
+
+				try
+				{
+					this.SqlConnection.Open();
+					result = (int) cmd.ExecuteScalar();
+				}
+				catch (Exception e)
+				{
+					this.logger.Error(e.Message);
+				}
+			}
+
+			return result;
+		}
+
+		/// <summary>
+		/// not work
+		/// </summary>
+		/// <param name="article"></param>
 		public void UpdateArticle(Article article)
 		{
-			using (SqlConnection)
+			using (this.SqlConnection)
 			{
 				string sqlCommand = "UPDATE ByNamesOrArticles SET " +
 				                    "Caption=@Caption," +
@@ -330,7 +348,7 @@ namespace InfoPortal.DAL.Implements
 				                    "Video=@Video," +
 				                    "Image=@Image";
 
-				SqlCommand cmd = new SqlCommand(sqlCommand, SqlConnection);
+				SqlCommand cmd = new SqlCommand(sqlCommand, this.SqlConnection);
 				cmd.Parameters.AddWithValue("@Caption", article.Caption);
 				cmd.Parameters.AddWithValue("@Text", article.Text);
 				cmd.Parameters.AddWithValue("@Date", article.Date);
@@ -340,36 +358,65 @@ namespace InfoPortal.DAL.Implements
 
 				try
 				{
-					SqlConnection.Open();
+					this.SqlConnection.Open();
 					cmd.ExecuteNonQuery();
 				}
 				catch (Exception e)
 				{
-					logger.Error(e.Message);
+					this.logger.Error(e.Message);
 				}
 			}
 		}
 
 		public void DeleteArticle(int articleId)
 		{
-			using (SqlConnection)
+			using (this.SqlConnection)
 			{
 				string sqlCommand = "DELETE FROM ByNamesOrArticles " +
 				                    "WHERE ArticleID=@id";
 
-				SqlCommand cmd = new SqlCommand(sqlCommand, SqlConnection);
+				SqlCommand cmd = new SqlCommand(sqlCommand, this.SqlConnection);
 				cmd.Parameters.AddWithValue("@id", articleId);
 
 				try
 				{
-					SqlConnection.Open();
+					this.SqlConnection.Open();
 					cmd.ExecuteNonQuery();
 				}
 				catch (Exception e)
 				{
-					logger.Error(e.Message);
+					this.logger.Error(e.Message);
 				}
 			}
+		}
+
+		private List<Tag> GetTagsByArticleId(int articleId)
+		{
+			List<Tag> tags = new List<Tag>();
+
+			using (this.SqlConnection = new SqlConnection(this.ConnectionString))
+			{
+				string sqlCommand = "exec sp_GetTagsByArticleID @articleID";
+
+				SqlCommand cmd = new SqlCommand(sqlCommand, this.SqlConnection);
+				cmd.Parameters.AddWithValue("@articleID", articleId);
+				this.SqlConnection.Open();
+
+				using (SqlDataReader reader = cmd.ExecuteReader())
+				{
+					while (reader.Read())
+					{
+						tags.Add(
+							new Tag
+							{
+								TagId = (int) reader["TagID"],
+								TagName = (string) reader["TagName"]
+							});
+					}
+				}
+			}
+
+			return tags;
 		}
 	}
 }

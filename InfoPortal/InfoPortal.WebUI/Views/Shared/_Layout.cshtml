@@ -24,7 +24,7 @@
 
 		<div class="collapse navbar-collapse" id="collapse_target">
 			<ul class="navbar-nav">
-				@if (User.Identity.IsAuthenticated)
+				@if (User.IsInRole("Author") || User.IsInRole("Admin"))
 				{
 					<li class="nav-item">@Html.ActionLink("Create a new article", "CreateNewArticle", "Article", null, new {@class = "nav-link"})</li>
 				}

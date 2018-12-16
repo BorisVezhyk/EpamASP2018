@@ -1,0 +1,39 @@
+﻿@model Common.Article
+
+@{
+    ViewBag.Title = "Preview";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Preview</h2>
+
+<div>
+	<h1 class="mt-4">@Model.Caption</h1>
+	<p class="lead">
+		Author by <a href="#">@User.Identity.Name</a>
+	</p>
+	<hr />
+	<p>Posted on @Model.Date.ToShortDateString()</p>
+	<hr />
+	<img class="img-fluid rounded" src="@Model.Image" alt="" />
+	<p class="lead">
+		@Model.Text
+	</p>
+	@if (Model.Video != null)
+	{
+		<div class="embed-responsive embed-responsive-16by9">
+			<iframe class="embed-responsive-item" src="@Model.Video" allowfullscreen></iframe>
+		</div>
+	}
+	<p class="lead">Tags:
+		@foreach (var link in Model.Tags)
+		{
+			<a class="badge badge-secondary" href="#">@link.TagName</a>
+		}</p>
+	
+
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.ArticleId }) |
+    @Html.ActionLink("Back to previous page", null, null, null, new { href = "javascript:history.back()" })
+</p>

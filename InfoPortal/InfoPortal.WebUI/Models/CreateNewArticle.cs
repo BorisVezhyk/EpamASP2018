@@ -1,4 +1,6 @@
-﻿using System.ComponentModel.DataAnnotations;
+﻿using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
+using System.Web.Mvc;
 
 namespace InfoPortal.WebUI.Models
 {
@@ -13,7 +15,7 @@ namespace InfoPortal.WebUI.Models
 		public string Text { get; set; }
 		
 		[Required(ErrorMessage = "This is required")]
-		[Display(Name = "Labguage")]
+		[Display(Name = "Language")]
 		public string Language { get; set; }
 
 		[Display(Name = "Video")]
@@ -24,12 +26,13 @@ namespace InfoPortal.WebUI.Models
 		public string Image { get; set; }
 
 		[RegularExpression(@"^[a-zA-Z\,]+$",ErrorMessage = "Words have to be only with comma")]
-		[Display(Name = "ByTags")]
+		[Display(Name = "Tags")]
 		public string Tags { get; set; }
 		
 		[Required(ErrorMessage = "This is required")]
 		[Display(Name = "Category")]
 		public int CategoryId { get; set; }
+		public IEnumerable<SelectListItem> Categories { get; set; }
 
 	}
 }

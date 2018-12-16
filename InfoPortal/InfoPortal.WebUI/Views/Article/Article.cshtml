@@ -1,13 +1,14 @@
 ﻿@model Common.Article
 
 @{
-    ViewBag.Title = "Article";
+	ViewBag.Title = "Article";
 }
 
 <div>
-    <h1 class="mt-4"> @Model.Caption</h1>
+	<h1 class="mt-4"> @Model.Caption</h1>
 	<p class="lead">
-		Author by  <a href="#">@Model.User.Name </a>
+		Author by <a href="#">@Model.User.Name </a>
+
 	</p>
 	<hr/>
 	<p>Posted on @Model.Date.ToShortDateString() </p>
@@ -23,12 +24,22 @@
 			<iframe class="embed-responsive-item" src="@Model.Video" allowfullscreen></iframe>
 		</div>
 	}
-	
-	
-	<p class="lead">Tags:
+	<p class="lead">
+		Tags:
 		@foreach (var link in @Model.Tags)
 		{
 			<a class="badge badge-secondary" href="#">@link.TagName</a>
-		}</p>
+		}
+	</p>
+	@if (@Model.User.Name == User.Identity.Name)
+	{
+		<hr/>
+		<div class="row justify-content-center">
+			<p class="lead">This is your article. You can update or delete its.</p>
+		</div>
+		<div class="row justify-content-around">
+				<button type="button" class="btn btn-danger">Delete</button>
+				<button type="button" class="btn btn-success">Update</button>
+		</div>
+	}
 </div>
-

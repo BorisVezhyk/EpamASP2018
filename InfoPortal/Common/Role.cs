@@ -1,12 +1,11 @@
-﻿using System.Collections.Generic;
-using System.ComponentModel.DataAnnotations;
-
-namespace Common
+﻿namespace Common
 {
+	using System.Collections.Generic;
+	using System.ComponentModel.DataAnnotations;
+
 	public class Role
 	{
-		[Required]
-		public int RoleId { get; set; }
+		[Required] public int RoleId { get; set; }
 
 		public string Name { get; set; }
 
@@ -14,7 +13,7 @@ namespace Common
 
 		public Role()
 		{
-			Users=new List<User>();
+			Users = new List<User>();
 		}
 	}
 }

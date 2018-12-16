@@ -1,11 +1,10 @@
-﻿using System.Collections.Generic;
-using Common;
-
-namespace InfoPortal.DAL.Interfaces
+﻿namespace InfoPortal.DAL.Interfaces
 {
+	using System.Collections.Generic;
+	using Common;
+
 	public interface ITagsContext
 	{
-		List<Tag> Tags { get; set; }
-		void InsertNewTag(Tag tag);
+		
 	}
 }

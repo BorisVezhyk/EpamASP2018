@@ -194,7 +194,9 @@
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\StructuremapMvc.cs" />
     <Compile Include="Controllers\AccountController.cs" />
-    <Compile Include="Controllers\ArticleController.cs" />
+    <Compile Include="Controllers\ArticleController.cs">
+      <ExcludeFromStyleCop>False</ExcludeFromStyleCop>
+    </Compile>
     <Compile Include="Controllers\MainController.cs" />
     <Compile Include="Controllers\NavController.cs" />
     <Compile Include="Controllers\SearchController.cs" />
@@ -297,12 +299,13 @@
     <Content Include="Views\Article\Article.cshtml" />
     <Content Include="Views\Nav\Menu.cshtml" />
     <Content Include="Views\Main\List.cshtml" />
-    <Content Include="Views\Article\CreateNewArticle.cshtml" />
     <Content Include="Views\Nav\ResultSearchByDateTime.cshtml" />
     <Content Include="Views\Search\SearchMenu.cshtml" />
     <Content Include="Views\Account\Register.cshtml" />
     <Content Include="Views\Account\Login.cshtml" />
     <Content Include="Views\Main\ResultSearch.cshtml" />
+    <Content Include="Views\Article\CreateNewArticle.cshtml" />
+    <Content Include="Views\Article\Preview.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

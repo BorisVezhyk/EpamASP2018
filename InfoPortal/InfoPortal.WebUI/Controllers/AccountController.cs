@@ -1,11 +1,11 @@
-﻿using System.Web.Mvc;
-using System.Web.Security;
-using Common;
-using InfoPortal.BL.Interfaces;
-using InfoPortal.WebUI.Models;
-
-namespace InfoPortal.WebUI.Controllers
+﻿namespace InfoPortal.WebUI.Controllers
 {
+	using BL.Interfaces;
+	using Common;
+	using Models;
+	using System.Web.Mvc;
+	using System.Web.Security;
+
 	public class AccountController : Controller
 	{
 		private readonly IUserRepository userRepository;
@@ -20,33 +20,54 @@ namespace InfoPortal.WebUI.Controllers
 		[AllowAnonymous]
 		public ActionResult Login(string returnUrl)
 		{
+			if (string.IsNullOrEmpty(returnUrl) && Request.UrlReferrer != null)
+			{
+				returnUrl = Server.UrlDecode(Request.UrlReferrer.PathAndQuery);
+			}
 
-			ViewBag.ReturnUrl = returnUrl;
+			if (Url.IsLocalUrl(returnUrl) && !string.IsNullOrEmpty(returnUrl))
+			{
+				ViewBag.ReturnURL = returnUrl;
+			}
+
 			return View();
 		}
 
 		[HttpPost]
 		[ValidateAntiForgeryToken]
-		public ActionResult Login(LoginViewModel login)
+		public ActionResult Login(LoginViewModel login, string returnUrl)
 		{
+			string decodedUrl = "";
+
+			if (!string.IsNullOrEmpty(returnUrl))
+			{
+				decodedUrl = Server.UrlDecode(returnUrl);
+			}
+
 			if (ModelState.IsValid)
 			{
 				User user = userRepository.GetUserByLogin(login.Name, login.Password);
 
-				if (user!=null)
+				if (user != null)
 				{
 					FormsAuthentication.SetAuthCookie(login.Name, login.RememberMe);
-					return RedirectToAction("List", "Main");
+					if (Url.IsLocalUrl(decodedUrl))
+					{
+						return Redirect(decodedUrl);
+					}
+					else
+					{
+						return RedirectToAction("List", "Main");
+					}
 				}
 				else
 				{
-					ModelState.AddModelError("","User with this Name and Password doesn't exist");
+					ModelState.AddModelError("", "User with this Name and Password doesn't exist");
 				}
 			}
 
 			return View(login);
 		}
-
 
 		// GET: /Account/Register
 		[AllowAnonymous]
@@ -63,7 +84,7 @@ namespace InfoPortal.WebUI.Controllers
 			{
 				if (userRepository.CheckUserExist(newUser.Email, newUser.Name) == 1)
 				{
-					ModelState.AddModelError("","User with this Name or Email already exist");
+					ModelState.AddModelError("", "User with this Name or Email already exist");
 				}
 				else
 				{
@@ -76,7 +97,7 @@ namespace InfoPortal.WebUI.Controllers
 					userRepository.RegisterUser(userForSave);
 
 					User userLogin = userRepository.GetUserByLogin(newUser.Name, newUser.Password);
-					if (userLogin!=null)
+					if (userLogin != null)
 					{
 						//ClaimsIdentity ident=
 						FormsAuthentication.SetAuthCookie(userLogin.Name, true);

@@ -1,13 +1,13 @@
-﻿using System.Collections.Generic;
-using Common;
-using InfoPortal.BL.Interfaces;
-using InfoPortal.DAL.Interfaces;
-
-namespace InfoPortal.BL.Implements
+﻿namespace InfoPortal.BL.Implements
 {
+	using System.Collections.Generic;
+	using Common;
+	using Interfaces;
+	using InfoPortal.DAL.Interfaces;
+
 	public class ArticleRepository : IArticlesRepository
 	{
-		private IArticleContext context;
+		private readonly IArticleContext context;
 
 		public ArticleRepository(IArticleContext context)
 		{
@@ -16,45 +16,45 @@ namespace InfoPortal.BL.Implements
 
 		public List<Article> GetArticlesForMainPage(int maxArticlesInPage, string category, int page = 1)
 		{
-			return context.GetArticlesForMainPage(maxArticlesInPage, category, page);
+			return this.context.GetArticlesForMainPage(maxArticlesInPage, category, page);
 		}
 
 		public Article GetArticle(int articleId)
 		{
-			return context.GetArticle(articleId);
+			return this.context.GetArticle(articleId);
 		}
 
 		public int GetCountArtiles(string category)
 		{
-			return context.GetCountArtiles(category);
+			return this.context.GetCountArtiles(category);
 		}
 
 		public void SaveArticle(Article article)
 		{
-			context.InsertNewArticle(article);
+			this.context.InsertNewArticle(article);
 		}
 
 		public void DeleteArticle(int articleId)
 		{
-			context.DeleteArticle(articleId);
+			this.context.DeleteArticle(articleId);
 		}
 
 		public List<Article> GetResultSearch(string searchQuery, int selectSearch, int pageSize, int page = 1)
 		{
 			List<Article> result = new List<Article>();
-			if (selectSearch == (int) TypeSearch.ByNamesOrArticles)
+			if (selectSearch == (int)SearchType.ByNamesOrArticles)
 			{
-				result = context.GetSearchByNamesOfArticles(searchQuery, pageSize, page);
+				result = this.context.GetSearchByNamesOfArticles(searchQuery, pageSize, page);
 			}
 
-			if (selectSearch == (int) TypeSearch.ByTags)
+			if (selectSearch == (int)SearchType.ByTags)
 			{
-				result = context.GetSearchByTagName(searchQuery, pageSize, page);
+				result = this.context.GetSearchByTagName(searchQuery, pageSize, page);
 			}
 
-			if (selectSearch == (int) TypeSearch.ByDate)
+			if (selectSearch == (int)SearchType.ByDate)
 			{
-				result = context.GetSearchByDate(searchQuery, pageSize, page);
+				result = this.context.GetSearchByDate(searchQuery, pageSize, page);
 			}
 
 			return result;
@@ -62,7 +62,14 @@ namespace InfoPortal.BL.Implements
 
 		public int GetCountArticlesSearchResult(int selectSearch, string searchQuery)
 		{
-			return context.GetCountArticlesSearchResult(selectSearch, searchQuery);
+			return this.context.GetCountArticlesSearchResult(selectSearch, searchQuery);
 		}
+
+		public int GetArticleIdByCaption(string caption)
+		{
+			return this.context.GetArticleIdByCaption(caption);
+		}
+
+
 	}
 }

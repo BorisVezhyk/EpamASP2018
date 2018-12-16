@@ -1,11 +1,10 @@
-﻿using System.Collections.Generic;
-using Common;
-
-namespace InfoPortal.BL.Interfaces
+﻿namespace InfoPortal.BL.Interfaces
 {
+	using System.Collections.Generic;
+	using Common;
+
 	public interface ITagsRepository
 	{
-		IEnumerable<Tag> Tags { get; }
-		void SaveTag(Tag tag);
+		List<Tag> GetTagsFromStrings(string[] tags);
 	}
 }

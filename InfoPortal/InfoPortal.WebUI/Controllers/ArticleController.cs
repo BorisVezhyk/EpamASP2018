@@ -1,68 +1,80 @@
-﻿using System.Linq;
-using System.Web.Mvc;
-using Common;
-using InfoPortal.BL.Interfaces;
-using InfoPortal.WebUI.Models;
-
-
-namespace InfoPortal.WebUI.Controllers
+﻿namespace InfoPortal.WebUI.Controllers
 {
-    public class ArticleController : Controller
-    {
-        // GET: Article
-	    private readonly IArticlesRepository articlesRepository;
-	    private readonly ICategoryRepository categoryRepository;
+	using BL.Interfaces;
+	using Common;
+	using Models;
+	using System.Web.Mvc;
+	using System;
 
-	    public ArticleController(IArticlesRepository articlesArticlesRepository,ICategoryRepository categoryRepository)
-	    {
-		    this.categoryRepository = categoryRepository;
-		    articlesRepository = articlesArticlesRepository;
-	    }
+	public class ArticleController : Controller
+	{
+		// GET: Article
+		private readonly IArticlesRepository articlesRepository;
+		private readonly ICategoryRepository categoryRepository;
+		private readonly ITagsRepository tagsRepository;
 
-        public ActionResult Article(int id)
-        {
-	        Article article = articlesRepository.GetArticle(id);
-
-	        if (article!=null)
-	        {
-		        return View(article);
-	        }
-	        return HttpNotFound();
-        }
-
-
-		[HttpGet]
-		[Authorize(Roles = "Author")]
-	    public ActionResult CreateNewArticle()
+		public ArticleController(
+			IArticlesRepository articlesArticlesRepository,
+			ICategoryRepository categoryRepository,
+			ITagsRepository tags)
 		{
-			ViewBag.SelectCategory = categoryRepository.Categories;
-		    return View();
-	    }
+			this.categoryRepository = categoryRepository;
+			this.articlesRepository = articlesArticlesRepository;
+			this.tagsRepository = tags;
+		}
 
-	    [HttpPost]
-	    public ActionResult CreateNewArticle(CreateNewArticle newArticle)
-	    {
-		    if (ModelState.IsValid)
-		    {
-				//need to change!!
-			    Article preArticle = new Article
-			    {
-				    Caption = newArticle.Caption,
-				    Text = newArticle.Text,
-				    Image = newArticle.Image,
-				    Video = newArticle.Video,
-				    Language = newArticle.Language,
-				    CategoryId = newArticle.CategoryId,
-				    ArticleId = 123,
-				    User = new User {Name = "Boris"},
-				    UserId = 1
-			    };
-			    return RedirectToAction("Article");
+		public ActionResult Article(int id)
+		{
+			Article article = this.articlesRepository.GetArticle(id);
+
+			if (article != null)
+			{
+				return View(article);
 			}
 
-		    return View();
-	    }
+			return HttpNotFound();
+		}
 
+		[HttpGet]
+		[Authorize(Roles = "Author,Admin")]
+		public ActionResult CreateNewArticle()
+		{
+			CreateNewArticle model =
+				new CreateNewArticle { Categories = this.categoryRepository.GetCategoriesForSelectListItems() };
+			return View(model);
+		}
 
-    }
+		[HttpPost]
+		public ActionResult CreateNewArticle(CreateNewArticle newArticle,string returnUrl)
+		{
+			if (ModelState.IsValid)
+			{
+				Article preArticle = new Article
+				{
+					Date = DateTime.Now,
+					Caption = newArticle.Caption,
+					Text = newArticle.Text,
+					Image = newArticle.Image,
+					Video = newArticle.Video,
+					Language = newArticle.Language,
+					CategoryId = newArticle.CategoryId,
+					User = new User { Name = User.Identity.Name },
+					Tags = this.tagsRepository.GetTagsFromStrings(newArticle.Tags.Split(','))
+				};
+				this.articlesRepository.SaveArticle(preArticle);
+				int articleId = this.articlesRepository.GetArticleIdByCaption(preArticle.Caption);
+
+				return RedirectToAction("Article", new { id = articleId });
+			}
+
+			return View();
+		}
+
+		public ActionResult Preview(Article model)
+		{
+			
+			//ViewBag.ReturnUrl = returnUrl;
+			return this.View(model);
+		}
+	}
 }

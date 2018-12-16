@@ -1,13 +1,11 @@
-﻿using System.ComponentModel.DataAnnotations;
-
-namespace Common
+﻿namespace Common
 {
-    public class Category
-    {
-		[Required]
-	    public string CategoryName { get; set; }
+	using System.ComponentModel.DataAnnotations;
 
-		[Required]
-	    public int CategoryId { get; set; }
-    }
+	public class Category
+	{
+		[Required] public string CategoryName { get; set; }
+
+		[Required] public int CategoryId { get; set; }
+	}
 }
