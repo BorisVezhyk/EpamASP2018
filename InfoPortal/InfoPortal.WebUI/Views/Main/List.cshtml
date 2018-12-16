@@ -16,15 +16,19 @@
 			{
 				<div class="card">
 					<a href="@Url.RouteUrl(new { controller = "Article", action = "Article", id = art.ArticleId })">
-						<img class="card-img-top" src="@art.Image" alt="Card image cap"/>
+						<img class="card-img-top" src="@art.Image" alt="Card image cap" lowsrc="../../Images/news_little.jpg"/>
 						<div class="card-body text-dark" style="display: inline-block">
 							<h5 class="card-title">@art.Caption</h5>
 							<p class="card-text">
 								@if (art.Text.Length >= 150)
 								{
-									@art.Text.Substring(0, 150) <text>...</text>
+									@art.Text.Substring(0, 150)
+									<text>...</text>
 								}
-								else { @art.Text}
+								else
+								{
+									@art.Text
+								}
 							</p>
 							<p class="card-text">
 								<small class="text-muted">@art.Date.ToShortDateString()</small>

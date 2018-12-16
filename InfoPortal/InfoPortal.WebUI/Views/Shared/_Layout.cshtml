@@ -7,13 +7,15 @@
 	@Styles.Render("~/Content/css")
 	@Scripts.Render("~/bundles/modernizr")
 	<style>
-		#jumbotronHead { background-image: url('../../Images/TitleForProject.jpg'); }
+		#jumbotronHead {
+			background-image: url('../../Images/news.jpg');
+		}
 		
 	</style>
 </head>
 <body>
 <div class="jumbotron text-center my-0 py-3" id="jumbotronHead">
-	<p class="display-4">Welcome to the Information Portal!</p>
+	@*<p class="display-4">Welcome to the Information Portal!</p>*@
 </div>
 <nav class="navbar navbar-expand-md navbar-dark bg-dark sticky-top">
 	<div class="container">
@@ -24,7 +26,7 @@
 
 		<div class="collapse navbar-collapse" id="collapse_target">
 			<ul class="navbar-nav">
-				@if (User.IsInRole("Author") || User.IsInRole("Admin"))
+				@if (User.IsInRole("Editor") || User.IsInRole("Admin"))
 				{
 					<li class="nav-item">@Html.ActionLink("Create a new article", "CreateNewArticle", "Article", null, new {@class = "nav-link"})</li>
 				}

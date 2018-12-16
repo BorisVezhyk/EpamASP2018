@@ -70,6 +70,9 @@
 			return this.context.GetArticleIdByCaption(caption);
 		}
 
-
+		public void UpdateArticle(Article article)
+		{
+			this.context.UpdateArticle(article);
+		}
 	}
 }

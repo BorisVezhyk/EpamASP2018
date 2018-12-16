@@ -104,7 +104,8 @@
 							{
 								Name = (string) reader["Name"],
 							},
-							Category = (string) reader["CategoryName"]
+							Category = (string) reader["CategoryName"],
+							CategoryId = (int) reader["CategoryID"]
 						};
 					}
 				}
@@ -291,7 +292,6 @@
 							this.SqlConnection,
 							transaction))
 						{
-							command.CommandText = sqlCommandWriteTags;
 							command.Parameters.AddWithValue("@articleIdenty", articleId);
 							command.Parameters.AddWithValue("@tagname", tag.TagName);
 							command.ExecuteNonQuery();
@@ -332,51 +332,72 @@
 			return result;
 		}
 
-		/// <summary>
-		/// not work
-		/// </summary>
-		/// <param name="article"></param>
 		public void UpdateArticle(Article article)
 		{
-			using (this.SqlConnection)
+			string sqlCommandUpdateArticle =
+				"exec sp_update_article @articleId, @caption, @text, @landuage, @video, @image, @categoryId";
+			SqlTransaction transaction = null;
+
+			using (this.SqlConnection = new SqlConnection(this.ConnectionString))
 			{
-				string sqlCommand = "UPDATE ByNamesOrArticles SET " +
-				                    "Caption=@Caption," +
-				                    "Text=@Text," +
-				                    "Date=@Date," +
-				                    "Language=@Language," +
-				                    "Video=@Video," +
-				                    "Image=@Image";
-
-				SqlCommand cmd = new SqlCommand(sqlCommand, this.SqlConnection);
-				cmd.Parameters.AddWithValue("@Caption", article.Caption);
-				cmd.Parameters.AddWithValue("@Text", article.Text);
-				cmd.Parameters.AddWithValue("@Date", article.Date);
-				cmd.Parameters.AddWithValue("@Language", article.Language);
-				cmd.Parameters.AddWithValue("@Video", article.Video);
-				cmd.Parameters.AddWithValue("@Image", article.Image);
-
 				try
 				{
 					this.SqlConnection.Open();
-					cmd.ExecuteNonQuery();
+					transaction = this.SqlConnection.BeginTransaction();
+
+					using (SqlCommand cmd = new SqlCommand(sqlCommandUpdateArticle, this.SqlConnection, transaction))
+					{
+						cmd.Parameters.AddWithValue("@articleId", article.ArticleId);
+						cmd.Parameters.AddWithValue("@caption", article.Caption);
+						cmd.Parameters.AddWithValue("@text", article.Text);
+						cmd.Parameters.AddWithValue("@landuage", article.Language);
+						cmd.Parameters.AddWithValue("@video", article.Video ?? (object) DBNull.Value);
+						cmd.Parameters.AddWithValue("@image", article.Image);
+						cmd.Parameters.AddWithValue("@categoryId", article.CategoryId);
+						cmd.ExecuteNonQuery();
+					}
+
+					string sqlCommandDeleteTagsArticlesArticleid = " exec sp_delete_tags_articles @articleId";
+					using (SqlCommand cmd = new SqlCommand(
+						sqlCommandDeleteTagsArticlesArticleid,
+						this.SqlConnection,
+						transaction))
+					{
+						cmd.Parameters.AddWithValue("@articleId", article.ArticleId);
+						cmd.ExecuteNonQuery();
+					}
+
+					string sqlCommandWriteTags = "exec sp_save_tags_for_atricle @articleIdenty, @tagname";
+					foreach (var tag in article.Tags)
+					{
+						using (SqlCommand command = new SqlCommand(
+							sqlCommandWriteTags,
+							this.SqlConnection,
+							transaction))
+						{
+							command.Parameters.AddWithValue("@articleIdenty", article.ArticleId);
+							command.Parameters.AddWithValue("@tagname", tag.TagName);
+							command.ExecuteNonQuery();
+						}
+					}
+
+					transaction.Commit();
 				}
 				catch (Exception e)
 				{
 					this.logger.Error(e.Message);
+					transaction.Rollback();
 				}
 			}
 		}
 
 		public void DeleteArticle(int articleId)
 		{
-			using (this.SqlConnection)
+			string sqlCommand = "exec sp_delete_article @articleid";
+			using (this.SqlConnection = new SqlConnection(this.ConnectionString))
 			{
-				string sqlCommand = "DELETE FROM ByNamesOrArticles " +
-				                    "WHERE ArticleID=@id";
-
 				SqlCommand cmd = new SqlCommand(sqlCommand, this.SqlConnection);
-				cmd.Parameters.AddWithValue("@id", articleId);
+				cmd.Parameters.AddWithValue("@articleid", articleId);
 
 				try
 				{

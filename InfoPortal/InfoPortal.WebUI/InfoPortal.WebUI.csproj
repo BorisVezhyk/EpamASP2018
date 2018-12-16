@@ -217,6 +217,7 @@
     <Compile Include="Models\RegisterUser.cs" />
     <Compile Include="Models\ResultSearchArticlesViewModel.cs" />
     <Compile Include="Models\SearchAttributes.cs" />
+    <Compile Include="Models\UpdateArticleModelView.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Startup.cs" />
   </ItemGroup>
@@ -305,7 +306,7 @@
     <Content Include="Views\Account\Login.cshtml" />
     <Content Include="Views\Main\ResultSearch.cshtml" />
     <Content Include="Views\Article\CreateNewArticle.cshtml" />
-    <Content Include="Views\Article\Preview.cshtml" />
+    <Content Include="Views\Article\UpdateArticle.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

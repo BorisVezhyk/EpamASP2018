@@ -5,6 +5,7 @@
 	using Models;
 	using System.Web.Mvc;
 	using System;
+	using System.Linq;
 
 	public class ArticleController : Controller
 	{
@@ -35,8 +36,51 @@
 			return HttpNotFound();
 		}
 
+		[Authorize(Roles = "Editor,Admin")]
+		public ActionResult UpdateArticle(int id)
+		{
+			Article changingArticle = this.articlesRepository.GetArticle(id);
+			UpdateArticleModelView model = new UpdateArticleModelView
+			{
+				ArticleId = changingArticle.ArticleId,
+				Categories = this.categoryRepository.GetCategoriesForSelectListItems(),
+				CategoryId = changingArticle.CategoryId,
+				Caption = changingArticle.Caption,
+				Text = changingArticle.Text,
+				Language = changingArticle.Language,
+				Image = changingArticle.Image,
+				Video = changingArticle.Video,
+				Tags = string.Join(",", changingArticle.Tags.Select(t => t.TagName))
+			};
+			
+			return this.View(model);
+		}
+
+		[HttpPost]
+		[Authorize(Roles = "Editor,Admin")]
+		public ActionResult UpdateArticle(UpdateArticleModelView changingArticle)
+		{
+			if (ModelState.IsValid)
+			{
+				Article updateArticle = new Article
+				{
+					ArticleId = changingArticle.ArticleId,
+					Caption = changingArticle.Caption,
+					Text = changingArticle.Text,
+					Language = changingArticle.Language,
+					Video = changingArticle.Video,
+					Image = changingArticle.Image,
+					CategoryId = changingArticle.CategoryId,
+					Tags = this.tagsRepository.GetTagsFromStrings(changingArticle.Tags.Split(','))
+				};
+				this.articlesRepository.UpdateArticle(updateArticle);
+				return RedirectToAction("Article", new { id = changingArticle.ArticleId });
+			}
+			return this.View(changingArticle);
+		}
+
 		[HttpGet]
-		[Authorize(Roles = "Author,Admin")]
+		[Authorize(Roles = "Editor,Admin")]
 		public ActionResult CreateNewArticle()
 		{
 			CreateNewArticle model =
@@ -45,7 +89,8 @@
 		}
 
 		[HttpPost]
-		public ActionResult CreateNewArticle(CreateNewArticle newArticle,string returnUrl)
+		[Authorize(Roles = "Editor,Admin")]
+		public ActionResult CreateNewArticle(CreateNewArticle newArticle)
 		{
 			if (ModelState.IsValid)
 			{
@@ -70,11 +115,11 @@
 			return View();
 		}
 
-		public ActionResult Preview(Article model)
+		[Authorize(Roles = "Editor,Admin")]
+		public ActionResult Delete(int articleId)
 		{
-			
-			//ViewBag.ReturnUrl = returnUrl;
-			return this.View(model);
+			this.articlesRepository.DeleteArticle(articleId);
+			return RedirectToAction("List", "Main");
 		}
 	}
 }

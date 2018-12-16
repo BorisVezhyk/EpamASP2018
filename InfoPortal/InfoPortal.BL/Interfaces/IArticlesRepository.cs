@@ -20,5 +20,8 @@
 		int GetCountArticlesSearchResult(int selectSearch, string searchQuery);
 
 		int GetArticleIdByCaption(string caption);
+
+		void UpdateArticle(Article article);
+
 	}
 }

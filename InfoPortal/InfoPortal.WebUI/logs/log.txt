@@ -22,3 +22,5 @@ ERROR 2018-12-16 14:36:13,915 110685ms DbContext              ArticleIdByCaption
 ERROR 2018-12-16 14:46:01,026 85313ms DbContext              InsertNewArticle   - The variable name '@tagname' has already been declared. Variable names must be unique within a query batch or stored procedure.
 ERROR 2018-12-16 14:53:02,720 149732ms DbContext              InsertNewArticle   - The variable name '@articleIdenty' has already been declared. Variable names must be unique within a query batch or stored procedure.
 ERROR 2018-12-16 14:53:10,223 157236ms DbContext              ArticleIdByCaption - Object reference not set to an instance of an object.
+ERROR 2018-12-17 00:08:30,852 75780ms DbContext              UpdateArticle      - ExecuteNonQuery requires the command to have a transaction when the connection assigned to the command is in a pending local transaction.  The Transaction property of the command has not been initialized.
+ERROR 2018-12-17 00:16:33,754 129643ms DbContext              UpdateArticle      - The variable name '@articleId' has already been declared. Variable names must be unique within a query batch or stored procedure.
