@@ -30,6 +30,10 @@
 				{
 					<li class="nav-item">@Html.ActionLink("Create a new article", "CreateNewArticle", "Article", null, new {@class = "nav-link"})</li>
 				}
+				@if (User.IsInRole("Admin"))
+				{
+					<li class="nav-item"> @Html.ActionLink("Manage users","Index","Admin",null,new{@class="nav-link"})</li>
+				}
 			</ul>
 			<ul class="navbar-nav ml-auto">
 				@Html.Partial("_LoginPartial")

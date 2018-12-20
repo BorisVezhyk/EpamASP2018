@@ -7,14 +7,18 @@
 	{
 	@Html.AntiForgeryToken()
 
-	<ul class="navbar-nav">
+<ul class="navbar-nav">
+	@if (User.IsInRole("Admin"))
+	{
+		<li class="nav-item"> @Html.ActionLink("Manage users", "Index", "Admin", null, new { @class = "nav-link text-danger" })</li>
+	}
 	<li class="nav-item">
 		@Html.ActionLink("Hello " + User.Identity.GetUserName() + "!", "Index", "Manage", routeValues: null, htmlAttributes: new { @class = "nav-link", title = "Manage" })
 	</li>
 	<li class="nav-item">
 		<a class="nav-link" href="javascript:document.getElementById('logoutForm').submit()">Log off</a>
 	</li>
-	</ul>
+</ul>
     }
 }
 else

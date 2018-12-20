@@ -121,5 +121,11 @@
 			this.articlesRepository.DeleteArticle(articleId);
 			return RedirectToAction("List", "Main");
 		}
+
+
+		public ActionResult ListOfArticles()
+		{
+			return this.View();
+		}
 	}
 }

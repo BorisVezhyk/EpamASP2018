@@ -24,3 +24,16 @@ ERROR 2018-12-16 14:53:02,720 149732ms DbContext              InsertNewArticle  
 ERROR 2018-12-16 14:53:10,223 157236ms DbContext              ArticleIdByCaption - Object reference not set to an instance of an object.
 ERROR 2018-12-17 00:08:30,852 75780ms DbContext              UpdateArticle      - ExecuteNonQuery requires the command to have a transaction when the connection assigned to the command is in a pending local transaction.  The Transaction property of the command has not been initialized.
 ERROR 2018-12-17 00:16:33,754 129643ms DbContext              UpdateArticle      - The variable name '@articleId' has already been declared. Variable names must be unique within a query batch or stored procedure.
+INFO  2018-12-20 20:20:52,017 68380ms AdminController        Create             - Boris created a new user. The new user has name testnewuser
+INFO  2018-12-20 20:22:32,815 169178ms AdminController        Delete             - Boris deleted a user()
+INFO  2018-12-20 22:22:38,210 51464ms AdminController        Create             - Boris created a new user. The new user has name test11
+ERROR 2018-12-20 22:22:58,993 72247ms DbContext              UpdateUser         - Error converting data type nvarchar to int.
+INFO  2018-12-20 22:22:58,998 72252ms AdminController        Edit               - Boris updated a user with Id=8
+ERROR 2018-12-20 22:23:06,660 79914ms DbContext              UpdateUser         - Error converting data type nvarchar to int.
+INFO  2018-12-20 22:23:06,661 79915ms AdminController        Edit               - Boris updated a user with Id=8
+INFO  2018-12-20 22:25:59,917 253171ms AdminController        Edit               - Boris updated a user with Id=8
+INFO  2018-12-20 22:26:38,484 291738ms AdminController        Edit               - Boris updated a user with Id=8
+ERROR 2018-12-20 22:29:37,550 470804ms DbContext              UpdateUser         - Violation of PRIMARY KEY constraint 'PK_UserRoles'. Cannot insert duplicate key in object 'dbo.UserRoles'. The duplicate key value is (1, 8).
+The statement has been terminated.
+INFO  2018-12-20 22:29:37,551 470805ms AdminController        Edit               - Boris updated a user with Id=0
+INFO  2018-12-20 22:29:45,317 478571ms AdminController        Edit               - Boris updated a user with Id=8

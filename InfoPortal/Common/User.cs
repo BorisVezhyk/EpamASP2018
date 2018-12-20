@@ -1,4 +1,6 @@
-﻿namespace Common
+﻿using System.Collections.Generic;
+
+namespace Common
 {
 	using System.ComponentModel.DataAnnotations;
 
@@ -19,5 +21,11 @@
 		[StringLength(20, MinimumLength = 6, ErrorMessage = "Minimum length of password is 6 chars")]
 		public string Password { get; set; }
 
+		public ICollection<Role> Roles { get; set; }
+
+		public User()
+		{
+			Roles=new List<Role>();
+		}
 	}
 }

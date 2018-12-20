@@ -1,0 +1,88 @@
+﻿@model Common.User
+
+@{
+    ViewBag.Title = "Edit";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Edit</h2>
+
+
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+    
+    
+        <h4>User</h4>
+        <hr />
+        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+        @Html.HiddenFor(model => model.UserId)
+
+        <div class="form-row">
+            @Html.LabelFor(model => model.Name, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="form-group col-md-10">
+                @Html.EditorFor(model => model.Name, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.Name, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-row">
+            @Html.LabelFor(model => model.Email, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="form-group col-md-10">
+                @Html.EditorFor(model => model.Email, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.Email, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-row">
+            @Html.LabelFor(model => model.Password, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="form-group col-md-10">
+                @Html.EditorFor(model => model.Password, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.Password, "", new { @class = "text-danger" })
+            </div>
+        </div>
+	    <div class="form-group">
+			<div class="form-check">
+				@if (Model.Roles.Select(r => r.Name).Contains("Editor"))
+				{
+					<input class="form-check-input" name="Editor" type="checkbox" id="inlineCheckboxEditor" value="Editor" checked />
+
+				}
+				else
+				{
+					<input class="form-check-input" name="Editor" type="checkbox" id="inlineCheckboxEditor" value="Editor" />
+
+				}
+				<label class="form-check-label" for="inlineCheckboxEditor"> Editor </label>
+			</div>
+	    </div>
+	    <div class="form-group">
+		    <div class="form-group form-check">
+				@if (Model.Roles.Select(r => r.Name).Contains("Admin"))
+				{
+					<input class="form-check-input" name="Admin" type="checkbox" id="inlineCheckboxAdmin" value="Admin" checked/>
+
+				}
+				else
+				{
+					<input class="form-check-input" name="Admin" type="checkbox" id="inlineCheckboxAdmin" value="Admin"/>
+
+				}
+			    <label class="form-check-label" for="inlineCheckboxAdmin">Admin</label>
+		    </div>
+	    </div>
+        <div class="form-group">
+            <div class="col-md-offset-2 col-md-10">
+                <input type="submit" value="Save" class="btn btn-default" />
+            </div>
+        </div>
+    
+}
+
+<div>
+    @Html.ActionLink("Back to List", "Index")
+</div>
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}

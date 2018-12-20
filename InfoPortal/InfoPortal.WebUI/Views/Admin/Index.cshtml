@@ -1,0 +1,64 @@
+﻿@model IEnumerable<Common.User>
+
+@{
+	ViewBag.Title = "Index";
+	Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>List of Users</h2>
+
+<p>
+	@Html.ActionLink("Create New", "Create")
+</p>
+<table class="table table-striped">
+	<thead class="thead-dark">
+	<tr>
+		<th scope="col">
+			@Html.DisplayNameFor(model => model.Name)
+		</th>
+		<th scope="col">
+			@Html.DisplayNameFor(model => model.Email)
+		</th>
+		<th scope="col">
+			@Html.DisplayNameFor(model => model.Password)
+		</th>
+		<th scope="col">
+			@Html.DisplayNameFor(model => model.Roles)
+		</th>
+		<th scope="col"></th>
+	</tr>
+	</thead>
+	<tbody>
+		@foreach (var item in Model)
+		{
+			<tr scope="row">
+				<td>
+					@Html.DisplayFor(modelItem => item.Name)
+				</td>
+				<td>
+					@Html.DisplayFor(modelItem => item.Email)
+				</td>
+				<td>
+					@Html.DisplayFor(modelItem => item.Password)
+				</td>
+				<td>
+					@{ int counter = 0;}
+					@foreach (var role in item.Roles)
+					{
+						counter++;
+						@Html.DisplayFor(modelRole => role.Name)
+						if (counter != item.Roles.Count)
+						{
+							<text>|</text>
+						}
+					}
+				</td>
+				<td>
+					@Html.ActionLink("Edit", "Edit", new { id = item.UserId }) |
+					@Html.ActionLink("Details", "Details", new { id = item.UserId }) |
+					@Html.ActionLink("Delete", "Delete", new { id = item.UserId })
+				</td>
+			</tr>
+		}
+	</tbody>
+</table>
