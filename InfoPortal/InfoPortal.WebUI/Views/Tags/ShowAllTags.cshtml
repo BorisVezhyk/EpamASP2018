@@ -1,0 +1,40 @@
+﻿@model IEnumerable<string>
+@{
+	ViewBag.Title = "ShowAllTags";
+	Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+@section NavTab
+{
+	<div class="container">
+		<div class="justify-content-center">
+
+			@{ Html.RenderAction("Menu", "Nav"); }
+		</div>
+	</div>
+}
+
+
+<div class="py-2">
+
+	<h2>List All Tags</h2>
+	<p class="lead">
+		@foreach (var tag in Model)
+		{
+			<a class="badge badge-secondary" href="@Url.Action("ResultSearch", "Main", new { searchQuery = tag, selectSearch = 2 })">@tag</a>
+		}
+	</p>
+</div>
+
+@section RightSection
+{
+	<div class="col-md-12 col-lg-4">
+		<div class="row p-3">
+			@{ Html.RenderAction("SearchMenu", "Search"); }
+		</div>
+	</div>
+
+}
+
+
+

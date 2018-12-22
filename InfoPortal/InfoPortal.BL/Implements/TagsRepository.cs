@@ -14,6 +14,11 @@
 			this.context = context;
 		}
 
+		public List<string> GetPopularTags(int maxTags)
+		{
+			return this.context.GetPopularTags(maxTags);
+		}
+
 		public List<Tag> GetTagsFromStrings(string[] tags)
 		{
 			List<Tag> result = new List<Tag>();
@@ -26,6 +31,11 @@
 			}
 
 			return result;
+		}
+
+		public List<string> GetAllTags()
+		{
+			return this.context.GetAllTags();
 		}
 	}
 }

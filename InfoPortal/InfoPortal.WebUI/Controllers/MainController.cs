@@ -1,9 +1,9 @@
-﻿using System.Web.Mvc;
-using InfoPortal.BL.Interfaces;
-using InfoPortal.WebUI.Models;
-
-namespace InfoPortal.WebUI.Controllers
+﻿namespace InfoPortal.WebUI.Controllers
 {
+	using BL.Interfaces;
+	using Models;
+	using System.Web.Mvc;
+
 	public class MainController : Controller
 	{
 		readonly log4net.ILog logger =

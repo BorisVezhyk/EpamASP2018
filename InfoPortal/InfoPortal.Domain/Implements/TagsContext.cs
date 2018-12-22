@@ -1,84 +1,55 @@
 ﻿namespace InfoPortal.DAL.Implements
 {
 	using System.Collections.Generic;
-	using System.Configuration;
 	using System.Data.SqlClient;
-	using Common;
 	using Interfaces;
 
 	public class TagsContext : DbContext, ITagsContext
 	{
-		
-
-		public List<Tag> Tags { get; set; }
-
-		public TagsContext()
+		public List<string> GetPopularTags(int maxTags)
 		{
-			
+			List<string> result = new List<string>();
+			using (this.SqlConnection = new SqlConnection(this.ConnectionString))
+			{
+				string sqlCommand = "exec sp_get_popular_tags @maxTags";
+
+				SqlCommand cmd = new SqlCommand(sqlCommand, this.SqlConnection);
+				cmd.Parameters.AddWithValue("@maxTags", maxTags);
+
+				this.SqlConnection.Open();
+
+				using (SqlDataReader reader = cmd.ExecuteReader())
+				{
+					while (reader.Read())
+					{
+						result.Add((string) reader["TagName"]);
+					}
+				}
+			}
+
+			return result;
 		}
 
-		//private List<Tag> GetAllTags()
-		//{
-		//	List<Tag> tags = new List<Tag>();
+		public List<string> GetAllTags()
+		{
+			List<string> result = new List<string>();
 
-		//	using (this.sqlConnection)
-		//	{
-		//		string sqlCommand = "Select ByTags.TagID,TagName,ArticleID FROM ByTags " +
-		//		                    "FULL OUTER JOIN ArticlesOfTag " +
-		//		                    "ON ByTags.TagID=ArticlesOfTag.TagID";
+			string sqlCommand = "exec sp_get_all_tags";
 
-		//		SqlCommand cmd = new SqlCommand(sqlCommand, this.sqlConnection);
+			using (this.SqlConnection = new SqlConnection(this.ConnectionString))
+			{
+				SqlCommand cmd = new SqlCommand(sqlCommand, this.SqlConnection);
+				this.SqlConnection.Open();
+				using (SqlDataReader reader = cmd.ExecuteReader())
+				{
+					while (reader.Read())
+					{
+						result.Add((string) reader["TagName"]);
+					}
+				}
+			}
 
-		//		this.sqlConnection.Open();
-
-		//		using (SqlDataReader reader = cmd.ExecuteReader())
-		//		{
-		//			while (reader.Read())
-		//			{
-		//				Tag oldTag = tags.Find(t => t.TagId == (int) reader["TagID"]);
-		//				if (oldTag == null)
-		//				{
-		//					tags.Add(
-		//						new Tag
-		//						{
-		//							TagId = (int) reader["TagID"],
-		//							TagName = (string) reader["TagName"],
-		//						});
-		//				}
-		//				else
-		//				{
-		//					oldTag.Articles.Add(
-		//						new Article
-		//						{
-		//							ArticleId = (int) reader["ArticleID"]
-		//						});
-		//				}
-		//			}
-		//		}
-
-		//		return tags;
-		//	}
-		//}
-
-		//public void InsertNewTag(Tag tag)
-		//{
-		//	string sqlCommand = "INSERT INTO TAGS(TagName) " +
-		//	                    "VALUES(@TagName)";
-		//	using (this.sqlConnection)
-		//	{
-		//		SqlCommand cmd = new SqlCommand(sqlCommand, this.sqlConnection);
-		//		cmd.Parameters.AddWithValue("@TagName", tag.TagName);
-
-		//		try
-		//		{
-		//			this.sqlConnection.Open();
-		//			cmd.ExecuteNonQuery();
-		//		}
-		//		catch (System.Exception e)
-		//		{
-		//			this.logger.Error(e.Message);
-		//		}
-		//	}
-		//}
+			return result;
+		}
 	}
 }

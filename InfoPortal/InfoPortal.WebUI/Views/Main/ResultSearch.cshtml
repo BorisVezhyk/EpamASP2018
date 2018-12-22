@@ -7,19 +7,29 @@
 	const int maxCardInRow = 2;
 }
 
+@section NavTab
+{
+	<div class="container">
+		<div class="justify-content-center">
+
+			@{ Html.RenderAction("Menu", "Nav"); }
+		</div>
+	</div>
+}
+
 <h2 class="py-3">
 	Result Search by
 	@switch (Model.SelectSearch)
 	{
-		case (int) SearchType.ByNamesOrArticles:
+		case (int)SearchType.ByNamesOrArticles:
 			<text>caption </text>
 			@Model.SearchQuery
 			break;
-		case (int) SearchType.ByTags:
+		case (int)SearchType.ByTags:
 			<text>tags </text>
 			@Model.SearchQuery
 			break;
-		case (int) SearchType.ByDate:
+		case (int)SearchType.ByDate:
 			<text>date </text>
 			@Model.SearchQuery
 			break;
@@ -35,7 +45,7 @@
 			{
 				<div class="card">
 					<a href="@Url.RouteUrl(new {controller = "Article", action = "Article", id = art.ArticleId})">
-						<img class="card-img-top" src="@art.Image" alt="Card image cap"/>
+						<img class="card-img-top" src="@art.Image" alt="Card image cap" />
 						<div class="card-body text-dark" style="display: inline-block">
 							<h5 class="card-title">@art.Caption</h5>
 							<p class="card-text">@art.Text.Substring(0, 150)... </p>
@@ -48,6 +58,20 @@
 			}
 		</div>
 	</div>
+}
+
+@section RightSection
+{
+	<div class="col-md-12 col-lg-4">
+		<div class="row p-3">
+			@{ Html.RenderAction("SearchMenu", "Search"); }
+		</div>
+		<div class="row p-3">
+			@{Html.RenderAction("PopularTags", "Tags");}
+
+		</div>
+	</div>
+
 }
 
 <div class="text-center row btn-group" role="group" aria-label="Basic exapmle">

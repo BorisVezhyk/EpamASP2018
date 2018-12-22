@@ -5,6 +5,15 @@
 	ViewBag.Title = "Home";
 }
 
+@section NavTab
+{
+	<div class="container">
+		<div class="justify-content-center">
+
+			@{ Html.RenderAction("Menu", "Nav"); }
+		</div>
+	</div>
+}
 
 
 @for (int i = 0; i < Model.Articles.Count(); i += maxCardInRow)
@@ -16,7 +25,7 @@
 			{
 				<div class="card">
 					<a href="@Url.RouteUrl(new { controller = "Article", action = "Article", id = art.ArticleId })">
-						<img class="card-img-top" src="@art.Image" alt="Card image cap" lowsrc="../../Images/news_little.jpg"/>
+						<img class="card-img-top" src="@art.Image" alt="Card image cap" lowsrc="../../Images/news_little.jpg" />
 						<div class="card-body text-dark" style="display: inline-block">
 							<h5 class="card-title">@art.Caption</h5>
 							<p class="card-text">
@@ -39,6 +48,22 @@
 			}
 		</div>
 	</div>
+}
+
+@section RightSection
+{
+	<div class="col-md-12 col-lg-4">
+		<div class="row p-3">
+			@{ Html.RenderAction("SearchMenu", "Search"); }
+		</div>
+		<div class="row p-3">
+			@{Html.RenderAction("PopularTags", "Tags");}
+		</div>
+		<div class="row p-3">
+
+		</div>
+	</div>
+	
 }
 
 <div class="text-center row btn-group" role="group" aria-label="Basic exapmle">

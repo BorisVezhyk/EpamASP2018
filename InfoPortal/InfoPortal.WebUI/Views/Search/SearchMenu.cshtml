@@ -5,7 +5,6 @@
 		Search
 	</h5>
 	<div class="card-body">
-
 		@using (Html.BeginForm("ResultSearch", "Search", new { @class = "filterbox" }))
 		{
 			<div class="form-group" id="search-option">
@@ -15,7 +14,6 @@
 			<div class="form-group">
 				<div class="input-group" id="form-input">
 					<input type="text" class="form-control disabled" name="SearchQuery" id="search-input" placeholder="Search for..." disabled required/>
-
 					<button class="btn btn-secondary" type="submit" id="btn-search" disabled>Go!</button>
 				</div>
 			</div>

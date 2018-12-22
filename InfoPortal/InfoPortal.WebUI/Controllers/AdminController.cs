@@ -1,11 +1,12 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Web.Mvc;
-using Common;
-using InfoPortal.BL.Interfaces;
-
-namespace InfoPortal.WebUI.Controllers
+﻿namespace InfoPortal.WebUI.Controllers
 {
+	using BL.Interfaces;
+	using Common;
+	using System;
+	using System.Collections.Generic;
+	using System.Web.Mvc;
+
+	[Authorize(Roles = "Admin")]
 	public class AdminController : Controller
 	{
 		private readonly IUserRepository users;
@@ -24,20 +25,20 @@ namespace InfoPortal.WebUI.Controllers
 			List<User> model = this.users.GetUsersForAdmin(page);
 
 			//add pageinfo 
-			return View(model);
+			return this.View(model);
 		}
 
 		// GET: Admin/Details/5
 		public ActionResult Details(int id)
 		{
 			User model = this.users.GetUserById(id);
-			return View(model);
+			return this.View(model);
 		}
 
 		// GET: Admin/Create
 		public ActionResult Create()
 		{
-			return View();
+			return this.View();
 		}
 
 		// POST: Admin/Create
@@ -68,11 +69,11 @@ namespace InfoPortal.WebUI.Controllers
 					this.logger.Info(User.Identity.Name + " created a new user. The new user has name " + newUser.Name);
 				}
 
-				return RedirectToAction("Index");
+				return this.RedirectToAction("Index");
 			}
 			catch
 			{
-				return View();
+				return this.View();
 			}
 		}
 
@@ -81,7 +82,7 @@ namespace InfoPortal.WebUI.Controllers
 		{
 			User model = this.users.GetUserById(id);
 
-			return View(model);
+			return this.View(model);
 		}
 
 		// POST: Admin/Edit/5
@@ -110,17 +111,16 @@ namespace InfoPortal.WebUI.Controllers
 					}
 
 					this.users.UpdateUser(updateUser);
-					this.logger.Info(User.Identity.Name+ " updated a user with Id="+id);
-					return RedirectToAction("Index");
+					this.logger.Info(User.Identity.Name + " updated a user with Id=" + id);
+					return this.RedirectToAction("Index");
 				}
 
 				return this.View();
-
 			}
 			catch (Exception ex)
 			{
 				this.logger.Error(ex.Message);
-				return View();
+				return this.View();
 			}
 		}
 
@@ -128,7 +128,7 @@ namespace InfoPortal.WebUI.Controllers
 		public ActionResult Delete(int id)
 		{
 			User model = this.users.GetUserById(id);
-			return View(model);
+			return this.View(model);
 		}
 
 		// POST: Admin/Delete/5
@@ -139,11 +139,11 @@ namespace InfoPortal.WebUI.Controllers
 			{
 				this.users.DeleteUserById(id);
 				this.logger.Info(User.Identity.Name + " deleted a user.The user had id=" + id);
-				return RedirectToAction("Index");
+				return this.RedirectToAction("Index");
 			}
 			catch
 			{
-				return View();
+				return this.View();
 			}
 		}
 	}
