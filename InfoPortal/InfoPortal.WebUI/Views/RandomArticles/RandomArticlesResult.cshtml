@@ -1,0 +1,16 @@
+﻿@model  IEnumerable<Common.Article>  
+
+<div class="card flex-fill">
+	<h5 class="card-header">You can also read</h5>
+	<div class="card-body">
+		@foreach (var art in Model)
+		{
+			<a href="@Url.Action("Article","Article",new{id=art.ArticleId})" >
+				<img class="card-img" src="@art.Image" alt=""/>
+				<div class="text-dark" style="display: inline-block">
+					@art.Caption
+				</div>
+			</a>
+		}
+	</div>
+</div>

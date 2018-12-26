@@ -15,59 +15,61 @@
 	</div>
 }
 
+<div class="col-md-12 col-lg-8">
+		@for (int i = 0; i < Model.Articles.Count(); i += maxCardInRow)
+		{
+			<div class="row py-3">
+				<div class="card-deck">
 
-@for (int i = 0; i < Model.Articles.Count(); i += maxCardInRow)
-{
-	<div class="row py-3">
-		<div class="card-deck">
-
-			@foreach (var art in Model.Articles.Skip(i).Take(maxCardInRow))
-			{
-				<div class="card">
-					<a href="@Url.RouteUrl(new { controller = "Article", action = "Article", id = art.ArticleId })">
-						<img class="card-img-top" src="@art.Image" alt="Card image cap" lowsrc="../../Images/news_little.jpg" />
-						<div class="card-body text-dark" style="display: inline-block">
-							<h5 class="card-title">@art.Caption</h5>
-							<p class="card-text">
-								@if (art.Text.Length >= 150)
-								{
-									@art.Text.Substring(0, 150)
-									<text>...</text>
-								}
-								else
-								{
-									@art.Text
-								}
-							</p>
-							<p class="card-text">
-								<small class="text-muted">@art.Date.ToShortDateString()</small>
-							</p>
+					@foreach (var art in Model.Articles.Skip(i).Take(maxCardInRow))
+					{
+						<div class="card">
+							<a href="@Url.RouteUrl(new { controller = "Article", action = "Article", id = art.ArticleId })">
+								<img class="card-img-top" src="@art.Image" alt="Card image cap" lowsrc="../../Images/news_little.jpg" />
+								<div class="card-body text-dark" style="display: inline-block">
+									<h5 class="card-title">@art.Caption</h5>
+									<p class="card-text">
+										@if (art.Text.Length >= 150)
+										{
+											@art.Text.Substring(0, 150)
+											<text>...</text>
+										}
+										else
+										{
+											@art.Text
+										}
+									</p>
+									<p class="card-text">
+										<small class="text-muted">@art.Date.ToShortDateString()</small>
+									</p>
+								</div>
+							</a>
 						</div>
-					</a>
+					}
 				</div>
-			}
-		</div>
-	</div>
-}
-
-@section RightSection
-{
-	<div class="col-md-12 col-lg-4">
-		<div class="row p-3">
-			@{ Html.RenderAction("SearchMenu", "Search"); }
-		</div>
-		<div class="row p-3">
-			@{Html.RenderAction("PopularTags", "Tags");}
-		</div>
-		<div class="row p-3">
-
-		</div>
-	</div>
+			</div>
+		}
 	
-}
-
-<div class="text-center row btn-group" role="group" aria-label="Basic exapmle">
-	@Html.PageLinks(Model.PageInfo, x => Url.Action("List",
-		new { page = x, category = Model.CurrentCategory }),
-		new { @class = "btn btn-secondary" })
+			<div class="text-center row btn-group" role="group" aria-label="Basic exapmle">
+				@Html.PageLinks(Model.PageInfo, x => Url.Action("List",
+					new { page = x, category = Model.CurrentCategory }),
+					new { @class = "btn btn-secondary" })
+			</div>
 </div>
+		@section RightSection
+{
+			<div class="col-md-12 col-lg-4">
+				<div class="row p-3">
+					@{ Html.RenderAction("SearchMenu", "Search"); }
+				</div>
+				<div class="row p-3">
+					@{Html.RenderAction("PopularTags", "Tags");}
+				</div>
+				<div class="row p-3">
+
+				</div>
+			</div>
+
+		}
+
+		

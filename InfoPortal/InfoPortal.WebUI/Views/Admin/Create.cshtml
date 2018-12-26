@@ -5,65 +5,66 @@
 	Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<h2>Create</h2>
+<div class="col-md-12 col-lg-12">
 
+	<h2>Create</h2>
 
-@using (Html.BeginForm())
-{
-	@Html.AntiForgeryToken()
+	@using (Html.BeginForm())
+	{
+		@Html.AntiForgeryToken()
 
-	<h4>User</h4>
-	<hr/>
-	<div class="form-row">
-		@Html.ValidationSummary(true, "", new { @class = "text-danger" })
-		<div class="form-group col-md-10">
-			@Html.LabelFor(model => model.Name, htmlAttributes: new { })
+		<h4>User</h4>
+		<hr/>
+		<div class="form-group row">
+			@Html.ValidationSummary(true, "", new { @class = "text-danger" })
+			
+				@Html.LabelFor(model => model.Name, htmlAttributes: new {@class= "col-form-label col-md-2" })
+			<div class="col-md-10">
+				@Html.EditorFor(model => model.Name, new { htmlAttributes = new { @class = "form-control" } })
+				@Html.ValidationMessageFor(model => model.Name, "", new { @class = "text-danger" })
 
-			@Html.EditorFor(model => model.Name, new { htmlAttributes = new { @class = "form-control" } })
-			@Html.ValidationMessageFor(model => model.Name, "", new { @class = "text-danger" })
-
+			</div>
 		</div>
-	</div>
-	<div class="form-row">
-		<div class="form-group col-md-10">
-			@Html.LabelFor(model => model.Email, htmlAttributes: new { })
+		<div class="form-group row">
+				@Html.LabelFor(model => model.Email, htmlAttributes: new { @class="col-form-label col-md-2"})
+			<div class="col-md-10">
+				@Html.EditorFor(model => model.Email, new { htmlAttributes = new { @class = "form-control" } })
+				@Html.ValidationMessageFor(model => model.Email, "", new { @class = "text-danger" })
 
-			@Html.EditorFor(model => model.Email, new { htmlAttributes = new { @class = "form-control" } })
-			@Html.ValidationMessageFor(model => model.Email, "", new { @class = "text-danger" })
-
+			</div>
 		</div>
-	</div>
-	<div class="form-row">
-		<div class="form-group col-md-10">
-			@Html.LabelFor(model => model.Password, htmlAttributes: new {})
-			<div class="">
+		<div class="form-group row">
+				@Html.LabelFor(model => model.Password, htmlAttributes: new {@class="col-form-label col-md-2" })
+			<div class="col-md-10">
 				@Html.EditorFor(model => model.Password, new { htmlAttributes = new { @class = "form-control" } })
 				@Html.ValidationMessageFor(model => model.Password, "", new { @class = "text-danger" })
 			</div>
 		</div>
-	</div>
-	<div class="form-group">
-		<div class="form-check">
-			<input class="form-check-input" name="Editor" type="checkbox" id="inlineCheckboxEditor" value="Editor"/>
-			<label class="form-check-label" for="inlineCheckboxEditor"> Editor </label>
+		<div class="form-group row">
+			<div class="col-md-2">Roles</div>
+			<div class="form-check col-md-10">
+				<input class="form-check-input" name="Editor" type="checkbox" id="inlineCheckboxEditor" value="Editor"/>
+				<label class="form-check-label" for="inlineCheckboxEditor"> Editor </label>
+			</div>
 		</div>
-	</div>
-	<div class="form-group">
-		<div class="form-group form-check">
-			<input class="form-check-input" name="Admin" type="checkbox" id="inlineCheckboxAdmin" value="Admin"/>
-			<label class="form-check-label" for="inlineCheckboxAdmin">Admin</label>
+		<div class="form-group row">
+			<div class="col-md-2"></div>
+			<div class="form-check col-md-10">
+				<input class="form-check-input" name="Admin" type="checkbox" id="inlineCheckboxAdmin" value="Admin"/>
+				<label class="form-check-label" for="inlineCheckboxAdmin">Admin</label>
+			</div>
 		</div>
-	</div>
 
-	<div class="form-group">
-		<div class="col-md-offset-2 col-md-10">
-			<input type="submit" value="Create" class="btn btn-default"/>
+		<div class="form-group">
+			<div class="col-md-10">
+				<input type="submit" value="Create" class="btn btn-default"/>
+			</div>
 		</div>
-	</div>
-}
+	}
 
-<div>
-	@Html.ActionLink("Back to List", "Index")
+	<div>
+		@Html.ActionLink("Back to List", "Index")
+	</div>
 </div>
 
 @section Scripts {

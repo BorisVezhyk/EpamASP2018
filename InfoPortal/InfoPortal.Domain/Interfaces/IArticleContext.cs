@@ -26,5 +26,9 @@
 		int GetCountArticlesSearchResult(int selectSearch, string searchQuery);
 
 		int GetArticleIdByCaption(string caption);
+
+		List<Article> GetArticlesOfUser(string userName, int maxArticlesInPage, int page = 1);
+
+		List<Article> GetRandomArticles(int excludeId);
 	}
 }

@@ -14,27 +14,25 @@
 	</div>
 }
 
+<div class="col-md-12 col-lg-8 py-3">
+	<div class="py-2">
 
-<div class="py-2">
-
-	<h2>List All Tags</h2>
-	<p class="lead">
-		@foreach (var tag in Model)
-		{
-			<a class="badge badge-secondary" href="@Url.Action("ResultSearch", "Main", new { searchQuery = tag, selectSearch = 2 })">@tag</a>
-		}
-	</p>
+		<h2>List All Tags</h2>
+		<p class="lead">
+			@foreach (var tag in Model)
+			{
+				<a class="badge badge-secondary" href="@Url.Action("ResultSearch", "Main", new { searchQuery = tag, selectSearch = 2 })">@tag</a>
+			}
+		</p>
+	</div>
 </div>
 
 @section RightSection
 {
-	<div class="col-md-12 col-lg-4">
+	<div class="col-md-12 col-lg-4 py-3">
 		<div class="row p-3">
 			@{ Html.RenderAction("SearchMenu", "Search"); }
 		</div>
 	</div>
 
 }
-
-
-

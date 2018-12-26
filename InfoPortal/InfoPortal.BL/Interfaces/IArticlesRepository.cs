@@ -23,5 +23,8 @@
 
 		void UpdateArticle(Article article);
 
+		List<Article> GetArticlesOfUser(string userName, int maxArticlesInPage, int page = 1);
+
+		List<Article> GetRandomArticles(int excludeId);
 	}
 }

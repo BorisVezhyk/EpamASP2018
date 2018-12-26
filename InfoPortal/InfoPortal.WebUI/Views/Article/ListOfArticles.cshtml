@@ -1,0 +1,74 @@
+﻿@model IEnumerable<Common.Article>
+
+@{
+	ViewBag.Title = "ListOfArticles";
+	Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<div class="container py-3">
+	<h2>ListOfArticles</h2>
+</div>
+
+<div class="container">
+	<p>
+		@Html.ActionLink("Create New", "CreateNewArticle")
+	</p>
+	<table class="table table-striped">
+		<tr class="thead-dark">
+			<th>
+				@Html.DisplayNameFor(model => model.Caption)
+			</th>
+			<th>
+				@Html.DisplayNameFor(model => model.Date)
+			</th>
+			<th>
+				@Html.DisplayNameFor(model => model.Language)
+			</th>
+			<th>
+				@Html.DisplayNameFor(model => model.User.Name)
+			</th>
+			<th></th>
+		</tr>
+
+		@foreach (var item in Model)
+		{
+			<tr>
+				<td>
+					@Html.DisplayFor(modelItem => item.Caption)
+				</td>
+				<td>
+					<text>@item.Date.ToShortDateString()</text>
+				</td>
+				<td>
+					@Html.DisplayFor(modelItem => item.Language)
+				</td>
+				<td>
+					@Html.DisplayFor(modelItem => item.User.Name)
+				</td>
+				<td>
+					@Html.ActionLink("Edit", "UpdateArticle", new { id = item.ArticleId }) |
+					@Html.ActionLink("Details", "Article", new { id = item.ArticleId }) |
+					@Html.ActionLink("Delete", "Delete", new { articleId = item.ArticleId },new{ id = "delete-btn-link"})
+				</td>
+			</tr>
+		}
+
+	</table>
+</div>
+
+@section Scripts {
+	@Scripts.Render("~/bundles/jqueryval")
+}
+
+<script src="~/Scripts/jquery-3.3.1.min.js" type="text/javascript"></script>
+<script type="text/javascript">
+	$(function() {
+		$("#delete-btn-link").click(function() {
+			var answer = confirm("You will delete the artile. Are you sure?");
+			if (answer) {
+				return true;
+			} else {
+				return false;
+			}
+		});
+	});
+</script>

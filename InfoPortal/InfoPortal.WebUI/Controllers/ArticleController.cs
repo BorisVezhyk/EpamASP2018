@@ -13,6 +13,7 @@
 		private readonly IArticlesRepository articlesRepository;
 		private readonly ICategoryRepository categoryRepository;
 		private readonly ITagsRepository tagsRepository;
+		private const int MaxManageArticlesOfUser = 20;
 
 		public ArticleController(
 			IArticlesRepository articlesArticlesRepository,
@@ -122,10 +123,14 @@
 			return RedirectToAction("List", "Main");
 		}
 
-
-		public ActionResult ListOfArticles()
+		[Authorize(Roles = "Editor,Admin")]
+		public ActionResult ListOfArticles(string userName = null,int page=1)
 		{
-			return this.View();
+			var model = this.articlesRepository.GetArticlesOfUser(
+				userName,
+				ArticleController.MaxManageArticlesOfUser,
+				page);
+			return this.View(model);
 		}
 	}
 }

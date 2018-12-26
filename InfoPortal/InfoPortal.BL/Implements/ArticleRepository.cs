@@ -74,5 +74,15 @@
 		{
 			this.context.UpdateArticle(article);
 		}
+
+		public List<Article> GetArticlesOfUser(string userName, int maxArticlesInPage, int page = 1)
+		{
+			return this.context.GetArticlesOfUser(userName, maxArticlesInPage, page);
+		}
+
+		public List<Article> GetRandomArticles(int exculdeId)
+		{
+			return this.context.GetRandomArticles(exculdeId);
+		}
 	}
 }

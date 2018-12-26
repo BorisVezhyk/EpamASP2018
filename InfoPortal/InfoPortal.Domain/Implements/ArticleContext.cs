@@ -439,5 +439,71 @@
 
 			return tags;
 		}
+
+		public List<Article> GetArticlesOfUser(string userName, int maxArticlesInPage, int page = 1)
+		{
+			List<Article> result = new List<Article>();
+			string sqlCommand = "exec sp_get_articles_of_user @username, @maxArticles, @page";
+
+			using (this.SqlConnection = new SqlConnection(this.ConnectionString))
+			{
+				SqlCommand cmd = new SqlCommand(sqlCommand, this.SqlConnection);
+				cmd.Parameters.AddWithValue("@username", userName ?? (object)DBNull.Value);
+				cmd.Parameters.AddWithValue("@maxArticles", maxArticlesInPage);
+				cmd.Parameters.AddWithValue("@page", page);
+				this.SqlConnection.Open();
+
+				using (SqlDataReader reader = cmd.ExecuteReader())
+				{
+					while (reader.Read())
+					{
+						result.Add(
+							new Article
+							{
+								ArticleId = (int) reader["ArticleId"],
+								Caption = (string) reader["Caption"],
+								Text = (string) reader["Text"],
+								Language = (string) reader["Language"],
+								Date = (DateTime) reader["Date"],
+								User = new User
+								{
+									Name = (string) reader["Name"]
+								}
+							});
+					}
+				}
+			}
+
+			return result;
+		}
+
+		public List<Article> GetRandomArticles(int excludeId)
+		{
+			List<Article> result = new List<Article>();
+
+			string sqlCommand = "exec sp_get_random_articles @excludeId";
+
+			using (this.SqlConnection=new SqlConnection(this.ConnectionString))
+			{
+				SqlCommand cmd = new SqlCommand(sqlCommand, this.SqlConnection);
+				cmd.Parameters.AddWithValue("@excludeId", excludeId);
+
+				this.SqlConnection.Open();
+
+				using (SqlDataReader reader=cmd.ExecuteReader())
+				{
+					while (reader.Read())
+					{
+						result.Add(new Article
+						{
+							ArticleId = (int)reader["ArticleID"],
+							Caption = (string)reader["Caption"],
+							Image = (string)reader["Image"]
+						});
+					}
+				}
+			}
+			return result;
+		}
 	}
 }

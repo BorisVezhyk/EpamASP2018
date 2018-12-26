@@ -200,6 +200,7 @@
     </Compile>
     <Compile Include="Controllers\MainController.cs" />
     <Compile Include="Controllers\NavController.cs" />
+    <Compile Include="Controllers\RandomArticlesController.cs" />
     <Compile Include="Controllers\SearchController.cs" />
     <Compile Include="Controllers\TagsController.cs" />
     <Compile Include="DependencyResolution\ControllerConvention.cs" />
@@ -315,6 +316,8 @@
     <Content Include="Views\Admin\Edit.cshtml" />
     <Content Include="Views\Tags\PopularTags.cshtml" />
     <Content Include="Views\Tags\ShowAllTags.cshtml" />
+    <Content Include="Views\Article\ListOfArticles.cshtml" />
+    <Content Include="Views\RandomArticles\RandomArticlesResult.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
