@@ -286,5 +286,19 @@
 
 			return result;
 		}
+
+		public int GetCountAllUsers()
+		{
+			string sqlCommand = "exec sp_get_count_all_users";
+
+			using (this.SqlConnection=new SqlConnection(this.ConnectionString))
+			{
+				using (SqlCommand cmd=new SqlCommand(sqlCommand,this.SqlConnection))
+				{
+					this.SqlConnection.Open();
+					return (int) cmd.ExecuteScalar();
+				}
+			}
+		}
 	}
 }

@@ -1,4 +1,6 @@
-﻿namespace InfoPortal.WebUI.Controllers
+﻿using InfoPortal.WebUI.Models;
+
+namespace InfoPortal.WebUI.Controllers
 {
 	using BL.Interfaces;
 	using Common;
@@ -14,6 +16,8 @@
 		private readonly log4net.ILog logger =
 			log4net.LogManager.GetLogger(System.Reflection.MethodBase.GetCurrentMethod().DeclaringType);
 
+		private const int MaxUserOnPage = 20;
+
 		public AdminController(IUserRepository users)
 		{
 			this.users = users;
@@ -23,9 +27,18 @@
 		public ActionResult Index(int page = 1)
 		{
 			List<User> model = this.users.GetUsersForAdmin(page);
-
+			var model2 = new ListOfUsers
+			{
+				Users = this.users.GetUsersForAdmin(page),
+				PageInfo = new PageInfo
+				{
+					ItemsPerPage = 20,
+					CurrentPage = page,
+					TotalItems = this.users.GetCountAllUsers()
+				}
+			};
 			//add pageinfo 
-			return this.View(model);
+			return this.View(model2);
 		}
 
 		// GET: Admin/Details/5

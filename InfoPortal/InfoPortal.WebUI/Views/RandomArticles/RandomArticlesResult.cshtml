@@ -5,10 +5,12 @@
 	<div class="card-body">
 		@foreach (var art in Model)
 		{
-			<a href="@Url.Action("Article","Article",new{id=art.ArticleId})" >
-				<img class="card-img" src="@art.Image" alt=""/>
-				<div class="text-dark" style="display: inline-block">
-					@art.Caption
+			<a class="" href="@Url.Action("Article","Article",new{id=art.ArticleId})">
+				<div class=" mx-3  my-2 border-bottom border-grey">
+					<img class="card-img" src="@art.Image" alt="" />
+					<div class="text-dark" style="display: inline-block">
+						@art.Caption
+					</div>
 				</div>
 			</a>
 		}

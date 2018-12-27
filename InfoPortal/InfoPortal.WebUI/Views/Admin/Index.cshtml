@@ -1,4 +1,4 @@
-﻿@model IEnumerable<Common.User>
+﻿@model InfoPortal.WebUI.Models.ListOfUsers
 
 @{
 	ViewBag.Title = "Index";
@@ -16,22 +16,22 @@
 		<thead class="thead-dark">
 		<tr>
 			<th scope="col">
-				@Html.DisplayNameFor(model => model.Name)
+				@Html.DisplayNameFor(model => model.Users.FirstOrDefault().Name)
 			</th>
 			<th scope="col">
-				@Html.DisplayNameFor(model => model.Email)
+				@Html.DisplayNameFor(model => model.Users.FirstOrDefault().Email)
 			</th>
 			<th scope="col">
-				@Html.DisplayNameFor(model => model.Password)
+				@Html.DisplayNameFor(model => model.Users.FirstOrDefault().Password)
 			</th>
 			<th scope="col">
-				@Html.DisplayNameFor(model => model.Roles)
+				@Html.DisplayNameFor(model => model.Users.FirstOrDefault().Roles)
 			</th>
 			<th scope="col"></th>
 		</tr>
 		</thead>
 		<tbody>
-		@foreach (var item in Model)
+		@foreach (var item in Model.Users)
 		{
 			<tr scope="row">
 				<td>
@@ -64,4 +64,9 @@
 		}
 		</tbody>
 	</table>
+	
+	<div class="row">
+		@Html.PageLinksBootstrap(Model.PageInfo, x=>Url.Action("Index",
+			new { page=x}))
+	</div>
 </div>

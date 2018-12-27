@@ -53,5 +53,10 @@
 		{
 			this.userContext.UpdateUser(user);
 		}
+
+		public int GetCountAllUsers()
+		{
+			return this.userContext.GetCountAllUsers();
+		}
 	}
 }

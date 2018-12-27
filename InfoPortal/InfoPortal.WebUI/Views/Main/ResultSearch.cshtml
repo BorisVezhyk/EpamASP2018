@@ -60,13 +60,13 @@
 			</div>
 		</div>
 	}
-	<div class="text-center row btn-group" role="group" aria-label="Basic exapmle">
-		@Html.PageLinks(Model.PageInfo, x => Url.Action("ResultSearch",
-			new { page = x, searchQuery = Model.SearchQuery, selectSearch = Model.SelectSearch }),
-			new { @class = "btn btn-secondary" })
+	<div class="row">
+		@Html.PageLinksBootstrap(Model.PageInfo, x=>Url.Action("List",
+			new { page=x}))
 	</div>
-
 </div>
+
+
 
 @section RightSection
 {

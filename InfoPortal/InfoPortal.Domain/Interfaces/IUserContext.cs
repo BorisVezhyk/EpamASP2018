@@ -20,5 +20,7 @@
 		void DeleteUserById(int userId);
 
 		void UpdateUser(User user);
+
+		int GetCountAllUsers();
 	}
 }
