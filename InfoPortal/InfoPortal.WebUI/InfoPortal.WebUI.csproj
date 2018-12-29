@@ -214,6 +214,7 @@
     <Compile Include="HtmlHelpers\PageHelpers.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\ArticlesListViewModel.cs" />
+    <Compile Include="Models\ArticlesOfUser.cs" />
     <Compile Include="Models\CreateNewArticle.cs" />
     <Compile Include="Models\ListOfUsers.cs" />
     <Compile Include="Models\LoginViewModel.cs" />
@@ -319,6 +320,7 @@
     <Content Include="Views\Tags\ShowAllTags.cshtml" />
     <Content Include="Views\Article\ListOfArticles.cshtml" />
     <Content Include="Views\RandomArticles\RandomArticlesResult.cshtml" />
+    <Content Include="Views\Main\ListArticlesOfUser.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

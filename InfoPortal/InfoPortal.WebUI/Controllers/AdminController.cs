@@ -26,19 +26,18 @@ namespace InfoPortal.WebUI.Controllers
 		// GET: Admin
 		public ActionResult Index(int page = 1)
 		{
-			List<User> model = this.users.GetUsersForAdmin(page);
-			var model2 = new ListOfUsers
+			ListOfUsers model = new ListOfUsers
 			{
 				Users = this.users.GetUsersForAdmin(page),
 				PageInfo = new PageInfo
 				{
-					ItemsPerPage = 20,
+					ItemsPerPage = AdminController.MaxUserOnPage,
 					CurrentPage = page,
 					TotalItems = this.users.GetCountAllUsers()
 				}
 			};
-			//add pageinfo 
-			return this.View(model2);
+			
+			return this.View(model);
 		}
 
 		// GET: Admin/Details/5

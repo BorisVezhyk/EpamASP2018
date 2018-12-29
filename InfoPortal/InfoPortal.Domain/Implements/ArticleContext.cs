@@ -465,6 +465,7 @@
 								Text = (string) reader["Text"],
 								Language = (string) reader["Language"],
 								Date = (DateTime) reader["Date"],
+								Image = (string)reader["Image"],
 								User = new User
 								{
 									Name = (string) reader["Name"]
@@ -504,6 +505,20 @@
 				}
 			}
 			return result;
+		}
+
+		public int GetCountArticlesOfUser(string userName)
+		{
+			string sqlCommand = "exec sp_get_count_articles_of_user @userName";
+			using (this.SqlConnection=new SqlConnection(this.ConnectionString))
+			{
+				using (SqlCommand cmd=new SqlCommand(sqlCommand,this.SqlConnection))
+				{
+					cmd.Parameters.AddWithValue("@userName", userName??(object) DBNull.Value);
+					this.SqlConnection.Open();
+					return (int) cmd.ExecuteScalar();
+				}
+			}
 		}
 	}
 }

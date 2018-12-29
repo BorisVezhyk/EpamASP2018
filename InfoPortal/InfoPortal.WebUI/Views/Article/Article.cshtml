@@ -18,7 +18,7 @@
 	<div>
 		<h1 class="mt-4"> @Model.Caption</h1>
 		<p class="lead">
-			Author by <a href="#">@Model.User.Name </a>
+			Author by <a href="@Url.Action("ListArticlesOfUser","Main",new{userName=@Model.User.Name})">@Model.User.Name </a>
 		</p>
 		<hr/>
 		<p>Posted on @Model.Date.ToShortDateString() </p>

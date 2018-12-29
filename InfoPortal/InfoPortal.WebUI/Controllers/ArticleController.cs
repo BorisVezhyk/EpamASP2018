@@ -126,11 +126,21 @@
 		[Authorize(Roles = "Editor,Admin")]
 		public ActionResult ListOfArticles(string userName = null,int page=1)
 		{
-			var model = this.articlesRepository.GetArticlesOfUser(
-				userName,
-				ArticleController.MaxManageArticlesOfUser,
-				page);
-			return this.View(model);
+			var model2 = new ArticlesOfUser
+			{
+				Articles = this.articlesRepository.GetArticlesOfUser(
+					userName,
+					ArticleController.MaxManageArticlesOfUser,
+					page),
+				PageInfo = new PageInfo
+				{
+					ItemsPerPage = ArticleController.MaxManageArticlesOfUser,
+					CurrentPage = page,
+					TotalItems = this.articlesRepository.GetCountArticlesOfUser(userName)
+				},
+				CurrentUserName = userName
+			};
+			return this.View(model2);
 		}
 	}
 }

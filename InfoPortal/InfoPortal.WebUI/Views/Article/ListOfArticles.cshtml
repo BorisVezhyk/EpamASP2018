@@ -1,5 +1,4 @@
-﻿@model IEnumerable<Common.Article>
-
+﻿@model InfoPortal.WebUI.Models.ArticlesOfUser
 @{
 	ViewBag.Title = "ListOfArticles";
 	Layout = "~/Views/Shared/_Layout.cshtml";
@@ -15,21 +14,21 @@
 	<table class="table table-striped">
 		<tr class="thead-dark">
 			<th>
-				@Html.DisplayNameFor(model => model.Caption)
+				@Html.DisplayNameFor(model => model.Articles.FirstOrDefault().Caption)
 			</th>
 			<th>
-				@Html.DisplayNameFor(model => model.Date)
+				@Html.DisplayNameFor(model => model.Articles.FirstOrDefault().Date)
 			</th>
 			<th>
-				@Html.DisplayNameFor(model => model.Language)
+				@Html.DisplayNameFor(model => model.Articles.FirstOrDefault().Language)
 			</th>
 			<th>
-				@Html.DisplayNameFor(model => model.User.Name)
+				@Html.DisplayNameFor(model => model.Articles.FirstOrDefault().User.Name)
 			</th>
 			<th></th>
 		</tr>
 
-		@foreach (var item in Model)
+		@foreach (var item in Model.Articles)
 		{
 			<tr>
 				<td>
@@ -53,7 +52,14 @@
 		}
 
 	</table>
+	
 </div>
+<div class="row">
+	@Html.PageLinksBootstrap(Model.PageInfo, x => Url.Action("ListOfArticles", 
+		new {userName=Model.CurrentUserName, page = x }))
+</div>
+
+
 
 @section Scripts {
 	@Scripts.Render("~/bundles/jqueryval")

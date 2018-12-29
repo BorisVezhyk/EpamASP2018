@@ -36,6 +36,23 @@
 			return View(model);
 		}
 
+		public ActionResult ListArticlesOfUser(string userName, int page = 1)
+		{
+			ArticlesOfUser model = new ArticlesOfUser
+			{
+				Articles = this.articles.GetArticlesOfUser(userName, MainController.PageSize, page),
+				PageInfo = new PageInfo
+				{
+					TotalItems = this.articles.GetCountArticlesOfUser(userName),
+					ItemsPerPage = MainController.PageSize,
+					CurrentPage = page
+				},
+				CurrentUserName = userName
+			};
+
+			return this.View(model);
+		}
+
 		public ActionResult ResultSearch(string searchQuery, int selectSearch, int page = 1)
 		{
 			ResultSearchArticlesViewModel model = new ResultSearchArticlesViewModel

@@ -29,7 +29,7 @@
 				@if (User.IsInRole("Editor") || User.IsInRole("Admin"))
 				{
 					<li class="nav-item">@Html.ActionLink("Create a new article", "CreateNewArticle", "Article", null, new {@class = "nav-link"})</li>
-					<li class="nav-item">@Html.ActionLink("List of your articles", "ListOfArticles","Article",null,new{@class="nav-link", userName =User.Identity.Name})</li>
+					<li class="nav-item">@Html.ActionLink("List of your articles", "ListOfArticles","Article",new{userName=User.Identity.Name,page=1},new{@class="nav-link", userName =User.Identity.Name})</li>
 				}
 			</ul>
 			<ul class="navbar-nav ml-auto">
@@ -44,9 +44,7 @@
 <div class="container">
 	<div class="row">
 		@RenderBody()
-		@*<div class="col-md-12 col-lg-8">
-
-		</div>*@
+		
 		@RenderSection("RightSection", false)
 	</div>
 </div>

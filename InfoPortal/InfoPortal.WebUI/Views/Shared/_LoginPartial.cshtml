@@ -10,6 +10,7 @@
 <ul class="navbar-nav">
 	@if (User.IsInRole("Admin"))
 	{
+		<li class="nav-item">@Html.ActionLink("Manage articles", "ListOfArticles","Article",null,new{@class="nav-link text-danger font-weight-bold"})</li>
 		<li class="nav-item"> @Html.ActionLink("Manage users", "Index", "Admin", null, new { @class = "nav-link text-danger font-weight-bold"})</li>
 	}
 	<li class="nav-item">

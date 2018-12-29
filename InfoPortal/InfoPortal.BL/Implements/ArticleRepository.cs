@@ -84,5 +84,10 @@
 		{
 			return this.context.GetRandomArticles(exculdeId);
 		}
+
+		public int GetCountArticlesOfUser(string userName)
+		{
+			return this.context.GetCountArticlesOfUser(userName);
+		}
 	}
 }
