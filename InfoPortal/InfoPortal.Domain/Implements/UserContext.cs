@@ -300,5 +300,34 @@
 				}
 			}
 		}
+
+		public User GetUserByName(string userName)
+		{
+			User result = null;
+			string sqlCommand = "exec sp_get_user_by_name @userName";
+			using (this.SqlConnection=new SqlConnection(this.ConnectionString))
+			{
+				SqlCommand cmd=new SqlCommand(sqlCommand,this.SqlConnection);
+				cmd.Parameters.AddWithValue("@userName", userName);
+				this.SqlConnection.Open();
+
+				using (SqlDataReader reader=cmd.ExecuteReader())
+				{
+					while (reader.Read())
+					{
+						result = new User
+						{
+							Name = (string) reader["Name"],
+							Email = (string) reader["E-mail"],
+							Password = (string) reader["Password"],
+							UserId = (int) reader["UserId"]
+						};
+					}
+				}
+
+			}
+
+			return result;
+		}
 	}
 }

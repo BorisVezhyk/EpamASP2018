@@ -22,5 +22,7 @@
 		void UpdateUser(User user);
 
 		int GetCountAllUsers();
+
+		User GetUserByName(string userName);
 	}
 }

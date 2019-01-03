@@ -109,6 +109,12 @@
 			return View(newUser);
 		}
 
+		public ActionResult UserProfile(string userName)
+		{
+			User model = this.userRepository.GetUserByName(userName);
+			return this.View(model);
+		}
+
 		public ActionResult LogOff()
 		{
 			FormsAuthentication.SignOut();

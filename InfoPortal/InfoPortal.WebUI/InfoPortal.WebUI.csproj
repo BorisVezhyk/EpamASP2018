@@ -321,6 +321,7 @@
     <Content Include="Views\Article\ListOfArticles.cshtml" />
     <Content Include="Views\RandomArticles\RandomArticlesResult.cshtml" />
     <Content Include="Views\Main\ListArticlesOfUser.cshtml" />
+    <Content Include="Views\Account\UserProfile.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

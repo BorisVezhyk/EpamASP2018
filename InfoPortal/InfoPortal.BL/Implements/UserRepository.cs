@@ -58,5 +58,10 @@
 		{
 			return this.userContext.GetCountAllUsers();
 		}
+
+		public User GetUserByName(string userName)
+		{
+			return this.userContext.GetUserByName(userName);
+		}
 	}
 }
