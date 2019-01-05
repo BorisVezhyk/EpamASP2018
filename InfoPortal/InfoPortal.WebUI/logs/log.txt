@@ -37,3 +37,10 @@ ERROR 2018-12-20 22:29:37,550 470804ms DbContext              UpdateUser        
 The statement has been terminated.
 INFO  2018-12-20 22:29:37,551 470805ms AdminController        Edit               - Boris updated a user with Id=0
 INFO  2018-12-20 22:29:45,317 478571ms AdminController        Edit               - Boris updated a user with Id=8
+ERROR 2019-01-04 01:46:35,516 2473883ms DbContext              GetSearchByDate    - CategoryName
+ERROR 2019-01-04 01:47:40,768 2539134ms DbContext              GetSearchByDate    - CategoryName
+ERROR 2019-01-04 01:56:55,015 370501ms DbContext              GetSearchByDate    - CategoryName
+ERROR 2019-01-04 01:57:28,304 403790ms DbContext              GetSearchByDate    - CategoryName
+ERROR 2019-01-04 02:02:27,444 47921ms DbContext              GetSearchByDate    - CategoryName
+ERROR 2019-01-04 02:37:00,467 67734ms DbContext              GetSearchByTagName - Error converting data type nvarchar to int.
+ERROR 2019-01-04 03:24:53,159 22462ms DbContext              GetRandomArticles  - Object reference not set to an instance of an object.System.Collections.Generic.List`1[Common.Article] GetRandomArticles(Int32)

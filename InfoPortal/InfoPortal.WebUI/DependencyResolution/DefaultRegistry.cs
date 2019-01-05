@@ -15,16 +15,12 @@
 // </copyright>
 // --------------------------------------------------------------------------------------------------------------------
 
+namespace InfoPortal.WebUI.DependencyResolution
+{
+	using StructureMap.Configuration.DSL;
+	using StructureMap.Graph;
 
-using System.Reflection;
-using InfoPortal.BL.Interfaces;
-using InfoPortal.BL.Implements;
-
-namespace InfoPortal.WebUI.DependencyResolution {
-    using StructureMap.Configuration.DSL;
-    using StructureMap.Graph;
-	
-    public class DefaultRegistry : Registry {
+	public class DefaultRegistry : Registry {
         #region Constructors and Destructors
 
         public DefaultRegistry() {
@@ -36,9 +32,6 @@ namespace InfoPortal.WebUI.DependencyResolution {
 					scan.Assembly(typeof(InfoPortal.DI.GlobalRegistry).Assembly);
 	                scan.LookForRegistries();
                 });
-	        For<IArticlesRepository>().Use<ArticleRepository>();
-			For<ITagsRepository>().Use<TagsRepository>();
-			
         }
 
         #endregion

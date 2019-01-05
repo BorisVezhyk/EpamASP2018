@@ -1,35 +1,31 @@
 ﻿namespace InfoPortal.DAL.Implements
 {
+	using System.Data;
 	using System.Collections.Generic;
-	using System.Data.SqlClient;
 	using Common;
 	using Interfaces;
 
 	public class CategoryContext : DbContext, ICategoryContext
 	{
+		private Category GetCategoryFromRecord(IDataRecord record)
+		{
+			return new Category
+			{
+				CategoryId = (int) record["CategoryID"],
+				CategoryName = (string) record["CategoryName"]
+			};
+		}
+
 		public List<Category> GetAllCategories()
 		{
 			List<Category> result = new List<Category>();
+			string sqlCommand = "select * from Categories";
 
-			using (this.SqlConnection = new SqlConnection(this.ConnectionString))
+			var records = base.ExecuteQuery(sqlCommand);
+
+			foreach (var record in records)
 			{
-				string sqlCommand = "select * from Categories";
-				SqlCommand cmd = new SqlCommand(sqlCommand, this.SqlConnection);
-
-				this.SqlConnection.Open();
-
-				using (SqlDataReader reader = cmd.ExecuteReader())
-				{
-					while (reader.Read())
-					{
-						result.Add(
-							new Category
-							{
-								CategoryId = (int) reader["CategoryID"],
-								CategoryName = (string) reader["CategoryName"]
-							});
-					}
-				}
+				result.Add(this.GetCategoryFromRecord(record));
 			}
 
 			return result;

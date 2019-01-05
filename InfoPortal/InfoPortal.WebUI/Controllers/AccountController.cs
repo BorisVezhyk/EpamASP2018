@@ -84,7 +84,7 @@
 			{
 				if (userRepository.CheckUserExist(newUser.Email, newUser.Name) == 1)
 				{
-					ModelState.AddModelError("", "User with this Name or Email already exist");
+					ModelState.AddModelError("", "User with this Name or Email already exists");
 				}
 				else
 				{
@@ -99,7 +99,6 @@
 					User userLogin = userRepository.GetUserByLogin(newUser.Name, newUser.Password);
 					if (userLogin != null)
 					{
-						//ClaimsIdentity ident=
 						FormsAuthentication.SetAuthCookie(userLogin.Name, true);
 						return RedirectToAction("List", "Main");
 					}

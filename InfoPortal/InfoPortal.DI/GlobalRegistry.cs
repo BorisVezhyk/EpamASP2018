@@ -10,6 +10,8 @@
 	{
 		public GlobalRegistry()
 		{
+			For<IArticlesRepository>().Use<ArticleRepository>();
+			For<ITagsRepository>().Use<TagsRepository>();
 			For<IArticleContext>().Use<ArticleContext>();
 			For<ITagsContext>().Use<TagsContext>();
 			For<ICategoryContext>().Use<CategoryContext>();

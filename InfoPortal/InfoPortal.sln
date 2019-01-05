@@ -18,6 +18,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "InfoPortal.DI", "InfoPortal
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "InfoPortal.Service", "InfoPortal.Service\InfoPortal.Service.csproj", "{BA2BD7BB-C703-4528-925D-1673AF736E26}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "InfoPortal.Tests", "InfoPortal.Tests\InfoPortal.Tests.csproj", "{C21A8EA2-DB87-4FAB-95AF-F10C97D409CA}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -48,6 +50,10 @@ Global
 		{BA2BD7BB-C703-4528-925D-1673AF736E26}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{BA2BD7BB-C703-4528-925D-1673AF736E26}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{BA2BD7BB-C703-4528-925D-1673AF736E26}.Release|Any CPU.Build.0 = Release|Any CPU
+		{C21A8EA2-DB87-4FAB-95AF-F10C97D409CA}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{C21A8EA2-DB87-4FAB-95AF-F10C97D409CA}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{C21A8EA2-DB87-4FAB-95AF-F10C97D409CA}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{C21A8EA2-DB87-4FAB-95AF-F10C97D409CA}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

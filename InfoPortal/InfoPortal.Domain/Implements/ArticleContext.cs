@@ -1,158 +1,125 @@
 ﻿namespace InfoPortal.DAL.Implements
 {
+	using System.Data;
+	using System.Linq;
+	using Common;
+	using Interfaces;
 	using System;
 	using System.Collections.Generic;
 	using System.Data.SqlClient;
-	using Common;
-	using Interfaces;
 
 	public class ArticleContext : DbContext, IArticleContext
 	{
-		public List<Article> GetArticlesForMainPage(int maxArticlesInPage, string category, int page = 1)
+		private Article GetArticleFromRecord(IDataRecord record)
 		{
-			List<Article> articles = new List<Article>();
-
-			using (this.SqlConnection = new SqlConnection(this.ConnectionString))
+			Article article;
+			article = new Article
 			{
-				string sqlCommand = "exec sp_GetArticles @page,@maxArticlesInPage,@category";
-				this.SqlConnection.Open();
-				SqlCommand cmd = new SqlCommand(sqlCommand, this.SqlConnection);
-				cmd.Parameters.AddWithValue("@page", page);
-				cmd.Parameters.AddWithValue("@maxArticlesInPage", maxArticlesInPage);
-				cmd.Parameters.AddWithValue("@category", category ?? (object) DBNull.Value);
-
-				using (SqlDataReader reader = cmd.ExecuteReader())
+				ArticleId = (int) record["ArticleID"],
+				Caption = (string) record["Caption"],
+				Text = (string) record["Text"],
+				Date = (DateTime) record["Date"],
+				Language = record["Language"] as string,
+				Video = record["Video"] as string,
+				Image = record["Image"] as string,
+				User = new User
 				{
-					while (reader.Read())
-					{
-						articles.Add(
-							new Article
-							{
-								ArticleId = (int) reader["ArticleID"],
-								Caption = (string) reader["Caption"],
-								Text = (string) reader["Text"],
-								Date = (DateTime) reader["Date"],
-								Language = reader["Language"] as string,
-								Video = reader["Video"] as string,
-								Image = reader["Image"] as string,
-								User = new User
-								{
-									Name = (string) reader["Name"],
-								},
-								Category = (string) reader["CategoryName"]
-							});
-					}
-				}
-			}
+					Name = (string) record["Name"],
+				},
 
-			return articles;
+				Category = (string) record["CategoryName"],
+				CategoryId = (int) record["CategoryID"]
+			};
+			return article;
 		}
 
-		public int GetCountArtiles(string category)
+		private List<Tag> GetTagsByArticleId(int articleId)
 		{
-			int result = 0;
+			List<Tag> tags = new List<Tag>();
 
-			using (this.SqlConnection = new SqlConnection(this.ConnectionString))
+			string sqlCommand = "exec sp_GetTagsByArticleID @articleID=@0";
+
+			var records = base.ExecuteQuery(sqlCommand, articleId);
+
+			foreach (var record in records)
 			{
-				string sqlCommmand = "exec sp_get_count_articles_by_category @category";
-
-				SqlCommand cmd = new SqlCommand(sqlCommmand, this.SqlConnection);
-				cmd.Parameters.AddWithValue("@category", category ?? (object) DBNull.Value);
-				try
-				{
-					this.SqlConnection.Open();
-					var count = cmd.ExecuteScalar();
-					if (count != null)
+				tags.Add(
+					new Tag
 					{
-						result = (int) count;
-					}
-				}
-				catch (Exception e)
-				{
-					this.logger.Error(e.Message);
-				}
+						TagId = (int) record["TagID"],
+						TagName = (string) record["TagName"]
+					});
 			}
 
-			return result;
+			return tags;
 		}
 
 		public Article GetArticle(int articleId)
 		{
 			Article article = null;
 
-			using (this.SqlConnection = new SqlConnection(this.ConnectionString))
+			try
 			{
-				string sqlCommand = "exec sp_get_article_by_articleID @articleID";
+				string sqlCommand = "exec sp_get_article_by_articleID @articleId=@0";
 
-				SqlCommand cmd = new SqlCommand(sqlCommand, this.SqlConnection);
-				cmd.Parameters.AddWithValue("@articleID", articleId);
-				this.SqlConnection.Open();
-				using (SqlDataReader reader = cmd.ExecuteReader())
+				var records = base.ExecuteQuery(sqlCommand, articleId);
+
+				article = this.GetArticleFromRecord(records.FirstOrDefault());
+
+				if (article != null)
 				{
-					while (reader.Read())
-					{
-						article = new Article
-						{
-							ArticleId = (int) reader["ArticleID"],
-							Caption = (string) reader["Caption"],
-							Text = (string) reader["Text"],
-							Date = (DateTime) reader["Date"],
-							Language = reader["Language"] as string,
-							Video = reader["Video"] as string,
-							Image = reader["Image"] as string,
-							User = new User
-							{
-								Name = (string) reader["Name"],
-							},
-							Category = (string) reader["CategoryName"],
-							CategoryId = (int) reader["CategoryID"]
-						};
-					}
+					article.Tags = this.GetTagsByArticleId(articleId);
+					return article;
 				}
 			}
-
-			if (article != null)
+			catch (Exception e)
 			{
-				article.Tags = this.GetTagsByArticleId(articleId);
-				return article;
+				this.logger.Error(e.Message);
 			}
 
 			return null;
 		}
 
+		public List<Article> GetArticlesForMainPage(int maxArticlesInPage, string category, int page = 1)
+		{
+			List<Article> articles = new List<Article>();
+			try
+			{
+				string sqlCommand = "exec sp_GetArticles @category = @0, @maxArticlesForPage = @1, @page= @2";
+				var records =
+					base.ExecuteQuery(sqlCommand, category, maxArticlesInPage, page);
+
+				foreach (var rdr in records)
+				{
+					articles.Add(this.GetArticleFromRecord(rdr));
+				}
+			}
+			catch (Exception e)
+			{
+				this.logger.Error(e.Message);
+			}
+
+			return articles;
+		}
+
 		public List<Article> GetSearchByNamesOfArticles(string searchQuery, int pageSize, int page = 1)
 		{
 			List<Article> result = new List<Article>();
-			using (this.SqlConnection = new SqlConnection(this.ConnectionString))
-			{
-				string sqlCommand = "exec sp_get_search_result_by_name_article @page, @pageSize, @searchQuery";
 
-				SqlCommand cmd = new SqlCommand(sqlCommand, this.SqlConnection);
-				cmd.Parameters.AddWithValue("@page", page);
-				cmd.Parameters.AddWithValue("@pageSize", pageSize);
-				cmd.Parameters.AddWithValue("@searchQuery", searchQuery);
-				this.SqlConnection.Open();
-				using (SqlDataReader reader = cmd.ExecuteReader())
+			try
+			{
+				string sqlCommand =
+					"exec sp_get_articles_by_caption @page=@0, @maxArticlesForPage=@1, @captionArticle=@2";
+				var records = base.ExecuteQuery(sqlCommand, page, pageSize, searchQuery);
+
+				foreach (var record in records)
 				{
-					while (reader.Read())
-					{
-						result.Add(
-							new Article
-							{
-								ArticleId = (int) reader["ArticleID"],
-								Caption = (string) reader["Caption"],
-								Text = (string) reader["Text"],
-								Date = (DateTime) reader["Date"],
-								Language = reader["Language"] as string,
-								Video = reader["Video"] as string,
-								Image = reader["Image"] as string,
-								User = new User
-								{
-									Name = (string) reader["Name"],
-								}
-							});
-					}
+					result.Add(this.GetArticleFromRecord(record));
 				}
+			}
+			catch (Exception e)
+			{
+				this.logger.Error(e.Message);
 			}
 
 			return result;
@@ -162,35 +129,21 @@
 		{
 			List<Article> result = new List<Article>();
 
-			using (this.SqlConnection = new SqlConnection(this.ConnectionString))
+			try
 			{
-				string sqlCommand = "exec sp_get_search_result_by_date @page, @pageSize, @date";
-				SqlCommand cmd = new SqlCommand(sqlCommand, this.SqlConnection);
-				cmd.Parameters.AddWithValue("@page", page);
-				cmd.Parameters.AddWithValue("@pageSize", pageSize);
-				cmd.Parameters.AddWithValue("@date", searchQuery);
-				this.SqlConnection.Open();
-				using (SqlDataReader reader = cmd.ExecuteReader())
+				string sqlCommand =
+					"exec sp_get_articles_by_date @page=@0, @maxArticlesForPage=@1, @dateSearch=@2";
+
+				var records = base.ExecuteQuery(sqlCommand, page, pageSize, searchQuery);
+
+				foreach (var record in records)
 				{
-					while (reader.Read())
-					{
-						result.Add(
-							new Article
-							{
-								ArticleId = (int) reader["ArticleID"],
-								Caption = (string) reader["Caption"],
-								Text = (string) reader["Text"],
-								Date = (DateTime) reader["Date"],
-								Language = reader["Language"] as string,
-								Video = reader["Video"] as string,
-								Image = reader["Image"] as string,
-								User = new User
-								{
-									Name = (string) reader["Name"],
-								}
-							});
-					}
+					result.Add(this.GetArticleFromRecord(record));
 				}
+			}
+			catch (Exception e)
+			{
+				this.logger.Error(e.Message);
 			}
 
 			return result;
@@ -199,65 +152,122 @@
 		public List<Article> GetSearchByTagName(string searchQuery, int pageSize, int page = 1)
 		{
 			List<Article> result = new List<Article>();
-			using (this.SqlConnection = new SqlConnection(this.ConnectionString))
+			try
 			{
-				string sqlCommand = "exec sp_get_search_result_by_tagname @page, @pageSize, @tagName";
+				string sqlCommand =
+					"exec sp_get_articles_by_tags @page=@0, @maxArticlesForPage=@1, @tagName=@2";
 
-				SqlCommand cmd = new SqlCommand(sqlCommand, this.SqlConnection);
-				cmd.Parameters.AddWithValue("@page", page);
-				cmd.Parameters.AddWithValue("@pageSize", pageSize);
-				cmd.Parameters.AddWithValue("@tagName", searchQuery);
-				this.SqlConnection.Open();
+				var records = base.ExecuteQuery(sqlCommand, page, pageSize, searchQuery);
 
-				using (SqlDataReader reader = cmd.ExecuteReader())
+				foreach (var record in records)
 				{
-					while (reader.Read())
-					{
-						result.Add(
-							new Article
-							{
-								ArticleId = (int) reader["ArticleID"],
-								Caption = (string) reader["Caption"],
-								Text = (string) reader["Text"],
-								Date = (DateTime) reader["Date"],
-								Language = reader["Language"] as string,
-								Video = reader["Video"] as string,
-								Image = reader["Image"] as string,
-								User = new User
-								{
-									Name = (string) reader["Name"],
-								}
-							});
-					}
+					result.Add(this.GetArticleFromRecord(record));
 				}
+			}
+			catch (Exception e)
+			{
+				this.logger.Error(e.Message);
 			}
 
 			return result;
+		}
+
+		public List<Article> GetArticlesOfUser(string userName, int maxArticlesInPage, int page = 1)
+		{
+			List<Article> result = new List<Article>();
+			try
+			{
+				string sqlCommand = "exec sp_get_articles_of_user @userName=@0, @maxArticlesForPage=@1, @page=@2";
+
+				var records = base.ExecuteQuery(sqlCommand, userName, maxArticlesInPage, page);
+
+				foreach (var record in records)
+				{
+					result.Add(this.GetArticleFromRecord(record));
+				}
+			}
+			catch (Exception e)
+			{
+				this.logger.Error(e.Message);
+			}
+
+			return result;
+		}
+
+		public List<Article> GetRandomArticles(int excludeId)
+		{
+			List<Article> result = new List<Article>();
+
+			try
+			{
+				string sqlCommand = "exec sp_get_random_articles @withOutId=@0";
+
+				var records = base.ExecuteQuery(sqlCommand, excludeId);
+
+				foreach (var record in records)
+				{
+					result.Add(this.GetArticleFromRecord(record));
+				}
+			}
+			catch (Exception e)
+			{
+				this.logger.Error(e.Message);
+			}
+
+			return result;
+		}
+
+		public int GetCountArtiles(string category)
+		{
+			string sqlCommmand = "exec sp_get_count_articles_by_category @category=@0";
+
+			object result = base.ExecScalar(sqlCommmand, category);
+			if (result != null)
+			{
+				return (int) result;
+			}
+
+			return 0;
 		}
 
 		public int GetCountArticlesSearchResult(int selectSearch, string searchQuery)
 		{
-			int result = 0;
-			using (this.SqlConnection = new SqlConnection(this.ConnectionString))
-			{
-				string sqlCommand = "exec sp_get_count_result_search @select, @query";
-				SqlCommand cmd = new SqlCommand(sqlCommand, this.SqlConnection);
-				cmd.Parameters.AddWithValue("@select", selectSearch);
-				cmd.Parameters.AddWithValue("@query", searchQuery);
-				try
-				{
-					this.SqlConnection.Open();
-					result = (int) cmd.ExecuteScalar();
-				}
-				catch (Exception e)
-				{
-					this.logger.Error(e.Message);
-				}
-			}
+			string sqlCommand = "exec sp_get_count_result_search @select=@0, @query=@1";
 
-			return result;
+			object result = base.ExecScalar(sqlCommand, selectSearch, searchQuery);
+			if (result != null)
+			{
+				return (int) result;
+			}
+			return 0;
 		}
 
+		public int GetCountArticlesOfUser(string userName)
+		{
+			string sqlCommand = "exec sp_get_count_articles_of_user @userName=@0";
+			object result = base.ExecScalar(sqlCommand, userName);
+			if (result!=null)
+			{
+				return (int) result;
+			}
+
+			return 0;
+		}
+
+		public int GetArticleIdByCaption(string caption)
+		{
+			string sqlCommand = "exec sp_get_articleId_by_caption @caption=@0";
+			object result = base.ExecScalar(sqlCommand, caption);
+
+			if (result!=null)
+			{
+				return (int) result;
+			}
+
+			return 0;
+		}
+
+		//need refactoring
 		public void InsertNewArticle(Article article)
 		{
 			using (this.SqlConnection = new SqlConnection(this.ConnectionString))
@@ -306,30 +316,6 @@
 					transaction?.Rollback();
 				}
 			}
-		}
-
-		public int GetArticleIdByCaption(string caption)
-		{
-			int result = 0;
-			string sqlCommand = "exec sp_get_articleId_by_caption @caption";
-
-			using (this.SqlConnection = new SqlConnection(this.ConnectionString))
-			{
-				SqlCommand cmd = new SqlCommand(sqlCommand, this.SqlConnection);
-				cmd.Parameters.AddWithValue("@caption", caption);
-
-				try
-				{
-					this.SqlConnection.Open();
-					result = (int) cmd.ExecuteScalar();
-				}
-				catch (Exception e)
-				{
-					this.logger.Error(e.Message);
-				}
-			}
-
-			return result;
 		}
 
 		public void UpdateArticle(Article article)
@@ -407,116 +393,6 @@
 				catch (Exception e)
 				{
 					this.logger.Error(e.Message);
-				}
-			}
-		}
-
-		private List<Tag> GetTagsByArticleId(int articleId)
-		{
-			List<Tag> tags = new List<Tag>();
-
-			using (this.SqlConnection = new SqlConnection(this.ConnectionString))
-			{
-				string sqlCommand = "exec sp_GetTagsByArticleID @articleID";
-
-				SqlCommand cmd = new SqlCommand(sqlCommand, this.SqlConnection);
-				cmd.Parameters.AddWithValue("@articleID", articleId);
-				this.SqlConnection.Open();
-
-				using (SqlDataReader reader = cmd.ExecuteReader())
-				{
-					while (reader.Read())
-					{
-						tags.Add(
-							new Tag
-							{
-								TagId = (int) reader["TagID"],
-								TagName = (string) reader["TagName"]
-							});
-					}
-				}
-			}
-
-			return tags;
-		}
-
-		public List<Article> GetArticlesOfUser(string userName, int maxArticlesInPage, int page = 1)
-		{
-			List<Article> result = new List<Article>();
-			string sqlCommand = "exec sp_get_articles_of_user @username, @maxArticles, @page";
-
-			using (this.SqlConnection = new SqlConnection(this.ConnectionString))
-			{
-				SqlCommand cmd = new SqlCommand(sqlCommand, this.SqlConnection);
-				cmd.Parameters.AddWithValue("@username", userName ?? (object)DBNull.Value);
-				cmd.Parameters.AddWithValue("@maxArticles", maxArticlesInPage);
-				cmd.Parameters.AddWithValue("@page", page);
-				this.SqlConnection.Open();
-
-				using (SqlDataReader reader = cmd.ExecuteReader())
-				{
-					while (reader.Read())
-					{
-						result.Add(
-							new Article
-							{
-								ArticleId = (int) reader["ArticleId"],
-								Caption = (string) reader["Caption"],
-								Text = (string) reader["Text"],
-								Language = (string) reader["Language"],
-								Date = (DateTime) reader["Date"],
-								Image = (string)reader["Image"],
-								User = new User
-								{
-									Name = (string) reader["Name"]
-								}
-							});
-					}
-				}
-			}
-
-			return result;
-		}
-
-		public List<Article> GetRandomArticles(int excludeId)
-		{
-			List<Article> result = new List<Article>();
-
-			string sqlCommand = "exec sp_get_random_articles @excludeId";
-
-			using (this.SqlConnection=new SqlConnection(this.ConnectionString))
-			{
-				SqlCommand cmd = new SqlCommand(sqlCommand, this.SqlConnection);
-				cmd.Parameters.AddWithValue("@excludeId", excludeId);
-
-				this.SqlConnection.Open();
-
-				using (SqlDataReader reader=cmd.ExecuteReader())
-				{
-					while (reader.Read())
-					{
-						result.Add(new Article
-						{
-							ArticleId = (int)reader["ArticleID"],
-							Caption = (string)reader["Caption"],
-							Image = (string)reader["Image"]
-						});
-					}
-				}
-			}
-			return result;
-		}
-
-		public int GetCountArticlesOfUser(string userName)
-		{
-			string sqlCommand = "exec sp_get_count_articles_of_user @userName";
-			using (this.SqlConnection=new SqlConnection(this.ConnectionString))
-			{
-				using (SqlCommand cmd=new SqlCommand(sqlCommand,this.SqlConnection))
-				{
-					cmd.Parameters.AddWithValue("@userName", userName??(object) DBNull.Value);
-					this.SqlConnection.Open();
-					return (int) cmd.ExecuteScalar();
 				}
 			}
 		}
