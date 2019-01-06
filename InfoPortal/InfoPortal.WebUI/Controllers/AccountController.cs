@@ -82,7 +82,7 @@
 		{
 			if (ModelState.IsValid)
 			{
-				if (userRepository.CheckUserExist(newUser.Email, newUser.Name) == 1)
+				if (userRepository.CheckUserExist(newUser.Email, newUser.Name) >= 1)
 				{
 					ModelState.AddModelError("", "User with this Name or Email already exists");
 				}

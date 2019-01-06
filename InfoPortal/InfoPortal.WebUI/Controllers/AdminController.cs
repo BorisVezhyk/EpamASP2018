@@ -36,7 +36,7 @@ namespace InfoPortal.WebUI.Controllers
 					TotalItems = this.users.GetCountAllUsers()
 				}
 			};
-			
+
 			return this.View(model);
 		}
 
@@ -122,9 +122,17 @@ namespace InfoPortal.WebUI.Controllers
 						updateUser.Roles.Add(new Role { Name = collection["Admin"] });
 					}
 
-					this.users.UpdateUser(updateUser);
-					this.logger.Info(User.Identity.Name + " updated a user with Id=" + id);
-					return this.RedirectToAction("Index");
+					if (this.users.CheckUserExist(collection["Email"], collection["Name"]) > 1)
+					{
+						ModelState.AddModelError("", "User with this Name or Email already exists");
+						return this.View(updateUser);
+					}
+					else
+					{
+						this.users.UpdateUser(updateUser);
+						this.logger.Info(User.Identity.Name + " updated a user with Id=" + id);
+						return this.RedirectToAction("Index");
+					}
 				}
 
 				return this.View();

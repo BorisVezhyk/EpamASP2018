@@ -44,3 +44,39 @@ ERROR 2019-01-04 01:57:28,304 403790ms DbContext              GetSearchByDate   
 ERROR 2019-01-04 02:02:27,444 47921ms DbContext              GetSearchByDate    - CategoryName
 ERROR 2019-01-04 02:37:00,467 67734ms DbContext              GetSearchByTagName - Error converting data type nvarchar to int.
 ERROR 2019-01-04 03:24:53,159 22462ms DbContext              GetRandomArticles  - Object reference not set to an instance of an object.System.Collections.Generic.List`1[Common.Article] GetRandomArticles(Int32)
+INFO  2019-01-06 23:38:48,781 230304ms AdminController        Delete             - Boris deleted a user.The user had id=9
+ERROR 2019-01-06 23:38:57,926 239449ms DbContext              UpdateUser         - Violation of UNIQUE KEY constraint 'UQ__Users__737584F6C688B367'. Cannot insert duplicate key in object 'dbo.Users'. The duplicate key value is (Boris).
+The statement has been terminated.
+INFO  2019-01-06 23:38:57,932 239455ms AdminController        Edit               - Boris updated a user with Id=3
+ERROR 2019-01-06 23:39:30,826 272349ms DbContext              UpdateUser         - Violation of UNIQUE KEY constraint 'UQ__Users__737584F6C688B367'. Cannot insert duplicate key in object 'dbo.Users'. The duplicate key value is (Boris).
+The statement has been terminated.
+INFO  2019-01-06 23:39:30,827 272350ms AdminController        Edit               - Boris updated a user with Id=3
+ERROR 2019-01-06 23:39:43,153 284675ms DbContext              UpdateUser         - Violation of UNIQUE KEY constraint 'UQ__Users__737584F6C688B367'. Cannot insert duplicate key in object 'dbo.Users'. The duplicate key value is (Boris).
+The statement has been terminated.
+INFO  2019-01-06 23:39:43,154 284676ms AdminController        Edit               - Boris updated a user with Id=3
+ERROR 2019-01-06 23:40:21,580 323103ms DbContext              UpdateUser         - Violation of UNIQUE KEY constraint 'UQ__Users__737584F6C688B367'. Cannot insert duplicate key in object 'dbo.Users'. The duplicate key value is (Boris).
+The statement has been terminated.
+INFO  2019-01-06 23:40:21,581 323104ms AdminController        Edit               - Boris updated a user with Id=10
+ERROR 2019-01-06 23:40:28,220 329743ms DbContext              UpdateUser         - Violation of UNIQUE KEY constraint 'UQ__Users__737584F6C688B367'. Cannot insert duplicate key in object 'dbo.Users'. The duplicate key value is (Boris).
+The statement has been terminated.
+INFO  2019-01-06 23:40:28,220 329743ms AdminController        Edit               - Boris updated a user with Id=4
+ERROR 2019-01-06 23:41:25,118 386640ms DbContext              UpdateUser         - Violation of PRIMARY KEY constraint 'PK_UserRoles'. Cannot insert duplicate key in object 'dbo.UserRoles'. The duplicate key value is (2, 1).
+The statement has been terminated.
+INFO  2019-01-06 23:41:25,119 386641ms AdminController        Edit               - Boris updated a user with Id=3
+ERROR 2019-01-06 23:47:59,964 781486ms DbContext              UpdateUser         - Violation of UNIQUE KEY constraint 'UQ__Users__737584F6C688B367'. Cannot insert duplicate key in object 'dbo.Users'. The duplicate key value is (Boris).
+The statement has been terminated.
+INFO  2019-01-06 23:47:59,965 781487ms AdminController        Edit               - Boris updated a user with Id=3
+INFO  2019-01-06 23:51:27,428 988951ms AdminController        Edit               - Boris updated a user with Id=3
+INFO  2019-01-06 23:52:54,986 1076509ms AdminController        Edit               - Boris updated a user with Id=3
+ERROR 2019-01-06 23:57:26,586 60834ms DbContext              UpdateUser         - Violation of UNIQUE KEY constraint 'UQ__Users__737584F6C688B367'. Cannot insert duplicate key in object 'dbo.Users'. The duplicate key value is (Editor).
+The statement has been terminated.
+INFO  2019-01-06 23:57:26,614 60862ms AdminController        Edit               - Boris updated a user with Id=4
+ERROR 2019-01-06 23:59:02,726 156975ms DbContext              UpdateUser         - Violation of UNIQUE KEY constraint 'UQ__Users__737584F6C688B367'. Cannot insert duplicate key in object 'dbo.Users'. The duplicate key value is (Editor).
+The statement has been terminated.
+INFO  2019-01-06 23:59:02,727 156976ms AdminController        Edit               - Boris updated a user with Id=4
+INFO  2019-01-07 00:10:28,650 49093ms AdminController        Edit               - Boris updated a user with Id=10
+INFO  2019-01-07 00:10:45,339 65782ms AdminController        Edit               - Boris updated a user with Id=10
+INFO  2019-01-07 00:19:45,977 54139ms AdminController        Edit               - Boris updated a user with Id=10
+INFO  2019-01-07 00:19:52,371 60533ms AdminController        Edit               - Boris updated a user with Id=10
+INFO  2019-01-07 00:20:17,992 86154ms AdminController        Edit               - Boris updated a user with Id=6
+INFO  2019-01-07 00:20:25,660 93821ms AdminController        Edit               - Boris updated a user with Id=8
