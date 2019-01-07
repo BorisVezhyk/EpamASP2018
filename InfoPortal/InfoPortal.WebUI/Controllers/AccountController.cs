@@ -15,8 +15,7 @@
 			this.userRepository = userRepository;
 		}
 
-		//
-		// GET: /Account/Login
+		[HttpGet]
 		[AllowAnonymous]
 		public ActionResult Login(string returnUrl)
 		{
@@ -69,12 +68,13 @@
 			return View(login);
 		}
 
-		// GET: /Account/Register
+		[HttpGet]
 		[AllowAnonymous]
 		public ActionResult Register()
 		{
 			return View();
 		}
+
 
 		[HttpPost]
 		[ValidateAntiForgeryToken]
@@ -110,7 +110,14 @@
 
 		public ActionResult UserProfile(string userName)
 		{
+			if (userName!=User.Identity.Name)
+			{
+				return this.HttpNotFound();
+			}
+
 			User model = this.userRepository.GetUserByName(userName);
+
+
 			return this.View(model);
 		}
 

@@ -17,3 +17,4 @@ F:\Учеба\Epam courses\HomeWork\HomeWork\InfoPortal\Common\bin\Debug\System.
 F:\Учеба\Epam courses\HomeWork\HomeWork\InfoPortal\Common\bin\Debug\System.Web.WebPages.Deployment.xml
 F:\Учеба\Epam courses\HomeWork\HomeWork\InfoPortal\Common\bin\Debug\System.Web.WebPages.Razor.xml
 F:\Учеба\Epam courses\HomeWork\HomeWork\InfoPortal\Common\obj\Debug\InfoPortal.Common.csproj.CopyComplete
+F:\Учеба\Epam courses\HomeWork\HomeWork\InfoPortal\Common\obj\Debug\InfoPortal.Common.csprojAssemblyReference.cache

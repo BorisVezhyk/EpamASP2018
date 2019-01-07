@@ -80,3 +80,60 @@ INFO  2019-01-07 00:19:45,977 54139ms AdminController        Edit               
 INFO  2019-01-07 00:19:52,371 60533ms AdminController        Edit               - Boris updated a user with Id=10
 INFO  2019-01-07 00:20:17,992 86154ms AdminController        Edit               - Boris updated a user with Id=6
 INFO  2019-01-07 00:20:25,660 93821ms AdminController        Edit               - Boris updated a user with Id=8
+ERROR 2019-01-07 01:31:29,845 226676ms DbContext              GetUserByLogin     - Object reference not set to an instance of an object.
+ERROR 2019-01-07 01:31:32,777 229608ms DbContext              GetUserByLogin     - Object reference not set to an instance of an object.
+ERROR 2019-01-07 01:31:37,660 234491ms DbContext              GetUserByLogin     - Object reference not set to an instance of an object.
+ERROR 2019-01-07 01:31:46,024 242854ms DbContext              GetUserByLogin     - Object reference not set to an instance of an object.
+ERROR 2019-01-07 01:31:54,050 250881ms DbContext              GetUserByLogin     - Object reference not set to an instance of an object.
+ERROR 2019-01-07 02:54:39,446 11572ms DbContext              rticlesForMainPage - Cannot open database "InformationPortal" requested by the login. The login failed.
+Login failed for user 'IIS APPPOOL\LocInfoPortal.com'.
+ERROR 2019-01-07 02:54:39,905 12031ms DbContext              ExecScalar         - Cannot open database "InformationPortal" requested by the login. The login failed.
+Login failed for user 'IIS APPPOOL\LocInfoPortal.com'.
+ERROR 2019-01-07 02:56:28,194 120320ms DbContext              rticlesForMainPage - Cannot open database "InformationPortal" requested by the login. The login failed.
+Login failed for user 'IIS APPPOOL\LocInfoPortal.com'.
+ERROR 2019-01-07 02:56:28,198 120324ms DbContext              ExecScalar         - Cannot open database "InformationPortal" requested by the login. The login failed.
+Login failed for user 'IIS APPPOOL\LocInfoPortal.com'.
+ERROR 2019-01-07 03:00:15,662 347788ms DbContext              rticlesForMainPage - Cannot open database "InformationPortal" requested by the login. The login failed.
+Login failed for user 'IIS APPPOOL\LocInfoPortal.com'.
+ERROR 2019-01-07 03:00:15,663 347789ms DbContext              ExecScalar         - Cannot open database "InformationPortal" requested by the login. The login failed.
+Login failed for user 'IIS APPPOOL\LocInfoPortal.com'.
+ERROR 2019-01-07 03:18:58,800 10917ms DbContext              rticlesForMainPage - Cannot open database "InformationPortal" requested by the login. The login failed.
+Login failed for user 'WORKGROUP\VOZIK-PC$'.
+ERROR 2019-01-07 03:18:58,853 10970ms DbContext              ExecScalar         - Cannot open database "InformationPortal" requested by the login. The login failed.
+Login failed for user 'WORKGROUP\VOZIK-PC$'.
+ERROR 2019-01-07 03:29:21,264 633381ms DbContext              rticlesForMainPage - Cannot open database "InformationPortal" requested by the login. The login failed.
+Login failed for user 'WORKGROUP\VOZIK-PC$'.
+ERROR 2019-01-07 03:29:31,286 643404ms DbContext              ExecScalar         - Cannot open database "InformationPortal" requested by the login. The login failed.
+Login failed for user 'WORKGROUP\VOZIK-PC$'.
+ERROR 2019-01-07 12:48:19,993 10837ms DbContext              rticlesForMainPage - Cannot open database "InformationPortal" requested by the login. The login failed.
+Login failed for user 'WORKGROUP\VOZIK-PC$'.
+ERROR 2019-01-07 12:48:20,029 10873ms DbContext              ExecScalar         - Cannot open database "InformationPortal" requested by the login. The login failed.
+Login failed for user 'WORKGROUP\VOZIK-PC$'.
+ERROR 2019-01-07 13:15:57,852 10607ms DbContext              rticlesForMainPage - Cannot open database "InformationPortal" requested by the login. The login failed.
+Login failed for user 'WORKGROUP\VOZIK-PC$'.
+ERROR 2019-01-07 13:15:57,904 10659ms DbContext              ExecScalar         - Cannot open database "InformationPortal" requested by the login. The login failed.
+Login failed for user 'WORKGROUP\VOZIK-PC$'.
+ERROR 2019-01-07 13:17:54,310 127065ms DbContext              rticlesForMainPage - Cannot open database "InformationPortal" requested by the login. The login failed.
+Login failed for user 'WORKGROUP\VOZIK-PC$'.
+ERROR 2019-01-07 13:17:54,313 127068ms DbContext              ExecScalar         - Cannot open database "InformationPortal" requested by the login. The login failed.
+Login failed for user 'WORKGROUP\VOZIK-PC$'.
+ERROR 2019-01-07 13:21:44,684 10978ms DbContext              rticlesForMainPage - Cannot open database "InformationPortal" requested by the login. The login failed.
+Login failed for user 'WORKGROUP\VOZIK-PC$'.
+ERROR 2019-01-07 13:21:44,757 11051ms DbContext              ExecScalar         - Cannot open database "InformationPortal" requested by the login. The login failed.
+Login failed for user 'WORKGROUP\VOZIK-PC$'.
+ERROR 2019-01-07 13:26:41,633 10867ms DbContext              rticlesForMainPage - Cannot open database "InformationPortal" requested by the login. The login failed.
+Login failed for user 'IIS APPPOOL\LocInfoPortal.com'.
+ERROR 2019-01-07 13:26:41,657 10891ms DbContext              ExecScalar         - Cannot open database "InformationPortal" requested by the login. The login failed.
+Login failed for user 'IIS APPPOOL\LocInfoPortal.com'.
+ERROR 2019-01-07 13:30:31,110 240344ms DbContext              rticlesForMainPage - Cannot open database "InformationPortal" requested by the login. The login failed.
+Login failed for user 'IIS APPPOOL\LocInfoPortal.com'.
+ERROR 2019-01-07 13:30:31,111 240345ms DbContext              ExecScalar         - Cannot open database "InformationPortal" requested by the login. The login failed.
+Login failed for user 'IIS APPPOOL\LocInfoPortal.com'.
+ERROR 2019-01-07 13:31:51,244 320478ms DbContext              rticlesForMainPage - Cannot open database "InformationPortal" requested by the login. The login failed.
+Login failed for user 'IIS APPPOOL\LocInfoPortal.com'.
+ERROR 2019-01-07 13:31:51,245 320479ms DbContext              ExecScalar         - Cannot open database "InformationPortal" requested by the login. The login failed.
+Login failed for user 'IIS APPPOOL\LocInfoPortal.com'.
+ERROR 2019-01-07 13:34:49,532 498767ms DbContext              rticlesForMainPage - The EXECUTE permission was denied on the object 'sp_GetArticles', database 'InformationPortal', schema 'dbo'.
+ERROR 2019-01-07 13:34:49,538 498773ms DbContext              ExecScalar         - The EXECUTE permission was denied on the object 'sp_get_count_articles_by_category', database 'InformationPortal', schema 'dbo'.
+ERROR 2019-01-07 13:35:04,619 513853ms DbContext              rticlesForMainPage - The EXECUTE permission was denied on the object 'sp_GetArticles', database 'InformationPortal', schema 'dbo'.
+ERROR 2019-01-07 13:35:04,621 513855ms DbContext              ExecScalar         - The EXECUTE permission was denied on the object 'sp_get_count_articles_by_category', database 'InformationPortal', schema 'dbo'.

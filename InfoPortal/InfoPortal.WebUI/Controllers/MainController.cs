@@ -11,7 +11,7 @@
 
 		private readonly IArticlesRepository articles;
 
-		private const int PageSize = 6;
+		private const int PageSize = 2;
 
 		public MainController(IArticlesRepository res)
 		{

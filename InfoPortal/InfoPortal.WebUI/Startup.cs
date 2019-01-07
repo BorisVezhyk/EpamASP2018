@@ -1,7 +1,7 @@
 ﻿using Microsoft.Owin;
 using Owin;
 
-[assembly: OwinStartupAttribute(typeof(InfoPortal.WebUI.Startup))]
+//[assembly: OwinStartupAttribute(typeof(InfoPortal.WebUI.Startup))]
 [assembly:log4net.Config.XmlConfigurator(ConfigFile = "Web.config",Watch = true)]
 
 namespace InfoPortal.WebUI

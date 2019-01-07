@@ -61,8 +61,8 @@
 		</div>
 	}
 	<div class="row">
-		@Html.PageLinksBootstrap(Model.PageInfo, x=>Url.Action("List",
-			new { page=x}))
+		@Html.PageLinksBootstrap(Model.PageInfo, x=>Url.Action("ResultSearch",
+			new { searchQuery=@Model.SearchQuery, selectSearch=@Model.SelectSearch, page =x}))
 	</div>
 </div>
 

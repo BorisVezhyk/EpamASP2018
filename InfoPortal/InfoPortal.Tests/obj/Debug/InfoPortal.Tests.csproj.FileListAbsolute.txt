@@ -15,7 +15,6 @@ F:\Учеба\Epam courses\HomeWork\HomeWork\InfoPortal\InfoPortal.Tests\bin\Deb
 F:\Учеба\Epam courses\HomeWork\HomeWork\InfoPortal\InfoPortal.Tests\bin\Debug\Common.dll
 F:\Учеба\Epam courses\HomeWork\HomeWork\InfoPortal\InfoPortal.Tests\bin\Debug\log4net.dll
 F:\Учеба\Epam courses\HomeWork\HomeWork\InfoPortal\InfoPortal.Tests\bin\Debug\WebActivatorEx.dll
-F:\Учеба\Epam courses\HomeWork\HomeWork\InfoPortal\InfoPortal.Tests\bin\Debug\Microsoft.Owin.dll
 F:\Учеба\Epam courses\HomeWork\HomeWork\InfoPortal\InfoPortal.Tests\bin\Debug\System.Web.Optimization.dll
 F:\Учеба\Epam courses\HomeWork\HomeWork\InfoPortal\InfoPortal.Tests\bin\Debug\System.Web.Mvc.dll
 F:\Учеба\Epam courses\HomeWork\HomeWork\InfoPortal\InfoPortal.Tests\bin\Debug\Owin.dll
@@ -43,7 +42,6 @@ F:\Учеба\Epam courses\HomeWork\HomeWork\InfoPortal\InfoPortal.Tests\bin\Deb
 F:\Учеба\Epam courses\HomeWork\HomeWork\InfoPortal\InfoPortal.Tests\bin\Debug\System.Threading.Tasks.Extensions.xml
 F:\Учеба\Epam courses\HomeWork\HomeWork\InfoPortal\InfoPortal.Tests\bin\Debug\Common.pdb
 F:\Учеба\Epam courses\HomeWork\HomeWork\InfoPortal\InfoPortal.Tests\bin\Debug\log4net.xml
-F:\Учеба\Epam courses\HomeWork\HomeWork\InfoPortal\InfoPortal.Tests\bin\Debug\Microsoft.Owin.xml
 F:\Учеба\Epam courses\HomeWork\HomeWork\InfoPortal\InfoPortal.Tests\bin\Debug\System.Web.Optimization.xml
 F:\Учеба\Epam courses\HomeWork\HomeWork\InfoPortal\InfoPortal.Tests\bin\Debug\System.Web.Mvc.xml
 F:\Учеба\Epam courses\HomeWork\HomeWork\InfoPortal\InfoPortal.Tests\bin\Debug\System.Web.WebPages.xml

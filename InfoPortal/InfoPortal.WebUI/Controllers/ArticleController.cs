@@ -13,7 +13,7 @@
 		private readonly IArticlesRepository articlesRepository;
 		private readonly ICategoryRepository categoryRepository;
 		private readonly ITagsRepository tagsRepository;
-		private const int MaxManageArticlesOfUser = 20;
+		private const int MaxManageArticlesOfUser = 10;
 
 		public ArticleController(
 			IArticlesRepository articlesArticlesRepository,
@@ -25,6 +25,7 @@
 			this.tagsRepository = tags;
 		}
 
+		[Route("Article/id{id:int}")]
 		public ActionResult Article(int id)
 		{
 			Article article = this.articlesRepository.GetArticle(id);
@@ -37,6 +38,7 @@
 			return HttpNotFound();
 		}
 
+		[Route("UpdateArticle/id{id:int}")]
 		[Authorize(Roles = "Editor,Admin")]
 		public ActionResult UpdateArticle(int id)
 		{
@@ -53,7 +55,7 @@
 				Video = changingArticle.Video,
 				Tags = string.Join(",", changingArticle.Tags.Select(t => t.TagName))
 			};
-			
+
 			return this.View(model);
 		}
 
@@ -77,10 +79,12 @@
 				this.articlesRepository.UpdateArticle(updateArticle);
 				return RedirectToAction("Article", new { id = changingArticle.ArticleId });
 			}
+
 			return this.View(changingArticle);
 		}
 
 		[HttpGet]
+		[Route("CreateNewArticle")]
 		[Authorize(Roles = "Editor,Admin")]
 		public ActionResult CreateNewArticle()
 		{
@@ -123,10 +127,11 @@
 			return RedirectToAction("List", "Main");
 		}
 
+		[HttpGet]
 		[Authorize(Roles = "Editor,Admin")]
-		public ActionResult ListOfArticles(string userName = null,int page=1)
+		public ActionResult ListOfArticles(string userName, int page = 1)
 		{
-			var model2 = new ArticlesOfUser
+			var model = new ArticlesOfUser
 			{
 				Articles = this.articlesRepository.GetArticlesOfUser(
 					userName,
@@ -140,7 +145,7 @@
 				},
 				CurrentUserName = userName
 			};
-			return this.View(model2);
+			return this.View(model);
 		}
 	}
 }

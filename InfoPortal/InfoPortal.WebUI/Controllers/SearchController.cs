@@ -1,4 +1,6 @@
-﻿namespace InfoPortal.WebUI.Controllers
+﻿using System.Text.RegularExpressions;
+
+namespace InfoPortal.WebUI.Controllers
 {
 	using Common;
 	using Models;
@@ -22,12 +24,16 @@
 		[HttpPost]
 		public ActionResult ResultSearch(SearchAttributes searchParameters)
 		{
+
+			string strWithoutSpaces = Regex.Replace(searchParameters.SearchQuery, @"^\s+", "");
+			strWithoutSpaces = Regex.Replace(strWithoutSpaces, @"\s+$", "");
+
 			if (searchParameters.SearchQuery != null)
 			{
 				return RedirectToAction(
 					"ResultSearch",
 					"Main",
-					new { searchQuery = searchParameters.SearchQuery, selectSearch = searchParameters.Select });
+					new { searchQuery = strWithoutSpaces, selectSearch = searchParameters.Select });
 			}
 
 			return HttpNotFound();

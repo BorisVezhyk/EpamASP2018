@@ -31,6 +31,7 @@
 		$("#search-option select").change(function () {
 			var selectedVal = $(this).val();
 			if (selectedVal == 1) {
+				
 				$("#form-input input").attr({ "type": "text" });
 				$("#form-input input").removeAttr("disabled");
 				$("#btn-search").removeAttr("disabled");

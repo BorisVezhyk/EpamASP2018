@@ -1,18 +1,11 @@
-﻿
-
-using Common;
+﻿using Common;
 using InfoPortal.BL.Implements;
 using Moq;
 
 namespace InfoPortal.DAL.Implements.Tests
-{using InfoPortal.DAL.Interfaces;
+{
+	using Interfaces;
 	using Microsoft.VisualStudio.TestTools.UnitTesting;
-	using InfoPortal.DAL.Implements;
-	using System;
-	using System.Collections.Generic;
-	using System.Linq;
-	using System.Text;
-	using System.Threading.Tasks;
 
 	[TestClass()]
 	public class ArticleContextArticleContext
@@ -21,7 +14,7 @@ namespace InfoPortal.DAL.Implements.Tests
 		[ExpectedException(typeof(System.ArgumentOutOfRangeException))]
 		public void GetArticleTest()
 		{
-			Mock<IArticleContext> mock=new Mock<IArticleContext>();
+			Mock<IArticleContext> mock = new Mock<IArticleContext>();
 
 			mock.Setup(m => m.GetArticle(It.Is<int>(x => x > 0))).Returns<Article>(a => a);
 			mock.Setup(m => m.GetArticle(It.Is<int>(x => x <= 0))).Throws<System.ArgumentOutOfRangeException>();
@@ -29,8 +22,6 @@ namespace InfoPortal.DAL.Implements.Tests
 
 			var result1 = target.GetArticle(-1);
 			var result2 = target.GetArticle(2);
-
-			
 		}
 
 		[TestMethod()]
