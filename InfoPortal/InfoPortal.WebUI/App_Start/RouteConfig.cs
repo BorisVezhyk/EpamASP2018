@@ -41,9 +41,9 @@
 
 			routes.MapRoute(
 				null,
-				"{category}/Page{page}",
-				new { controller = "Main", action = "List" },
-				new { page = @"\d+" });
+				url:"{category}/Page{page}",
+				defaults: new { controller = "Main", action = "List" },
+				constraints: new { page = @"\d+" });
 
 			#endregion
 
@@ -121,8 +121,8 @@
 
 			routes.MapRoute(
 				null,
-				"ResultSearch/Articles/{searchQuery}",
-				new
+				url: "ResultSearch/Articles/{searchQuery}",
+				defaults: new
 				{
 					controller = "Main",
 					action = "ResultSearch",
@@ -186,51 +186,8 @@
 				new {page=@"\d+"});
 			#endregion
 
-
-
 			routes.MapRoute(null, "{controller}/{action}");
 
-			//routes.MapRoute(
-			//	null,
-			//	url: "{controller}/{action}/{userName}",
-			//	defaults: new
-			//	{
-			//		controller = "Main",
-			//		action = "ListArticlesOfUser",
-			//		page = 1
-			//	},
-			//	constraints: new { userName = @"\w+", });
-
-			//routes.MapRoute(
-			//	null,
-			//	url: "{controller}/{action}/{userName}/Page{page}",
-			//	defaults: new
-			//	{
-			//		controller = "Main",
-			//		action = "ListArticlesOfUser",
-			//	},
-			//	constraints: new { userName = @"\w+", page = @"\d+" });
-
-			////??
-			//			routes.MapRoute(
-			//				null,
-			//				url: "{action}/{selectSearch}/{searchQuery}",
-			//				defaults: new
-			//				{
-			//					controller = "Main",
-			//					action = "ResultSearch",
-			//					selectSearch = 1,
-			//					page = 1
-			//				},
-			//				constraints: new { searchQuery = @"\w+", selectSearch = @"\d+" });
-
-			//RouteForArticle
-
-			//routes.MapRoute(
-			//	name: "Default",
-			//	url: "{controller}/{action}/{id}",
-			//	defaults: new { controller = "Main", action = "List", id = UrlParameter.Optional }
-			//);
 		}
 	}
 }

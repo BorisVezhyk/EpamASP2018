@@ -13,7 +13,7 @@
 
 		List<Article> GetArticlesForMainPage(int maxArticlesInPage, string category, int page = 1);
 
-		int GetCountArtiles(string category);
+		int GetCountArticles(string category);
 
 		Article GetArticle(int articleId);
 

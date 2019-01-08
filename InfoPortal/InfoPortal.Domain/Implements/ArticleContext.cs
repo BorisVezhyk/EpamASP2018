@@ -217,7 +217,7 @@
 			return result;
 		}
 
-		public int GetCountArtiles(string category)
+		public int GetCountArticles(string category)
 		{
 			string sqlCommmand = "exec sp_get_count_articles_by_category @category=@0";
 
@@ -321,7 +321,7 @@
 		public void UpdateArticle(Article article)
 		{
 			string sqlCommandUpdateArticle =
-				"exec sp_update_article @articleId, @caption, @text, @landuage, @video, @image, @categoryId";
+				"exec sp_update_article @articleId, @caption, @text, @lang, @video, @image, @categoryId";
 			SqlTransaction transaction = null;
 
 			using (this.SqlConnection = new SqlConnection(this.ConnectionString))
@@ -336,7 +336,7 @@
 						cmd.Parameters.AddWithValue("@articleId", article.ArticleId);
 						cmd.Parameters.AddWithValue("@caption", article.Caption);
 						cmd.Parameters.AddWithValue("@text", article.Text);
-						cmd.Parameters.AddWithValue("@landuage", article.Language);
+						cmd.Parameters.AddWithValue("@lang", article.Language);
 						cmd.Parameters.AddWithValue("@video", article.Video ?? (object) DBNull.Value);
 						cmd.Parameters.AddWithValue("@image", article.Image);
 						cmd.Parameters.AddWithValue("@categoryId", article.CategoryId);

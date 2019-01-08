@@ -26,7 +26,7 @@
 
 		public int GetCountArtiles(string category)
 		{
-			return this.context.GetCountArtiles(category);
+			return this.context.GetCountArticles(category);
 		}
 
 		public void SaveArticle(Article article)
